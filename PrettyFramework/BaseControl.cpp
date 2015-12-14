@@ -3,6 +3,7 @@
 
 BaseControl::BaseControl(BaseControl* parent)
 	: m_parent(parent)
+	, m_weight(1.0f)
 {
 }
 

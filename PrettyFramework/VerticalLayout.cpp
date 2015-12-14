@@ -20,10 +20,28 @@ void VerticalLayout::RecalcLayout()
 	int rectHeight = rect_in_parent.Height();
 
 	size_t itemCount = m_children.size();
-	int itemHeight = rectHeight / itemCount;
 
+	float allWeight = 0.0f;
 	for (size_t i = 0; i < itemCount; i++) {
-		CRect rc(0, itemHeight * i, rectWidth, itemHeight * (i + 1));
-		m_children.at(i)->SetRect(rc);
+		allWeight += m_children.at(i)->GetWeight();
+	}
+
+	int lastHeight = 0;
+
+	float fHeight = rectHeight / allWeight;
+
+	for (auto iter = m_children.begin(); iter != m_children.end(); iter++) {
+		auto& control = (*iter);
+
+		float w = control->GetWeight();
+		CSize s = control->GetMinSize();
+
+		int h = max(int(w * fHeight), s.cy);
+		if (lastHeight + h > rectHeight) {
+			h = rectHeight - lastHeight;
+		}
+
+		control->SetRect(CRect(0, lastHeight, rectWidth, lastHeight + h));
+		lastHeight += h;
 	}
 }

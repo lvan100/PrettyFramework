@@ -80,6 +80,48 @@ protected:
 
 public:
 	/**
+	 * 设置最小的控件大小
+	 */
+	void SetMinSize(CSize size) {
+		m_min_size = size;
+	}
+
+	/**
+	 * 获取最小的控件大小
+	 */
+	CSize GetMinSize() {
+		return m_min_size;
+	}
+
+protected:
+	/**
+	 * 最小的控件大小
+	 */
+	CSize m_min_size;
+
+public:
+	/**
+	 * 设置控件的位置权重
+	 */
+	void SetWeight(float weight) {
+		m_weight = weight;
+	}
+
+	/*
+	 * 获取控件的位置权重
+	 */
+	float GetWeight() {
+		return m_weight;
+	}
+
+protected:
+	/**
+	 * 控件的权重
+	 */
+	float m_weight;
+
+public:
+	/**
 	 * 获取控件的绘图坐标
 	 */
 	CRect GetPaintRect();

@@ -31,15 +31,26 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	LayoutControl::AddChild(label);
 
-	auto& layout = label->GetLayoutControl();
+	auto& layout = shared_ptr<VerticalLayout>(new VerticalLayout(label.get()));
 
 	shared_ptr<Label> sub_label_1(new Label(layout.get()));
-	sub_label_1->SetRect(CRect(0, 50, 50, 100));
+	//sub_label_1->SetRect(CRect(0, 50, 50, 100));
 	sub_label_1->SetText(_T("这是一个标签控件"));
 	sub_label_1->SetTextColor(RGB(0, 0, 255));
 	sub_label_1->SetBkColor(RGB(255, 0, 0));
+	sub_label_1->SetMinSize(CSize(0, 70));
 
 	layout->AddChild(sub_label_1);
+
+	shared_ptr<Label> sub_label_2(new Label(layout.get()));
+	//sub_label_2->SetRect(CRect(0, 50, 50, 100));
+	sub_label_2->SetText(_T("这是一个标签控件"));
+	sub_label_2->SetTextColor(RGB(255, 0, 255));
+	sub_label_2->SetBkColor(RGB(255, 255, 255));
+
+	layout->AddChild(sub_label_2);
+
+	label->SetLayoutControl(layout);
 
 	return TRUE;
 }
