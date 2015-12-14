@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{2d38f625-0950-4c26-a83f-97ec303d1d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{90617664-b662-4008-a9bc-3a6e35c45572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Resource">
+      <UniqueIdentifier>{193da31d-2e4c-409e-8e04-982566a2aff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Application">
+      <UniqueIdentifier>{50b4355b-565b-4841-abf1-637ca71a9cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainFrame">
+      <UniqueIdentifier>{eab3d386-fc58-4307-8802-d1bdb81230d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Layout">
+      <UniqueIdentifier>{624e5228-f5b9-46f8-8def-0f1deffe5403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Control">
+      <UniqueIdentifier>{09bf9fa0-f3e6-49e4-8c85-12cb6af2469a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Interface">
+      <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Theme">
+      <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Application\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Application\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Application\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="PrettyFramework.h">
+      <Filter>Application\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="PrettyFrameworkDlg.h">
+      <Filter>MainFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="UserControl.h">
+      <Filter>Framework\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutControl.h">
+      <Filter>Framework\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Framework\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsoluteLayout.h">
+      <Filter>Framework\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticalLayout.h">
+      <Filter>Framework\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseControl.h">
+      <Filter>Framework\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseTheme.h">
+      <Filter>Framework\Theme</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Application\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="PrettyFramework.cpp">
+      <Filter>Application\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="PrettyFrameworkDlg.cpp">
+      <Filter>MainFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="LayoutControl.cpp">
+      <Filter>Framework\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="UserControl.cpp">
+      <Filter>Framework\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Framework\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsoluteLayout.cpp">
+      <Filter>Framework\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticalLayout.cpp">
+      <Filter>Framework\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseControl.cpp">
+      <Filter>Framework\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseTheme.cpp">
+      <Filter>Framework\Theme</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\PrettyFramework.rc2">
+      <Filter>Application\Resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PrettyFramework.rc">
+      <Filter>Application\Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\PrettyFramework.ico">
+      <Filter>Application\Resource</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
