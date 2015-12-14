@@ -28,6 +28,9 @@
     <Filter Include="Framework\Theme">
       <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SelfModule">
+      <UniqueIdentifier>{eb5312aa-bc19-423d-85e7-53045638c738}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -57,14 +60,20 @@
     <ClInclude Include="AbsoluteLayout.h">
       <Filter>Framework\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="VerticalLayout.h">
-      <Filter>Framework\Layout</Filter>
-    </ClInclude>
     <ClInclude Include="BaseControl.h">
       <Filter>Framework\Interface</Filter>
     </ClInclude>
     <ClInclude Include="BaseTheme.h">
       <Filter>Framework\Theme</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearLayout.h">
+      <Filter>Framework\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="SelfModule.h">
+      <Filter>SelfModule</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeSelect.h">
+      <Filter>SelfModule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,14 +98,17 @@
     <ClCompile Include="AbsoluteLayout.cpp">
       <Filter>Framework\Layout</Filter>
     </ClCompile>
-    <ClCompile Include="VerticalLayout.cpp">
-      <Filter>Framework\Layout</Filter>
-    </ClCompile>
     <ClCompile Include="BaseControl.cpp">
       <Filter>Framework\Interface</Filter>
     </ClCompile>
     <ClCompile Include="BaseTheme.cpp">
       <Filter>Framework\Theme</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearLayout.cpp">
+      <Filter>Framework\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="SelfModule.cpp">
+      <Filter>SelfModule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,21 +1,18 @@
 #pragma once
 
-#include "AbsoluteLayout.h"
-#include "VerticalLayout.h"
+#include "LinearLayout.h"
 
 /**
  * ≤‚ ‘∂‘ª∞øÚ
  */
-class CPrettyFrameworkDlg : public CDialogEx, private AbsoluteLayout
+class CPrettyFrameworkDlg : public CDialogEx, private LinearLayout
 {
 public:
 	CPrettyFrameworkDlg(CWnd* pParent = NULL);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);
-
-protected:
 	virtual BOOL OnInitDialog();
+	virtual void DoDataExchange(CDataExchange* pDX);
 
 protected:
 	DECLARE_MESSAGE_MAP()

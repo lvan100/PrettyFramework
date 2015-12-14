@@ -3,7 +3,7 @@
 // 由 PrettyFramework.rc 使用
 //
 #define IDR_MAINFRAME					128
-#define IDD_PRETTYFRAMEWORK_DIALOG				102
+#define IDD_PRETTYFRAMEWORK_DIALOG		102
 
 // 新对象的下一组默认值
 //

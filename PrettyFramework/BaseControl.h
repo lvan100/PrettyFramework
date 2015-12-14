@@ -58,6 +58,47 @@ protected:
 
 public:
 	/**
+	 * 设置控件的ID
+	 */
+	void SetId(CString id) {
+		m_id = id;
+	}
+
+	/**
+	 * 获取控件的ID
+	 */
+	CString GetId() {
+		return m_id;
+	}
+
+protected:
+	/**
+	 * 控件的ID
+	 */
+	CString m_id;
+
+public:
+	/**
+	 * 获取本地窗口指针
+	 */
+	void* GetWindow();
+
+protected:
+	/**
+	 * 设置本地窗口指针
+	 */
+	void SetWindow(void* window) {
+		m_window = window;
+	}
+
+private:
+	/**
+	 * 本地窗口指针
+	 */
+	void* m_window;
+
+public:
+	/**
 	 * 设置控件显示区域
 	 */
 	void SetRect(CRect rect) {

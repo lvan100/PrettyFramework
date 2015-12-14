@@ -7,6 +7,7 @@
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
 {
+	BaseControl::SetWindow(GetSafeHwnd());
 }
 
 void CPrettyFrameworkDlg::DoDataExchange(CDataExchange* pDX)
@@ -31,14 +32,14 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	LayoutControl::AddChild(label);
 
-	auto& layout = shared_ptr<VerticalLayout>(new VerticalLayout(label.get()));
+	auto& layout = shared_ptr<LinearLayout>(new LinearLayout(label.get(), TRUE));
 
 	shared_ptr<Label> sub_label_1(new Label(layout.get()));
 	//sub_label_1->SetRect(CRect(0, 50, 50, 100));
 	sub_label_1->SetText(_T("这是一个标签控件"));
 	sub_label_1->SetTextColor(RGB(0, 0, 255));
 	sub_label_1->SetBkColor(RGB(255, 0, 0));
-	sub_label_1->SetMinSize(CSize(0, 70));
+	sub_label_1->SetMinSize(CSize(70, 70));
 
 	layout->AddChild(sub_label_1);
 

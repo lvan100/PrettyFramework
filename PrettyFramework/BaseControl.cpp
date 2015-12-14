@@ -2,13 +2,23 @@
 #include "BaseControl.h"
 
 BaseControl::BaseControl(BaseControl* parent)
-	: m_parent(parent)
+	: m_window(nullptr)
+	, m_parent(parent)
 	, m_weight(1.0f)
 {
 }
 
 BaseControl::~BaseControl()
 {
+}
+
+void* BaseControl::GetWindow()
+{
+	if (m_parent != nullptr) {
+		return m_parent->GetWindow();
+	} else {
+		return m_window;
+	}
 }
 
 CRect BaseControl::GetPaintRect()
