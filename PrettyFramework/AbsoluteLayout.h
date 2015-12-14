@@ -15,5 +15,5 @@ protected:
 	/**
 	 * 重新计算界面控件的布局
 	 */
-	virtual void RecalcLayout() {}
+	virtual void RecalcLayout();
 };

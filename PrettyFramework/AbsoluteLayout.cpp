@@ -9,3 +9,6 @@ AbsoluteLayout::AbsoluteLayout(BaseControl* control)
 AbsoluteLayout::~AbsoluteLayout()
 {
 }
+
+void AbsoluteLayout::RecalcLayout()
+{}

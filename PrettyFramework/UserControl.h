@@ -28,7 +28,7 @@ public:
 
 protected:
 	/**
-	 * 布局控件
+	 * 布局控件，默认为绝对布局控件
 	 */
 	shared_ptr<LayoutControl> m_layout;
 
@@ -103,6 +103,27 @@ protected:
 
 public:
 	/**
+	 * 设置控件为无边框
+	 */
+	void SetBorderNull(BOOL isNull = TRUE) {
+		is_border_null = isNull;
+	}
+
+	/**
+	 * 是否设置为无边框
+	 */
+	BOOL IsBorderNull() {
+		return is_border_null;
+	}
+
+protected:
+	/**
+	 * 是否为无边框
+	 */
+	BOOL is_border_null;
+
+public:
+	/**
 	 * 绘图
 	 */
 	virtual void Paint(CDC& dc);
@@ -112,4 +133,20 @@ protected:
 	 * 绘制自身
 	 */
 	virtual void OnPaint(CDC& dc) = 0;
+
+public:
+	/**
+	 * 鼠标弹起
+	 */
+	virtual void OnButtonUp();
+
+	/**
+	 * 鼠标移动
+	 */
+	virtual void OnMouseMove();
+
+	/**
+	 * 鼠标按下
+	 */
+	virtual void OnButtonDown();
 };

@@ -68,3 +68,18 @@ void LayoutControl::Paint(CDC& dc)
 		control->Paint(dc);
 	}
 }
+
+void LayoutControl::OnButtonUp()
+{
+
+}
+
+void LayoutControl::OnMouseMove()
+{
+
+}
+
+void LayoutControl::OnButtonDown()
+{
+
+}

@@ -24,14 +24,19 @@ void Label::OnPaint(CDC& dc)
 		CFont* pOldFont = dc.SelectObject(m_font);
 
 		if (!IsBkgndNull()) {
-			dc.SetBkColor(m_bk_color);
 			dc.FillSolidRect(rcPaint, m_bk_color);
+		}
+
+		if (!IsBorderNull()) {
+			dc.FrameRect(rcPaint, &CBrush(m_border_color));
 		}
 
 		dc.SetBkMode(TRANSPARENT);
 		dc.SetTextColor(m_text_color);
 
-		dc.TextOut(rcPaint.left, rcPaint.top, m_text);
+		rcPaint.DeflateRect(1, 1, 1, 1);
+
+		dc.DrawText(m_text, rcPaint, DT_LEFT | DT_VCENTER);
 
 		dc.SelectObject(pOldFont);
 	}

@@ -3,7 +3,8 @@
 #include "LayoutControl.h"
 
 /**
- * 竖向布局,将控件竖向均匀的排布在显示区域
+ * 竖向布局,将控件竖向排布在父控件显示区域内
+ * 需要子控件的 Weight 和 MinHeight 属性配合
  */
 class VerticalLayout : public LayoutControl
 {

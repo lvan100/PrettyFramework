@@ -40,6 +40,22 @@ public:
 	 */
 	virtual void Paint(CDC& dc);
 
+public:
+	/**
+	 * 鼠标弹起
+	 */
+	virtual void OnButtonUp();
+
+	/**
+	 * 鼠标移动
+	 */
+	virtual void OnMouseMove();
+
+	/**
+	 * 鼠标按下
+	 */
+	virtual void OnButtonDown();
+
 protected:
 	/**
 	 * 最近鼠标按下的子控件

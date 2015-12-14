@@ -2,6 +2,9 @@
 
 #include "UserControl.h"
 
+/**
+ * ±êÇ©¿Ø¼þ
+ */
 class Label : public UserControl
 {
 public:

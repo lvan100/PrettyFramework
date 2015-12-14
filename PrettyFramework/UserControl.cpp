@@ -5,6 +5,7 @@
 UserControl::UserControl(LayoutControl* parent)
 	: BaseControl(parent)
 	, is_bkgnd_null(FALSE)
+	, is_border_null(FALSE)
 {
 	m_layout = shared_ptr<AbsoluteLayout>(new AbsoluteLayout(this));
 }
@@ -16,7 +17,7 @@ UserControl::~UserControl()
 void UserControl::RecalcLayout()
 {
 	if (m_layout.get() != nullptr) {
-		CRect rcClient(rect_in_parent);
+		CRect rcClient(GetRect());
 		rcClient.MoveToXY(0, 0);
 		m_layout->SetRect(rcClient);
 	}
@@ -29,4 +30,19 @@ void UserControl::Paint(CDC& dc)
 	if (m_layout.get() != nullptr) {
 		m_layout->Paint(dc);
 	}
+}
+
+void UserControl::OnButtonUp()
+{
+
+}
+
+void UserControl::OnMouseMove()
+{
+
+}
+
+void UserControl::OnButtonDown()
+{
+
 }
