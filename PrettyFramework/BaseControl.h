@@ -4,193 +4,222 @@
 #include <memory>
 using namespace std;
 
-//
-// 自定义控件模型（参考Android界面模型，如有雷同纯属巧合）
-//
+namespace PrettyFramework {
 
-//
-// 自定义控件可以分为界面控件和布局控件两种。一个布局控件
-// 可以包含多个布局控件或者多个界面控件，并根据不同的规则
-// 将子控件布局在父控件内。布局控件的父控件可以是布局控件，
-// 也可以是界面控件。而一个界面控件则只能包含一个布局控件。
-//
+	//
+	// 自定义控件模型（参考Android界面模型，如有雷同纯属巧合）
+	//
 
-//
-// 根据以上规则，形成的XML界面描述文件形式如下：
-// 
-// <LayoutControl>
-//		<LayoutControl>
-//			<UserControl>
-//				<LayoutControl />
-//			</UserControl>
-//		</LayoutControl>
-//		<UserControl />
-//		<LayoutControl />
-//		<UserControl />
-// </LayoutControl>
-//
+	//
+	// 自定义控件可以分为界面控件和布局控件两种。一个布局控件
+	// 可以包含多个布局控件或者多个界面控件，并根据不同的规则
+	// 将子控件布局在父控件内。布局控件的父控件可以是布局控件，
+	// 也可以是界面控件。而一个界面控件则只能包含一个布局控件。
+	//
 
-// 
-// 在当前的模型中，布局控件可以不具有背景、边框等界面属性。
-// 
+	//
+	// 根据以上规则，形成的XML界面描述文件形式如下：
+	// 
+	// <LayoutControl>
+	//		<LayoutControl>
+	//			<UserControl>
+	//				<LayoutControl />
+	//			</UserControl>
+	//		</LayoutControl>
+	//		<UserControl />
+	//		<LayoutControl />
+	//		<UserControl />
+	// </LayoutControl>
+	//
 
-/**
- * 基础控件
- */
-class BaseControl
-{
-public:
-	BaseControl(BaseControl* parent);
-	virtual ~BaseControl();
+	// 
+	// 在当前的模型中，布局控件可以不具有背景、边框等界面属性。
+	// 
+
+	// 
+	// 如果设置了控件的固定大小，则控件的最小大小将失效.
+	// 
 
 	/**
-	 * 获取父控件
+	 * 基础控件
 	 */
-	BaseControl* GetParent() {
-		return m_parent;
-	}
+	class BaseControl
+	{
+	public:
+		BaseControl(BaseControl* parent);
+		virtual ~BaseControl();
 
-protected:
-	/**
-	 * 父控件
-	 */
-	BaseControl* m_parent;
+		/**
+		 * 获取父控件
+		 */
+		BaseControl* GetParent() {
+			return m_parent;
+		}
 
-public:
-	/**
-	 * 设置控件的ID
-	 */
-	void SetId(CString id) {
-		m_id = id;
-	}
+	protected:
+		/**
+		 * 父控件
+		 */
+		BaseControl* m_parent;
 
-	/**
-	 * 获取控件的ID
-	 */
-	CString GetId() {
-		return m_id;
-	}
+	public:
+		/**
+		 * 设置控件的ID
+		 */
+		void SetId(CString id) {
+			m_id = id;
+		}
 
-protected:
-	/**
-	 * 控件的ID
-	 */
-	CString m_id;
+		/**
+		 * 获取控件的ID
+		 */
+		CString GetId() {
+			return m_id;
+		}
 
-public:
-	/**
-	 * 获取本地窗口指针
-	 */
-	void* GetWindow();
+	protected:
+		/**
+		 * 控件的ID
+		 */
+		CString m_id;
 
-protected:
-	/**
-	 * 设置本地窗口指针
-	 */
-	void SetWindow(void* window) {
-		m_window = window;
-	}
+	public:
+		/**
+		 * 获取本地窗口指针
+		 */
+		void* GetWindow();
 
-private:
-	/**
-	 * 本地窗口指针
-	 */
-	void* m_window;
+	protected:
+		/**
+		 * 设置本地窗口指针
+		 */
+		void SetWindow(void* window) {
+			m_window = window;
+		}
 
-public:
-	/**
-	 * 设置控件显示区域
-	 */
-	void SetRect(CRect rect) {
-		rect_in_parent = rect;
-		RecalcLayout();
-	}
+	private:
+		/**
+		 * 本地窗口指针
+		 */
+		void* m_window;
 
-	/**
-	 * 获取控件显示区域
-	 */
-	CRect GetRect() {
-		return rect_in_parent;
-	}
+	public:
+		/**
+		 * 设置控件显示区域
+		 */
+		void SetRect(CRect rect) {
+			rect_in_parent = rect;
+			RecalcLayout();
+		}
 
-protected:
-	/**
-	 * 在父控件的显示区域
-	 */
-	CRect rect_in_parent;
+		/**
+		 * 获取控件显示区域
+		 */
+		CRect GetRect() {
+			return rect_in_parent;
+		}
 
-public:
-	/**
-	 * 设置最小的控件大小
-	 */
-	void SetMinSize(CSize size) {
-		m_min_size = size;
-	}
+	protected:
+		/**
+		 * 在父控件的显示区域
+		 */
+		CRect rect_in_parent;
 
-	/**
-	 * 获取最小的控件大小
-	 */
-	CSize GetMinSize() {
-		return m_min_size;
-	}
+	public:
+		/**
+		 * 设置固定大小
+		 */
+		void SetFixSize(CSize size) {
+			m_fix_size = size;
+		}
 
-protected:
-	/**
-	 * 最小的控件大小
-	 */
-	CSize m_min_size;
+		/**
+		 * 获取固定大小
+		 */
+		CSize GetFixSize() {
+			return m_fix_size;
+		}
 
-public:
-	/**
-	 * 设置控件的位置权重
-	 */
-	void SetWeight(float weight) {
-		m_weight = weight;
-	}
+	protected:
+		/**
+		 * 固定大小
+		 */
+		CSize m_fix_size;
 
-	/*
-	 * 获取控件的位置权重
-	 */
-	float GetWeight() {
-		return m_weight;
-	}
+	public:
+		/**
+		 * 设置最小的控件大小
+		 */
+		void SetMinSize(CSize size) {
+			m_min_size = size;
+		}
 
-protected:
-	/**
-	 * 控件的权重
-	 */
-	float m_weight;
+		/**
+		 * 获取最小的控件大小
+		 */
+		CSize GetMinSize() {
+			return m_min_size;
+		}
 
-public:
-	/**
-	 * 获取控件的绘图坐标
-	 */
-	CRect GetPaintRect();
+	protected:
+		/**
+		 * 最小的控件大小
+		 */
+		CSize m_min_size;
 
-	/**
-	 * 绘图
-	 */
-	virtual void Paint(CDC& dc) = 0;
+	public:
+		/**
+		 * 设置控件的位置权重
+		 */
+		void SetWeight(float weight) {
+			m_weight = weight;
+		}
 
-public:
-	/**
-	 * 鼠标弹起
-	 */
-	virtual void OnButtonUp() = 0;
+		/*
+		 * 获取控件的位置权重
+		 */
+		float GetWeight() {
+			return m_weight;
+		}
 
-	/**
-	 * 鼠标移动
-	 */
-	virtual void OnMouseMove() = 0;
+	protected:
+		/**
+		 * 控件的权重
+		 */
+		float m_weight;
 
-	/**
-	 * 鼠标按下
-	 */
-	virtual void OnButtonDown() = 0;
+	public:
+		/**
+		 * 获取控件的绘图坐标
+		 */
+		CRect GetPaintRect();
 
-protected:
-	/**
-	 * 重新计算界面控件的布局
-	 */
-	virtual void RecalcLayout() = 0;
-};
+		/**
+		 * 绘图
+		 */
+		virtual void Paint(CDC& dc) = 0;
+
+	public:
+		/**
+		 * 鼠标弹起
+		 */
+		virtual void OnButtonUp() = 0;
+
+		/**
+		 * 鼠标移动
+		 */
+		virtual void OnMouseMove() = 0;
+
+		/**
+		 * 鼠标按下
+		 */
+		virtual void OnButtonDown() = 0;
+
+	protected:
+		/**
+		 * 重新计算界面控件的布局
+		 */
+		virtual void RecalcLayout() = 0;
+	};
+
+}

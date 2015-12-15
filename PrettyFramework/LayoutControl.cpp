@@ -1,92 +1,96 @@
 #include "stdafx.h"
 #include "LayoutControl.h"
 
-LayoutControl::LayoutControl(BaseControl* control)
-	: BaseControl(control)
-{
-}
+namespace PrettyFramework {
 
-LayoutControl::~LayoutControl()
-{
-}
-
-void LayoutControl::AddChild(shared_ptr<BaseControl> child)
-{
-	if (child != nullptr && child.get() != this) {
-		m_children.push_back(child);
+	LayoutControl::LayoutControl(BaseControl* control)
+		: BaseControl(control)
+	{
 	}
 
-	RecalcLayout();
-}
-
-void LayoutControl::RemoveChild(shared_ptr<BaseControl> child)
-{
-	if (child == nullptr || child.get() == this) {
-		ASSERT(FALSE); /* 当然不能删除自己 */
-		return;
+	LayoutControl::~LayoutControl()
+	{
 	}
 
-	for (auto iter = m_children.begin()
-		; iter != m_children.end()
-		; iter++) {
+	void LayoutControl::AddChild(shared_ptr<BaseControl> child)
+	{
+		if (child != nullptr && child.get() != this) {
+			m_children.push_back(child);
+		}
 
-		if (child == (*iter)) {
-			m_children.erase(iter);
+		RecalcLayout();
+	}
 
-			if (last_pressed == child) {
-				last_pressed = nullptr;
+	void LayoutControl::RemoveChild(shared_ptr<BaseControl> child)
+	{
+		if (child == nullptr || child.get() == this) {
+			ASSERT(FALSE); /* 当然不能删除自己 */
+			return;
+		}
+
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+
+			if (child == (*iter)) {
+				m_children.erase(iter);
+
+				if (last_pressed == child) {
+					last_pressed = nullptr;
+				}
+
+				if (last_hovered == child) {
+					last_hovered = nullptr;
+				}
+
+				if (last_focused == child) {
+					last_focused = nullptr;
+				}
+
+				break;
 			}
+		}
 
-			if (last_hovered == child) {
-				last_hovered = nullptr;
-			}
+		RecalcLayout();
+	}
 
-			if (last_focused == child) {
-				last_focused = nullptr;
-			}
+	void LayoutControl::Paint(CDC& dc)
+	{
+		CRgn rgnClient;
+		CRect rcClient = GetPaintRect();
+		rgnClient.CreateRectRgnIndirect(rcClient);
 
-			break;
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+
+			CRgn rgn;
+			auto& control = (*iter);
+
+			CRect rect = control->GetPaintRect();
+			rgn.CreateRectRgnIndirect(rect);
+
+			// 防止子控件的位置超出父控件的显示范围.
+			rgn.CombineRgn(&rgnClient, &rgn, RGN_AND);
+			dc.SelectClipRgn(&rgn);
+
+			control->Paint(dc);
 		}
 	}
 
-	RecalcLayout();
-}
+	void LayoutControl::OnButtonUp()
+	{
 
-void LayoutControl::Paint(CDC& dc)
-{
-	CRgn rgnClient;
-	CRect rcClient = GetPaintRect();
-	rgnClient.CreateRectRgnIndirect(rcClient);
-
-	for (auto iter = m_children.begin()
-		; iter != m_children.end()
-		; iter++) {
-
-		CRgn rgn;
-		auto& control = (*iter);
-
-		CRect rect = control->GetPaintRect();
-		rgn.CreateRectRgnIndirect(rect);
-
-		// 防止子控件的位置超出父控件的显示范围.
-		rgn.CombineRgn(&rgnClient, &rgn, RGN_AND);
-		dc.SelectClipRgn(&rgn);
-
-		control->Paint(dc);
 	}
-}
 
-void LayoutControl::OnButtonUp()
-{
+	void LayoutControl::OnMouseMove()
+	{
 
-}
+	}
 
-void LayoutControl::OnMouseMove()
-{
+	void LayoutControl::OnButtonDown()
+	{
 
-}
-
-void LayoutControl::OnButtonDown()
-{
+	}
 
 }

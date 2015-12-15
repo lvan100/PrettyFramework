@@ -75,6 +75,9 @@
     <ClInclude Include="TypeSelect.h">
       <Filter>SelfModule</Filter>
     </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Framework\Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="SelfModule.cpp">
       <Filter>SelfModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Framework\Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

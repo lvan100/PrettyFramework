@@ -2,47 +2,51 @@
 #include "UserControl.h"
 #include "AbsoluteLayout.h"
 
-UserControl::UserControl(LayoutControl* parent)
-	: BaseControl(parent)
-	, is_bkgnd_null(FALSE)
-	, is_border_null(FALSE)
-{
-	m_layout = shared_ptr<AbsoluteLayout>(new AbsoluteLayout(this));
-}
+namespace PrettyFramework {
 
-UserControl::~UserControl()
-{
-}
-
-void UserControl::RecalcLayout()
-{
-	if (m_layout.get() != nullptr) {
-		CRect rcClient(GetRect());
-		rcClient.MoveToXY(0, 0);
-		m_layout->SetRect(rcClient);
+	UserControl::UserControl(LayoutControl* parent)
+		: BaseControl(parent)
+		, is_bkgnd_null(FALSE)
+		, is_border_null(FALSE)
+	{
+		m_layout = shared_ptr<AbsoluteLayout>(new AbsoluteLayout(this));
 	}
-}
 
-void UserControl::Paint(CDC& dc)
-{
-	OnPaint(dc); /* 绘制当前图层 */
-
-	if (m_layout.get() != nullptr) {
-		m_layout->Paint(dc);
+	UserControl::~UserControl()
+	{
 	}
-}
 
-void UserControl::OnButtonUp()
-{
+	void UserControl::RecalcLayout()
+	{
+		if (m_layout.get() != nullptr) {
+			CRect rcClient(GetRect());
+			rcClient.MoveToXY(0, 0);
+			m_layout->SetRect(rcClient);
+		}
+	}
 
-}
+	void UserControl::Paint(CDC& dc)
+	{
+		OnPaint(dc); /* 绘制当前图层 */
 
-void UserControl::OnMouseMove()
-{
+		if (m_layout.get() != nullptr) {
+			m_layout->Paint(dc);
+		}
+	}
 
-}
+	void UserControl::OnButtonUp()
+	{
 
-void UserControl::OnButtonDown()
-{
+	}
+
+	void UserControl::OnMouseMove()
+	{
+
+	}
+
+	void UserControl::OnButtonDown()
+	{
+
+	}
 
 }

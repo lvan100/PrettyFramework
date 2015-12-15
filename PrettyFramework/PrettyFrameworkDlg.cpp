@@ -3,9 +3,11 @@
 #include "PrettyFrameworkDlg.h"
 
 #include "Label.h"
+#include "Image.h"
 
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
+	, LinearLayout(nullptr, FALSE)
 {
 	BaseControl::SetWindow(GetSafeHwnd());
 }
@@ -24,34 +26,46 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	shared_ptr<Label> label(new Label(this));
-	label->SetRect(CRect(100, 100, 200, 200));
-	label->SetText(_T("这是一个标签控件"));
-	label->SetTextColor(RGB(255, 0, 0));
-	label->SetBkColor(RGB(0, 255, 0));
+	// 标题栏布局
+	shared_ptr<LinearLayout> title_layout(new LinearLayout(this, TRUE));
+	title_layout->SetFixSize(CSize(0, 40));
+	LayoutControl::AddChild(title_layout);
 
-	LayoutControl::AddChild(label);
+	shared_ptr<Image> title_image(new Image(title_layout.get()));
+	title_image->SetBitmap(AfxGetApp()->LoadIcon(IDR_MAINFRAME));
+	title_image->SetFixSize(CSize(32, 32));
+	title_layout->AddChild(title_image);
 
-	auto& layout = shared_ptr<LinearLayout>(new LinearLayout(label.get(), TRUE));
 
-	shared_ptr<Label> sub_label_1(new Label(layout.get()));
-	//sub_label_1->SetRect(CRect(0, 50, 50, 100));
-	sub_label_1->SetText(_T("这是一个标签控件"));
-	sub_label_1->SetTextColor(RGB(0, 0, 255));
-	sub_label_1->SetBkColor(RGB(255, 0, 0));
-	sub_label_1->SetMinSize(CSize(70, 70));
 
-	layout->AddChild(sub_label_1);
-
-	shared_ptr<Label> sub_label_2(new Label(layout.get()));
-	//sub_label_2->SetRect(CRect(0, 50, 50, 100));
-	sub_label_2->SetText(_T("这是一个标签控件"));
-	sub_label_2->SetTextColor(RGB(255, 0, 255));
-	sub_label_2->SetBkColor(RGB(255, 255, 255));
-
-	layout->AddChild(sub_label_2);
-
-	label->SetLayoutControl(layout);
+// 	shared_ptr<Label> label(new Label(this));
+// 	label->SetRect(CRect(100, 100, 200, 200));
+// 	label->SetText(_T("这是一个标签控件"));
+// 	label->SetTextColor(RGB(255, 0, 0));
+// 	label->SetBkColor(RGB(0, 255, 0));
+// 
+// 	LayoutControl::AddChild(label);
+// 
+// 	auto& layout = shared_ptr<LinearLayout>(new LinearLayout(label.get(), TRUE));
+// 
+// 	shared_ptr<Label> sub_label_1(new Label(layout.get()));
+// 	//sub_label_1->SetRect(CRect(0, 50, 50, 100));
+// 	sub_label_1->SetText(_T("这是一个标签控件"));
+// 	sub_label_1->SetTextColor(RGB(0, 0, 255));
+// 	sub_label_1->SetBkColor(RGB(255, 0, 0));
+// 	sub_label_1->SetMinSize(CSize(70, 70));
+// 
+// 	layout->AddChild(sub_label_1);
+// 
+// 	shared_ptr<Label> sub_label_2(new Label(layout.get()));
+// 	//sub_label_2->SetRect(CRect(0, 50, 50, 100));
+// 	sub_label_2->SetText(_T("这是一个标签控件"));
+// 	sub_label_2->SetTextColor(RGB(255, 0, 255));
+// 	sub_label_2->SetBkColor(RGB(255, 255, 255));
+// 
+// 	layout->AddChild(sub_label_2);
+// 
+// 	label->SetLayoutControl(layout);
 
 	return TRUE;
 }

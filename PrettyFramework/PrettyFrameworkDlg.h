@@ -2,6 +2,8 @@
 
 #include "LinearLayout.h"
 
+using namespace PrettyFramework;
+
 /**
  * ≤‚ ‘∂‘ª∞øÚ
  */

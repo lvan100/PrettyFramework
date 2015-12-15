@@ -1,14 +1,18 @@
 #include "stdafx.h"
 #include "AbsoluteLayout.h"
 
-AbsoluteLayout::AbsoluteLayout(BaseControl* control)
-	: LayoutControl(control)
-{
-}
+namespace PrettyFramework {
 
-AbsoluteLayout::~AbsoluteLayout()
-{
-}
+	AbsoluteLayout::AbsoluteLayout(BaseControl* control)
+		: LayoutControl(control)
+	{
+	}
 
-void AbsoluteLayout::RecalcLayout()
-{}
+	AbsoluteLayout::~AbsoluteLayout()
+	{
+	}
+
+	void AbsoluteLayout::RecalcLayout()
+	{}
+
+}

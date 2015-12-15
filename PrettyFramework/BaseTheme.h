@@ -1,22 +1,26 @@
 #pragma once
 
-/**
- * 基本界面主题
- */
-class BaseTheme
-{
-public:
-	BaseTheme();
-	virtual ~BaseTheme();
+namespace PrettyFramework {
 
-	COLORREF label_bk_color;
-	COLORREF label_text_clr0;
-	COLORREF label_border_clr;
+	/**
+	 * 基本界面主题
+	 */
+	class BaseTheme
+	{
+	public:
+		BaseTheme();
+		virtual ~BaseTheme();
 
-	CFont label_text_font;
-};
+		COLORREF label_bk_color;
+		COLORREF label_text_clr0;
+		COLORREF label_border_clr;
 
-/**
- * 获取预设界面主题方案
- */
-BaseTheme* GetUITheme();
+		CFont label_text_font;
+	};
+
+	/**
+	 * 获取预设界面主题方案
+	 */
+	BaseTheme* GetUITheme();
+
+}
