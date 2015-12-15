@@ -31,25 +31,49 @@ namespace PrettyFramework {
 
 		size_t itemCount = m_children.size();
 
+		// 重新计算每个控件的 Weight 属性
+		vector<float> childWeight(itemCount);
+
+		// 自动宽度的控件索引
+		vector<int> autoChild;
+
 		float allWeight = 0.0f;
 		for (size_t i = 0; i < itemCount; i++) {
-			allWeight += m_children.at(i)->GetWeight();
+
+			auto& control = m_children.at(i);
+			CSize cFixSize = control->GetFixSize();
+
+			if (cFixSize.cx > 0) {
+				childWeight[i] = cFixSize.cx * 1.0f / rectWidth;
+			} else {
+				if (control->IsAutoWidth()) {
+					childWeight[i] = 0.0f;
+					autoChild.push_back(i);
+				} else {
+					childWeight[i] = m_children.at(i)->GetWeight();
+				}
+			}
+
+			allWeight += childWeight[i];
 		}
 
 		int lastWidth = 0;
 
-		float fWidth = rectWidth / allWeight;
+		if (allWeight < 1.0f) {
+			float f = (1.0f - allWeight) / autoChild.size();
+			for (size_t i = 0; i < autoChild.size(); i++) {
+				childWeight[autoChild[i]] = f;
+			}
+		}
 
-		for (auto iter = m_children.begin(); iter != m_children.end(); iter++) {
-			auto& control = (*iter);
+		for (size_t i = 0; i < childWeight.size(); i++) {
+			auto& control = m_children.at(i);
 
 			CRect rcControl;
 
-			float cWeight = control->GetWeight();
-			CSize cMinSize = control->GetMinSize();
 			CSize cFixSize = control->GetFixSize();
 
-			int width = max(int(cWeight * fWidth), cMinSize.cx);
+			int width = int(childWeight[i] * rectWidth);
 			if (lastWidth + width > rectWidth) {
 				width = rectWidth - lastWidth;
 			}
@@ -94,10 +118,10 @@ namespace PrettyFramework {
 			auto& control = (*iter);
 
 			float wg = control->GetWeight();
-			CSize sz = control->GetMinSize();
+			// CSize sz = control->GetMinSize();
 			CSize fz = control->GetFixSize();
 
-			int height = max(int(wg * fHeight), sz.cy);
+			int height = max(int(wg * fHeight), 0);
 
 			if (lastHeight + height > rectHeight) {
 				height = rectHeight - lastHeight;

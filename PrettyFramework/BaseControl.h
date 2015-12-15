@@ -4,6 +4,8 @@
 #include <memory>
 using namespace std;
 
+#include "Constant.h"
+
 namespace PrettyFramework {
 
 	//
@@ -37,7 +39,14 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 如果设置了控件的固定大小，则控件的最小大小将失效.
+	// 控件的权重，一般而言，权重是一个[0.0f,1.0f]中间的某个值，
+	// 如果某个控件的权重超过了1.0f，则认为该控件自动计算大小.
+	// 
+
+	// 
+	// 在计算控件权重的时候，固定大小会按照所占父控件的比重计算，
+	// 指定权重的控件将按照设置的比重计算，自动高度或者宽度的控件
+	// 将按照剩余权重均匀分配.父控件宽度将按照1.0分配权重进行计算
 	// 
 
 	/**
@@ -148,27 +157,6 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置最小的控件大小
-		 */
-		void SetMinSize(CSize size) {
-			m_min_size = size;
-		}
-
-		/**
-		 * 获取最小的控件大小
-		 */
-		CSize GetMinSize() {
-			return m_min_size;
-		}
-
-	protected:
-		/**
-		 * 最小的控件大小
-		 */
-		CSize m_min_size;
-
-	public:
-		/**
 		 * 设置控件的位置权重
 		 */
 		void SetWeight(float weight) {
@@ -187,6 +175,69 @@ namespace PrettyFramework {
 		 * 控件的权重
 		 */
 		float m_weight;
+
+	public:
+		/**
+		 * 设置自动宽度
+		 */
+		void SetAutoWidth(BOOL autoWidth) {
+			m_auto_width = autoWidth;
+		}
+
+		/**
+		 * 是否设置了自动宽度
+		 */
+		BOOL IsAutoWidth() {
+			return m_auto_width;
+		}
+
+	protected:
+		/**
+		 * 自动宽度
+		 */
+		BOOL m_auto_width;
+
+	public:
+		/**
+		 * 设置自动高度
+		 */
+		void SetAutoHeight(BOOL autoHeight) {
+			m_auto_height = autoHeight;
+		}
+
+		/**
+		 * 是否设置了自动高度
+		 */
+		BOOL IsAutoHeight() {
+			return m_auto_height;
+		}
+
+	protected:
+		/**
+		 * 自动高度
+		 */
+		BOOL m_auto_height;
+
+	public:
+		/**
+		 * 设置内容的对齐方式，@Gravity
+		 */
+		void SetGravity(int gravity) {
+			m_gravity = gravity;
+		}
+
+		/**
+		 * 获取内容的对齐方式，@Gravity
+		 */
+		int GetGravity() {
+			return m_gravity;
+		}
+
+	protected:
+		/**
+		 * 内容的对齐方式，@Gravity
+		 */
+		int m_gravity;
 
 	public:
 		/**

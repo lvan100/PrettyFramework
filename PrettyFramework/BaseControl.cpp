@@ -7,7 +7,10 @@ namespace PrettyFramework {
 		: m_window(nullptr)
 		, m_parent(parent)
 		, m_weight(1.0f)
+		, m_auto_width(TRUE)
+		, m_auto_height(TRUE)
 	{
+		m_gravity = Gravity::Left | Gravity::Top;
 	}
 
 	BaseControl::~BaseControl()

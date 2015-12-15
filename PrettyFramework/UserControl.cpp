@@ -6,8 +6,8 @@ namespace PrettyFramework {
 
 	UserControl::UserControl(LayoutControl* parent)
 		: BaseControl(parent)
-		, is_bkgnd_null(FALSE)
-		, is_border_null(FALSE)
+		, is_bkgnd_null(TRUE)
+		, is_border_null(TRUE)
 	{
 		m_layout = shared_ptr<AbsoluteLayout>(new AbsoluteLayout(this));
 	}

@@ -36,6 +36,12 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_image->SetFixSize(CSize(32, 32));
 	title_layout->AddChild(title_image);
 
+	shared_ptr<Label> title_text(new Label(title_layout.get()));
+	title_text->SetGravity(Gravity::CenterH | Gravity::CenterV);
+	title_text->SetText(_T("资料管理"));
+	title_layout->AddChild(title_text);
+	title_text->SetBorderNull(TRUE);
+	title_text->SetAutoWidth(TRUE);
 
 
 // 	shared_ptr<Label> label(new Label(this));

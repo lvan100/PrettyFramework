@@ -13,6 +13,28 @@ namespace PrettyFramework {
 		Label(LayoutControl* parent);
 		virtual ~Label();
 
+	public:
+		/**
+		 * 设置只显示单行文本
+		 */
+		void SetSingleLine(BOOL singleLine) {
+			m_single_line = singleLine;
+		}
+
+		/**
+		 * 是否只显示单行文本
+		 */
+		BOOL IsSingleLine() {
+			return m_single_line;
+		}
+
+	protected:
+		/**
+		 * 只显示单行文本
+		 */
+		BOOL m_single_line;
+
+	public:
 		/**
 		 * 获取文本内容
 		 */

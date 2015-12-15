@@ -78,6 +78,9 @@
     <ClInclude Include="Image.h">
       <Filter>Framework\Control</Filter>
     </ClInclude>
+    <ClInclude Include="Constant.h">
+      <Filter>Framework\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

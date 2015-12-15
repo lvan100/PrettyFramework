@@ -184,6 +184,7 @@
   <ItemGroup>
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
+    <ClInclude Include="Constant.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="LinearLayout.h" />
     <ClInclude Include="BaseTheme.h" />
