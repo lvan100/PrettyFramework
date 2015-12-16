@@ -35,7 +35,7 @@ namespace PrettyFramework {
 		vector<float> childWeight(itemCount);
 
 		// 自动宽度的控件索引
-		vector<int> autoChild;
+		vector<size_t> autoChild;
 
 		float allWeight = 0.0f;
 		for (size_t i = 0; i < itemCount; i++) {

@@ -54,6 +54,9 @@ namespace PrettyFramework {
 	 */
 	class BaseControl
 	{
+		friend class UserControl;
+		friend class LayoutControl;
+
 	public:
 		BaseControl(BaseControl* parent);
 		virtual ~BaseControl();
@@ -239,7 +242,7 @@ namespace PrettyFramework {
 		 */
 		int m_gravity;
 
-	public:
+	protected:
 		/**
 		 * 获取控件的绘图坐标
 		 */
@@ -250,21 +253,21 @@ namespace PrettyFramework {
 		 */
 		virtual void Paint(CDC& dc) = 0;
 
-	public:
+	protected:
 		/**
 		 * 鼠标弹起
 		 */
-		virtual void OnButtonUp() = 0;
+		virtual void OnButtonUp(CPoint point) = 0;
 
 		/**
 		 * 鼠标移动
 		 */
-		virtual void OnMouseMove() = 0;
+		virtual void OnMouseMove(CPoint point) = 0;
 
 		/**
 		 * 鼠标按下
 		 */
-		virtual void OnButtonDown() = 0;
+		virtual void OnButtonDown(CPoint point) = 0;
 
 	protected:
 		/**

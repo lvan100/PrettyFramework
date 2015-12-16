@@ -31,6 +31,9 @@
     <Filter Include="SelfModule">
       <UniqueIdentifier>{eb5312aa-bc19-423d-85e7-53045638c738}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Images">
+      <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -81,6 +84,12 @@
     <ClInclude Include="Constant.h">
       <Filter>Framework\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Framework\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Images.h">
+      <Filter>Framework\Images</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -118,6 +127,12 @@
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>Framework\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Framework\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Images.cpp">
+      <Filter>Framework\Images</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

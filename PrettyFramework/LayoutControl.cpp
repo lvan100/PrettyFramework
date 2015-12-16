@@ -78,19 +78,56 @@ namespace PrettyFramework {
 		}
 	}
 
-	void LayoutControl::OnButtonUp()
+	void LayoutControl::OnButtonUp(CPoint point)
 	{
+		CPoint ptInThis(point);
+		ptInThis.Offset(rect_in_parent.left, rect_in_parent.top);
 
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+			auto& control = (*iter);
+			if (control->GetRect().PtInRect(ptInThis)) {
+				control->OnButtonUp(ptInThis);
+				last_pressed = nullptr;
+				break;
+			}
+		}
 	}
 
-	void LayoutControl::OnMouseMove()
+	void LayoutControl::OnMouseMove(CPoint point)
 	{
+		CPoint ptInThis(point);
+		ptInThis.Offset(rect_in_parent.left, rect_in_parent.top);
 
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+			auto& control = (*iter);
+			if (control->GetRect().PtInRect(ptInThis)) {
+				control->OnMouseMove(ptInThis);
+				last_hovered = control;
+				break;
+			}
+		}
 	}
 
-	void LayoutControl::OnButtonDown()
+	void LayoutControl::OnButtonDown(CPoint point)
 	{
+		CPoint ptInThis(point);
+		ptInThis.Offset(rect_in_parent.left, rect_in_parent.top);
 
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+			auto& control = (*iter);
+			if (control->GetRect().PtInRect(ptInThis)) {
+				control->OnButtonDown(ptInThis);
+				last_pressed = control;
+				last_focused = control;
+				break;
+			}
+		}
 	}
 
 }

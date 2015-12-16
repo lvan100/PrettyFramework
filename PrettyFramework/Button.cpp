@@ -1,20 +1,25 @@
 #include "stdafx.h"
 
-#include "Image.h"
+#include "Button.h"
+#include "BaseTheme.h"
 
 namespace PrettyFramework {
 
-	Image::Image(LayoutControl* parent)
+	Button::Button(LayoutControl* parent)
 		: UserControl(parent)
 		, m_bitmap(nullptr)
 	{
+		m_font = &GetUITheme()->button_text_font;
+		m_bk_color = GetUITheme()->button_bk_color;
+		m_text_color = GetUITheme()->button_text_clr0;
+		m_border_color = GetUITheme()->button_border_clr;
 	}
-	
-	Image::~Image()
+
+	Button::~Button()
 	{
 	}
-	
-	void Image::OnPaint(CDC& dc)
+
+	void Button::OnPaint(CDC& dc)
 	{
 		CRect rcPaint = GetPaintRect();
 		if (!rcPaint.IsRectEmpty()) {

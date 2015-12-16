@@ -9,6 +9,8 @@ namespace PrettyFramework {
 	 */
 	class UserControl : public BaseControl
 	{
+		friend class LayoutControl;
+
 	public:
 		UserControl(LayoutControl* parent);
 		virtual ~UserControl();
@@ -124,7 +126,7 @@ namespace PrettyFramework {
 		 */
 		BOOL is_border_null;
 
-	public:
+	protected:
 		/**
 		 * 绘图
 		 */
@@ -136,21 +138,37 @@ namespace PrettyFramework {
 		 */
 		virtual void OnPaint(CDC& dc) = 0;
 
-	public:
+	protected:
+		/**
+		 * 是否处于按下
+		 */
+		BOOL m_pressed;
+
+		/**
+		 * 是否处于焦点
+		 */
+		BOOL m_focused;
+
+		/**
+		 * 是否处于热点
+		 */
+		BOOL m_hovered;
+
+	protected:
 		/**
 		 * 鼠标弹起
 		 */
-		virtual void OnButtonUp();
+		virtual void OnButtonUp(CPoint point);
 
 		/**
 		 * 鼠标移动
 		 */
-		virtual void OnMouseMove();
+		virtual void OnMouseMove(CPoint point);
 
 		/**
 		 * 鼠标按下
 		 */
-		virtual void OnButtonDown();
+		virtual void OnButtonDown(CPoint point);
 	};
 
 }

@@ -184,8 +184,10 @@
   <ItemGroup>
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Images.h" />
     <ClInclude Include="LinearLayout.h" />
     <ClInclude Include="BaseTheme.h" />
     <ClInclude Include="Label.h" />
@@ -202,7 +204,9 @@
   <ItemGroup>
     <ClCompile Include="AbsoluteLayout.cpp" />
     <ClCompile Include="BaseControl.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Images.cpp" />
     <ClCompile Include="LinearLayout.cpp" />
     <ClCompile Include="BaseTheme.cpp" />
     <ClCompile Include="Label.cpp" />

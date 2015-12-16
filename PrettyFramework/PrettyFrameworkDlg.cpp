@@ -4,6 +4,7 @@
 
 #include "Label.h"
 #include "Image.h"
+#include "Button.h"
 
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
@@ -18,6 +19,9 @@ void CPrettyFrameworkDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CPrettyFrameworkDlg, CDialogEx)
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
 	ON_WM_PAINT()
 	ON_WM_SIZE()
 END_MESSAGE_MAP()
@@ -25,6 +29,10 @@ END_MESSAGE_MAP()
 BOOL CPrettyFrameworkDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+
+	CRect rcWindow(0, 0, 480, 600);
+	MoveWindow(rcWindow);
+	CenterWindow();
 
 	// 标题栏布局
 	shared_ptr<LinearLayout> title_layout(new LinearLayout(this, TRUE));
@@ -42,6 +50,11 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_layout->AddChild(title_text);
 	title_text->SetBorderNull(TRUE);
 	title_text->SetAutoWidth(TRUE);
+
+	shared_ptr<Button> title_close(new Button(title_layout.get()));
+	title_close->SetBitmap(AfxGetApp()->LoadIcon(IDR_MAINFRAME));
+	title_close->SetFixSize(CSize(32, 32));
+	title_layout->AddChild(title_close);
 
 
 // 	shared_ptr<Label> label(new Label(this));
@@ -96,4 +109,25 @@ void CPrettyFrameworkDlg::OnSize(UINT nType, int cx, int cy)
 	CRect rcClient;
 	GetClientRect(rcClient);
 	LayoutControl::SetRect(rcClient);
+}
+
+void CPrettyFrameworkDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	CDialogEx::OnLButtonDown(nFlags, point);
+
+	LayoutControl::OnButtonDown(point);
+}
+
+void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	CDialogEx::OnLButtonUp(nFlags, point);
+
+	LayoutControl::OnButtonUp(point);
+}
+
+void CPrettyFrameworkDlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	CDialogEx::OnMouseMove(nFlags, point);
+
+	LayoutControl::OnMouseMove(point);
 }

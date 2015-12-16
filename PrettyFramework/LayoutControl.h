@@ -9,6 +9,8 @@ namespace PrettyFramework {
 	 */
 	class LayoutControl : public BaseControl
 	{
+		friend class UserControl;
+
 	public:
 		LayoutControl(BaseControl* control);
 		virtual ~LayoutControl();
@@ -36,27 +38,27 @@ namespace PrettyFramework {
 		 */
 		vector<shared_ptr<BaseControl>> m_children;
 
-	public:
+	protected:
 		/**
 		 * 绘图
 		 */
 		virtual void Paint(CDC& dc);
 
-	public:
+	protected:
 		/**
 		 * 鼠标弹起
 		 */
-		virtual void OnButtonUp();
+		virtual void OnButtonUp(CPoint point);
 
 		/**
 		 * 鼠标移动
 		 */
-		virtual void OnMouseMove();
+		virtual void OnMouseMove(CPoint point);
 
 		/**
 		 * 鼠标按下
 		 */
-		virtual void OnButtonDown();
+		virtual void OnButtonDown(CPoint point);
 
 	protected:
 		/**
