@@ -12,7 +12,7 @@ namespace PrettyFramework {
 	shared_ptr<BaseTheme> theUITheme;
 
 	BaseTheme* GetUITheme() {
-		if (theUITheme.get() == nullptr) {
+		if (theUITheme == nullptr) {
 			theUITheme = make_shared<BaseTheme>();
 		}
 		return theUITheme.get();

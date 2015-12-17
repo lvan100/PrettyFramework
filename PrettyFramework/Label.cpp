@@ -34,6 +34,10 @@ namespace PrettyFramework {
 				dc.FrameRect(rcPaint, &CBrush(m_border_color));
 			}
 
+			if (m_hovered) {
+				dc.FrameRect(rcPaint, &GetGlobalData()->brHilite);
+			}
+
 			dc.SetBkMode(TRANSPARENT);
 			dc.SetTextColor(m_text_color);
 

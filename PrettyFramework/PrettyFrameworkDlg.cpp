@@ -10,7 +10,6 @@ CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
 	, LinearLayout(nullptr, FALSE)
 {
-	BaseControl::SetWindow(GetSafeHwnd());
 }
 
 void CPrettyFrameworkDlg::DoDataExchange(CDataExchange* pDX)
@@ -20,6 +19,7 @@ void CPrettyFrameworkDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPrettyFrameworkDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_ERASEBKGND()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 	ON_WM_PAINT()
@@ -34,19 +34,24 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	MoveWindow(rcWindow);
 	CenterWindow();
 
+	BaseControl::SetWindow(GetSafeHwnd());
+
 	// 标题栏布局
 	shared_ptr<LinearLayout> title_layout(new LinearLayout(this, TRUE));
+	title_layout->SetId(_T("title_layout"));
 	title_layout->SetFixSize(CSize(0, 40));
 	LayoutControl::AddChild(title_layout);
 
 	shared_ptr<Image> title_image(new Image(title_layout.get()));
 	title_image->SetBitmap(AfxGetApp()->LoadIcon(IDR_MAINFRAME));
 	title_image->SetFixSize(CSize(32, 32));
+	title_image->SetId(_T("title_image"));
 	title_layout->AddChild(title_image);
 
 	shared_ptr<Label> title_text(new Label(title_layout.get()));
 	title_text->SetGravity(Gravity::CenterH | Gravity::CenterV);
 	title_text->SetText(_T("资料管理"));
+	title_text->SetId(_T("title_text"));
 	title_layout->AddChild(title_text);
 	title_text->SetBorderNull(TRUE);
 	title_text->SetAutoWidth(TRUE);
@@ -54,6 +59,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
 	title_close->SetBitmap(AfxGetApp()->LoadIcon(IDR_MAINFRAME));
 	title_close->SetFixSize(CSize(32, 32));
+	title_close->SetId(_T("title_close"));
 	title_layout->AddChild(title_close);
 
 
@@ -100,6 +106,11 @@ void CPrettyFrameworkDlg::OnPaint()
 	memDC.GetDC().FillSolidRect(rcClient, RGB(240, 240, 240));
 
 	LayoutControl::Paint(memDC.GetDC());
+}
+
+BOOL CPrettyFrameworkDlg::OnEraseBkgnd(CDC* pDC)
+{
+	return TRUE;
 }
 
 void CPrettyFrameworkDlg::OnSize(UINT nType, int cx, int cy)

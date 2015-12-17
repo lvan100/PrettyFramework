@@ -10,6 +10,9 @@ namespace PrettyFramework {
 		, m_auto_width(TRUE)
 		, m_auto_height(TRUE)
 	{
+		if (parent != nullptr) {
+			m_window = parent->GetWindow();
+		}
 		m_gravity = Gravity::Left | Gravity::Top;
 	}
 
@@ -17,13 +20,9 @@ namespace PrettyFramework {
 	{
 	}
 
-	void* BaseControl::GetWindow()
+	void BaseControl::Redraw()
 	{
-		if (m_parent != nullptr) {
-			return m_parent->GetWindow();
-		} else {
-			return m_window;
-		}
+		InvalidateRect((HWND)m_window, GetPaintRect(), TRUE);
 	}
 
 	CRect BaseControl::GetPaintRect()

@@ -99,7 +99,9 @@ namespace PrettyFramework {
 		/**
 		 * 获取本地窗口指针
 		 */
-		void* GetWindow();
+		void* GetWindow() {
+			return m_window;
+		}
 
 	protected:
 		/**
@@ -109,7 +111,7 @@ namespace PrettyFramework {
 			m_window = window;
 		}
 
-	private:
+	protected:
 		/**
 		 * 本地窗口指针
 		 */
@@ -243,6 +245,11 @@ namespace PrettyFramework {
 		int m_gravity;
 
 	protected:
+		/**
+		 * 重新绘制
+		 */
+		void Redraw();
+
 		/**
 		 * 获取控件的绘图坐标
 		 */

@@ -80,54 +80,107 @@ namespace PrettyFramework {
 
 	void LayoutControl::OnButtonUp(CPoint point)
 	{
+		// TRACE(_T("LayoutControl : %s button up \n"), GetId());
+
 		CPoint ptInThis(point);
-		ptInThis.Offset(rect_in_parent.left, rect_in_parent.top);
+		ptInThis.Offset(GetRect().left, GetRect().top);
+
+		if (last_pressed != nullptr) {
+			last_pressed->OnButtonUp(ptInThis);
+		}
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
 			; iter++) {
+
 			auto& control = (*iter);
-			if (control->GetRect().PtInRect(ptInThis)) {
-				control->OnButtonUp(ptInThis);
-				last_pressed = nullptr;
-				break;
+			if (last_pressed != control) {
+				if (control->GetRect().PtInRect(ptInThis)) {
+					control->OnButtonUp(ptInThis);
+					break;
+				}
 			}
 		}
+
+		if (m_children.size() == 0) {
+			Redraw();
+		}
+
+		last_pressed = nullptr;
 	}
 
 	void LayoutControl::OnMouseMove(CPoint point)
 	{
-		CPoint ptInThis(point);
-		ptInThis.Offset(rect_in_parent.left, rect_in_parent.top);
+		// TRACE(_T("LayoutControl : %s mouse move \n"), GetId());
 
-		for (auto iter = m_children.begin()
-			; iter != m_children.end()
-			; iter++) {
-			auto& control = (*iter);
-			if (control->GetRect().PtInRect(ptInThis)) {
-				control->OnMouseMove(ptInThis);
-				last_hovered = control;
-				break;
+		CPoint ptInThis(point);
+		ptInThis.Offset(GetRect().left, GetRect().top);
+
+		shared_ptr<BaseControl> hovered = nullptr;
+
+		if (last_hovered != nullptr) {
+			last_hovered->OnMouseMove(ptInThis);
+			if (last_hovered->GetRect().PtInRect(point)) {
+				hovered = last_hovered;
 			}
+		}
+		
+		if (hovered == nullptr) {
+
+			for (auto iter = m_children.begin()
+				; iter != m_children.end()
+				; iter++) {
+
+				auto& control = (*iter);
+				if (last_hovered != control) {
+					if (control->GetRect().PtInRect(ptInThis)) {
+						control->OnMouseMove(ptInThis);
+						hovered = control;
+						break;
+					}
+				}
+			}
+
+			last_hovered = hovered;
+		}
+		
+		if (m_children.size() == 0) {
+			Redraw();
 		}
 	}
 
 	void LayoutControl::OnButtonDown(CPoint point)
 	{
+		// TRACE(_T("LayoutControl : %s button down \n"), GetId());
+
 		CPoint ptInThis(point);
-		ptInThis.Offset(rect_in_parent.left, rect_in_parent.top);
+		ptInThis.Offset(GetRect().left, GetRect().top);
+
+		if (last_focused != nullptr) {
+			last_focused->OnButtonDown(ptInThis);
+		}
+
+		shared_ptr<BaseControl> pressed = nullptr;
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
 			; iter++) {
+
 			auto& control = (*iter);
-			if (control->GetRect().PtInRect(ptInThis)) {
-				control->OnButtonDown(ptInThis);
-				last_pressed = control;
-				last_focused = control;
-				break;
+			if (last_focused != control) {
+				if (control->GetRect().PtInRect(ptInThis)) {
+					control->OnButtonDown(ptInThis);
+					pressed = control;
+					break;
+				}
 			}
 		}
+
+		if (m_children.size() == 0) {
+			Redraw();
+		}
+
+		last_focused = last_pressed = pressed;
 	}
 
 }

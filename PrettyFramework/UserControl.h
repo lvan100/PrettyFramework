@@ -132,11 +132,32 @@ namespace PrettyFramework {
 		 */
 		virtual void Paint(CDC& dc);
 
-	protected:
 		/**
 		 * 绘制自身
 		 */
 		virtual void OnPaint(CDC& dc) = 0;
+
+	public:
+		/**
+		 * 是否处于按下
+		 */
+		BOOL IsPressed() {
+			return m_pressed;
+		}
+
+		/**
+		 * 是否处于焦点
+		 */
+		BOOL IsFocused() {
+			return m_focused;
+		}
+
+		/**
+		 * 是否处于热点
+		 */
+		BOOL IsHovered() {
+			return m_hovered;
+		}
 
 	protected:
 		/**
