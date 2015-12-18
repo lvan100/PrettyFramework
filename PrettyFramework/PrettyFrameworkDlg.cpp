@@ -6,6 +6,9 @@
 #include "Image.h"
 #include "Button.h"
 
+#include "ImageRes.h"
+#include "StringRes.h"
+
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
 	, LinearLayout(nullptr, FALSE)
@@ -43,23 +46,26 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	LayoutControl::AddChild(title_layout);
 
 	shared_ptr<Image> title_image(new Image(title_layout.get()));
-	title_image->SetBitmap(AfxGetApp()->LoadIcon(IDR_MAINFRAME));
+	HICON hTImage = theImageRes.GetImage(_T("title_image"));
 	title_image->SetFixSize(CSize(32, 32));
 	title_image->SetId(_T("title_image"));
 	title_layout->AddChild(title_image);
+	title_image->SetBitmap(hTImage);
 
 	shared_ptr<Label> title_text(new Label(title_layout.get()));
 	title_text->SetGravity(Gravity::CenterH | Gravity::CenterV);
-	title_text->SetText(_T("资料管理"));
+	CString strTText = theStringRes.GetString(_T("title_text"));
 	title_text->SetId(_T("title_text"));
 	title_layout->AddChild(title_text);
 	title_text->SetAutoWidth(TRUE);
+	title_text->SetText(strTText);
 
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
-	title_close->SetBitmap(AfxGetApp()->LoadIcon(IDR_MAINFRAME));
+	HICON hTClose = theImageRes.GetImage(_T("title_close"));
 	title_close->SetFixSize(CSize(32, 32));
 	title_close->SetId(_T("title_close"));
 	title_layout->AddChild(title_close);
+	title_close->SetBitmap(hTClose);
 
 
 // 	shared_ptr<Label> label(new Label(this));

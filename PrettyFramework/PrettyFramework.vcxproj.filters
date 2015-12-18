@@ -28,11 +28,17 @@
     <Filter Include="Framework\Theme">
       <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SelfModule">
+    <Filter Include="Framework\Resource">
+      <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{e91f2ab5-2ddb-4139-9432-b17f4d7dcd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\SelfModule">
       <UniqueIdentifier>{eb5312aa-bc19-423d-85e7-53045638c738}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Images">
-      <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
+    <Filter Include="ThirdParty\XmlMarkup">
+      <UniqueIdentifier>{5669bf96-4280-43c2-89b9-52d47d7efe4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,10 +79,10 @@
       <Filter>Framework\Layout</Filter>
     </ClInclude>
     <ClInclude Include="SelfModule.h">
-      <Filter>SelfModule</Filter>
+      <Filter>ThirdParty\SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="TypeSelect.h">
-      <Filter>SelfModule</Filter>
+      <Filter>ThirdParty\SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Framework\Control</Filter>
@@ -87,8 +93,14 @@
     <ClInclude Include="Button.h">
       <Filter>Framework\Control</Filter>
     </ClInclude>
-    <ClInclude Include="Images.h">
-      <Filter>Framework\Images</Filter>
+    <ClInclude Include="Markup.h">
+      <Filter>ThirdParty\XmlMarkup</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageRes.h">
+      <Filter>Framework\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="StringRes.h">
+      <Filter>Framework\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,7 +135,7 @@
       <Filter>Framework\Layout</Filter>
     </ClCompile>
     <ClCompile Include="SelfModule.cpp">
-      <Filter>SelfModule</Filter>
+      <Filter>ThirdParty\SelfModule</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>Framework\Control</Filter>
@@ -131,8 +143,14 @@
     <ClCompile Include="Button.cpp">
       <Filter>Framework\Control</Filter>
     </ClCompile>
-    <ClCompile Include="Images.cpp">
-      <Filter>Framework\Images</Filter>
+    <ClCompile Include="Markup.cpp">
+      <Filter>ThirdParty\XmlMarkup</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageRes.cpp">
+      <Filter>Framework\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="StringRes.cpp">
+      <Filter>Framework\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
