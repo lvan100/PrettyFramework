@@ -31,16 +31,16 @@ namespace PrettyFramework {
 	
 	void BaseControl::Redraw()
 	{
-		InvalidateRect((HWND)m_window, GetPaintRect(), TRUE);
+		InvalidateRect((HWND)m_window, GetViewRect(), TRUE);
 	}
 
-	CRect BaseControl::GetPaintRect()
+	CRect BaseControl::GetViewRect()
 	{
 		if (m_parent != nullptr) {
-			CRect rcPaint(rect_in_parent);
-			CRect rcParent = m_parent->GetPaintRect();
-			rcPaint.OffsetRect(rcParent.left, rcParent.top);
-			return rcPaint; /* 转换为控件在窗口视图的位置 */
+			CRect rcView(rect_in_parent);
+			CRect rcParent = m_parent->GetViewRect();
+			rcView.OffsetRect(rcParent.left, rcParent.top);
+			return rcView; /* 转换为控件在窗口视图的位置 */
 		} else {
 			return rect_in_parent;
 		}

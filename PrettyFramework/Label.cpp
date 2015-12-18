@@ -26,16 +26,17 @@ namespace PrettyFramework {
 
 	void Label::OnPaint(CDC& dc)
 	{
-		CRect rcPaint = GetPaintRect();
-		if (!rcPaint.IsRectEmpty()) {
+		CRect rcView = GetViewRect();
+		if (!rcView.IsRectEmpty()) {
+
+			CRect rcMargined(rcView);
+			rcMargined.DeflateRect(m_margin);
 
 			CFont* pOldFont = dc.SelectObject(m_font);
 
 			dc.SetBkMode(TRANSPARENT);
 			dc.SetTextColor(m_text_color);
-
-			rcPaint.DeflateRect(1, 1, 1, 1);
-
+		
 			DWORD nFormat = 0;
 
 			if (m_single_line) {
@@ -66,7 +67,13 @@ namespace PrettyFramework {
 				nFormat |= DT_BOTTOM;
 			}
 
-			dc.DrawText(m_text, rcPaint, nFormat);
+			dc.DrawText(m_text, rcMargined, nFormat);
+
+			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+			dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
+
+			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+			dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
 
 			dc.SelectObject(pOldFont);
 		}

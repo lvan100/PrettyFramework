@@ -32,3 +32,8 @@
  * 获取模块的绝对路径（暂时就放在这里吧）
  */
 CString GetModuleDir(HMODULE hModule = NULL);
+
+/**
+ * 获取图标的大小（暂时就放在这里吧）
+ */
+CSize GetIconSize(HICON hIcon);

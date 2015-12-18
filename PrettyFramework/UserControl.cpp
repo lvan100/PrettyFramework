@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "UserControl.h"
-#include "AbsoluteLayout.h"
 
 namespace PrettyFramework {
 
@@ -28,10 +27,38 @@ namespace PrettyFramework {
 		OnPaint(dc); /* 绘制自身图层 */
 
 		if (m_layout != nullptr) {
-			m_layout->Paint(dc);
+			
+			CRgn rgnClip;
+
+			CRect rcOldClip;
+			dc.GetClipBox(rcOldClip);
+
+			CRect rcClip = GetViewRect();
+			rcClip.DeflateRect(m_margin);
+
+			rgnClip.CreateRectRgnIndirect(rcClip);
+
+			{ /* 绘制子控件 */
+
+				CRgn rgnControl;
+
+				CRect rect = m_layout->GetViewRect();
+				rgnControl.CreateRectRgnIndirect(rect);
+
+				// 防止子控件的绘图区域超出父控件的显示范围.
+				rgnControl.CombineRgn(&rgnClip, &rgnControl, RGN_AND);
+				dc.SelectClipRgn(&rgnControl);
+
+				m_layout->Paint(dc);
+			}			
+
+			CRgn rgnOldClip;
+			rgnOldClip.CreateRectRgnIndirect(rcOldClip);
+
+			dc.SelectClipRgn(&rgnOldClip);
 		}
 	}
-	
+
 	COLORREF UserControl::GetBkColor(State state)
 	{
 		switch (state)

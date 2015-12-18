@@ -38,16 +38,19 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	CenterWindow();
 
 	BaseControl::SetWindow(GetSafeHwnd());
+	BaseControl::SetMargin(CRect(2, 2, 2, 2));
 
 	// 标题栏布局
 	shared_ptr<LinearLayout> title_layout(new LinearLayout(this, TRUE));
+	title_layout->SetMargin(CRect(2, 2, 2, 2));
 	title_layout->SetId(_T("title_layout"));
 	title_layout->SetFixSize(CSize(0, 40));
 	LayoutControl::AddChild(title_layout);
 
 	shared_ptr<Image> title_image(new Image(title_layout.get()));
 	HICON hTImage = theImageRes.GetImage(_T("title_image"));
-	title_image->SetFixSize(CSize(32, 32));
+	title_image->SetMargin(CRect(3, 3, 3, 3));
+	title_image->SetFixSize(CSize(40, 0));
 	title_image->SetId(_T("title_image"));
 	title_layout->AddChild(title_image);
 	title_image->SetBitmap(hTImage);
@@ -55,6 +58,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	shared_ptr<Label> title_text(new Label(title_layout.get()));
 	title_text->SetGravity(Gravity::CenterH | Gravity::CenterV);
 	CString strTText = theStringRes.GetString(_T("title_text"));
+	title_text->SetMargin(CRect(2, 2, 2, 2));
 	title_text->SetId(_T("title_text"));
 	title_layout->AddChild(title_text);
 	title_text->SetAutoWidth(TRUE);
@@ -62,7 +66,8 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
 	HICON hTClose = theImageRes.GetImage(_T("title_close"));
-	title_close->SetFixSize(CSize(32, 32));
+	title_close->SetMargin(CRect(3, 3, 3, 3));
+	title_close->SetFixSize(CSize(40, 0));
 	title_close->SetId(_T("title_close"));
 	title_layout->AddChild(title_close);
 	title_close->SetBitmap(hTClose);

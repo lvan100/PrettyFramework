@@ -29,3 +29,21 @@ CString GetModuleDir(HMODULE hModule/* = NULL*/)
 
 	return strModulePath;
 }
+
+CSize GetIconSize(HICON hIcon)
+{
+	if (hIcon == nullptr) {
+		return CSize(0, 0);
+	}
+
+	ICONINFO iconInfo;
+	GetIconInfo(hIcon, &iconInfo);
+
+	BITMAP bitmap;
+	GetObject(iconInfo.hbmColor, sizeof(BITMAP), &bitmap);
+
+	DeleteObject(iconInfo.hbmColor);
+	DeleteObject(iconInfo.hbmMask);
+
+	return CSize(bitmap.bmWidth, bitmap.bmHeight);
+}

@@ -26,8 +26,11 @@ namespace PrettyFramework {
 
 	void LinearLayout::RecalcLayoutH()
 	{
-		int rectWidth = rect_in_parent.Width();
-		int rectHeight = rect_in_parent.Height();
+		CRect rcMargined(rect_in_parent);
+		rcMargined.DeflateRect(m_margin);
+
+		int rectWidth = rcMargined.Width();
+		int rectHeight = rcMargined.Height();
 
 		size_t itemCount = m_children.size();
 
@@ -57,7 +60,7 @@ namespace PrettyFramework {
 			allWeight += childWeight[i];
 		}
 
-		int lastWidth = 0;
+		int lastWidth = m_margin.left;
 
 		if (allWeight < 1.0f) {
 			float f = (1.0f - allWeight) / autoChild.size();
@@ -85,8 +88,10 @@ namespace PrettyFramework {
 			// 目前是靠左、居中显示
 			int height = rectHeight;
 			if (cFixSize.cy > 0) {
-				rcControl.top = (rectHeight - cFixSize.cy ) / 2;
 				height = cFixSize.cy;
+				rcControl.top = (rectHeight - cFixSize.cy ) / 2 + m_margin.top;
+			} else {
+				rcControl.top = m_margin.top;
 			}
 
 			rcControl.left = lastWidth;
@@ -100,8 +105,11 @@ namespace PrettyFramework {
 
 	void LinearLayout::RecalcLayoutV()
 	{
-		int rectWidth = rect_in_parent.Width();
-		int rectHeight = rect_in_parent.Height();
+		CRect rcMargined(rect_in_parent);
+		rcMargined.DeflateRect(m_margin);
+
+		int rectWidth = rcMargined.Width();
+		int rectHeight = rcMargined.Height();
 
 		size_t itemCount = m_children.size();
 
@@ -110,7 +118,7 @@ namespace PrettyFramework {
 			allWeight += m_children.at(i)->GetWeight();
 		}
 
-		int lastHeight = 0;
+		int lastHeight = m_margin.top;
 
 		float fHeight = rectHeight / allWeight;
 
@@ -123,15 +131,15 @@ namespace PrettyFramework {
 
 			int height = max(int(wg * fHeight), 0);
 
-			if (lastHeight + height > rectHeight) {
-				height = rectHeight - lastHeight;
+			if (lastHeight + height > rectHeight + m_margin.top) {
+				height = m_margin.top + rectHeight - lastHeight;
 			}
 
 			if (fz.cy > 0) {
 				height = fz.cy;
 			}
 
-			control->SetRect(CRect(0, lastHeight, rectWidth, lastHeight + height));
+			control->SetRect(CRect(m_margin.left, lastHeight, m_margin.left + rectWidth, lastHeight + height));
 			lastHeight += height;
 		}
 	}

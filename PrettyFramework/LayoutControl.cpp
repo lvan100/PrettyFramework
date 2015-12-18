@@ -77,9 +77,22 @@ namespace PrettyFramework {
 	
 	void LayoutControl::Paint(CDC& dc)
 	{
-		CRgn rgnClient;
-		CRect rcClient = GetPaintRect();
-		rgnClient.CreateRectRgnIndirect(rcClient);
+		if (m_children.size() == 0) {
+			return; /* 内容为空 */
+		}
+
+		CRgn rgnClip;
+
+		CRect rcOldClip;
+		dc.GetClipBox(rcOldClip);
+
+		CRect rcClip = GetViewRect();
+		rcClip.DeflateRect(m_margin);
+
+		rgnClip.CreateRectRgnIndirect(rcClip);
+		
+		// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+		dc.FrameRect(GetViewRect(), &CBrush(RGB(0,0,0)));
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
@@ -88,15 +101,20 @@ namespace PrettyFramework {
 			CRgn rgnControl;
 			auto& control = (*iter);
 
-			CRect rect = control->GetPaintRect();
+			CRect rect = control->GetViewRect();
 			rgnControl.CreateRectRgnIndirect(rect);
 
-			// 防止子控件的位置超出父控件的显示范围.
-			rgnControl.CombineRgn(&rgnClient, &rgnControl, RGN_AND);
+			// 防止子控件的绘图区域超出父控件的显示范围.
+			rgnControl.CombineRgn(&rgnClip, &rgnControl, RGN_AND);
 			dc.SelectClipRgn(&rgnControl);
 
 			control->Paint(dc);
 		}
+
+		CRgn rgnOldClip;
+		rgnOldClip.CreateRectRgnIndirect(rcOldClip);
+
+		dc.SelectClipRgn(&rgnOldClip);
 	}
 
 	void LayoutControl::OnMouseUp(CPoint point)

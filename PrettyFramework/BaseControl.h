@@ -251,6 +251,27 @@ namespace PrettyFramework {
 		 */
 		int m_gravity;
 
+	public:
+		/**
+		 * 设置控件的内边距
+		 */
+		void SetMargin(CRect margin) {
+			m_margin = margin;
+		}
+
+		/**
+		 * 获取控件的内边距
+		 */
+		CRect GetMargin() {
+			return m_margin;
+		}
+
+	protected:
+		/**
+		 * 控件的内边距
+		 */
+		CRect m_margin;
+
 	protected:
 		/**
 		 * 重绘控件
@@ -258,9 +279,9 @@ namespace PrettyFramework {
 		void Redraw();
 
 		/**
-		 * 获取控件的绘图坐标
+		 * 获取控件的视图坐标
 		 */
-		CRect GetPaintRect();
+		CRect GetViewRect();
 
 		/**
 		 * 通知控件需要进行绘图
