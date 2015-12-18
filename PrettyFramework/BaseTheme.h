@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Constant.h"
+
 namespace PrettyFramework {
 
 	/**
@@ -11,13 +13,13 @@ namespace PrettyFramework {
 		BaseTheme();
 		virtual ~BaseTheme();
 
-		COLORREF label_bk_color;
-		COLORREF label_text_clr0;
-		COLORREF label_border_clr;
+		COLORREF label_text_clr;
+		StateColor label_bk_color;
+		StateColor label_border_clr;
 
-		COLORREF button_bk_color;
-		COLORREF button_text_clr0;
-		COLORREF button_border_clr;
+		COLORREF button_text_clr;
+		StateColor button_bk_color;
+		StateColor button_border_clr;
 
 		CFont label_text_font;
 		CFont button_text_font;

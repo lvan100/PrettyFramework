@@ -11,7 +11,7 @@ namespace PrettyFramework {
 	{
 		m_font = &GetUITheme()->button_text_font;
 		m_bk_color = GetUITheme()->button_bk_color;
-		m_text_color = GetUITheme()->button_text_clr0;
+		m_text_color = GetUITheme()->button_text_clr;
 		m_border_color = GetUITheme()->button_border_clr;
 	}
 
@@ -24,11 +24,18 @@ namespace PrettyFramework {
 		CRect rcPaint = GetPaintRect();
 		if (!rcPaint.IsRectEmpty()) {
 
-			if (m_hovered) {
-				dc.FrameRect(rcPaint, &GetGlobalData()->brHilite);
+			if (IsPressed()) {
+				dc.FillSolidRect(rcPaint, m_bk_color[0]);
 			}
 
-			rcPaint.DeflateRect(1, 1, 1, 1);
+			if (IsFocused()) {
+				DrawFocusRect(dc.GetSafeHdc(), rcPaint);
+			}
+
+			if (IsHovered()) {
+				dc.FrameRect(rcPaint, &CBrush(m_border_color[0]));
+			}
+
 			DrawIconEx(dc.GetSafeHdc(), rcPaint.left, rcPaint.top
 				, m_bitmap, rcPaint.Width(), rcPaint.Height()
 				, 0, nullptr, DI_NORMAL);

@@ -12,11 +12,31 @@ namespace PrettyFramework {
 	{
 	}
 
+	BaseControl* LayoutControl::OnFindControlById(CString id)
+	{
+		if (m_id == id) { return this; }
+		
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+
+			BaseControl* control = (*iter)->FindControlById(id);
+			if (control != nullptr) {
+				return control;
+			}
+		}
+
+		return nullptr;		
+	}
+
 	void LayoutControl::AddChild(shared_ptr<BaseControl> child)
 	{
-		if (child != nullptr && child.get() != this) {
-			m_children.push_back(child);
+		if (child == nullptr || child.get() == this) {
+			ASSERT(FALSE); /* 当然不能添加自己 */
+			return;
 		}
+		
+		m_children.push_back(child);
 
 		RecalcLayout();
 	}
@@ -33,7 +53,6 @@ namespace PrettyFramework {
 			; iter++) {
 
 			if (child == (*iter)) {
-				m_children.erase(iter);
 
 				if (last_pressed == child) {
 					last_pressed = nullptr;
@@ -47,13 +66,15 @@ namespace PrettyFramework {
 					last_focused = nullptr;
 				}
 
+				m_children.erase(iter);
+				
 				break;
 			}
 		}
 
 		RecalcLayout();
 	}
-
+	
 	void LayoutControl::Paint(CDC& dc)
 	{
 		CRgn rgnClient;
@@ -64,29 +85,27 @@ namespace PrettyFramework {
 			; iter != m_children.end()
 			; iter++) {
 
-			CRgn rgn;
+			CRgn rgnControl;
 			auto& control = (*iter);
 
 			CRect rect = control->GetPaintRect();
-			rgn.CreateRectRgnIndirect(rect);
+			rgnControl.CreateRectRgnIndirect(rect);
 
 			// 防止子控件的位置超出父控件的显示范围.
-			rgn.CombineRgn(&rgnClient, &rgn, RGN_AND);
-			dc.SelectClipRgn(&rgn);
+			rgnControl.CombineRgn(&rgnClient, &rgnControl, RGN_AND);
+			dc.SelectClipRgn(&rgnControl);
 
 			control->Paint(dc);
 		}
 	}
 
-	void LayoutControl::OnButtonUp(CPoint point)
+	void LayoutControl::OnMouseUp(CPoint point)
 	{
-		// TRACE(_T("LayoutControl : %s button up \n"), GetId());
-
 		CPoint ptInThis(point);
 		ptInThis.Offset(GetRect().left, GetRect().top);
 
 		if (last_pressed != nullptr) {
-			last_pressed->OnButtonUp(ptInThis);
+			last_pressed->OnMouseUp(ptInThis);
 		}
 
 		for (auto iter = m_children.begin()
@@ -96,7 +115,7 @@ namespace PrettyFramework {
 			auto& control = (*iter);
 			if (last_pressed != control) {
 				if (control->GetRect().PtInRect(ptInThis)) {
-					control->OnButtonUp(ptInThis);
+					control->OnMouseUp(ptInThis);
 					break;
 				}
 			}
@@ -111,8 +130,6 @@ namespace PrettyFramework {
 
 	void LayoutControl::OnMouseMove(CPoint point)
 	{
-		// TRACE(_T("LayoutControl : %s mouse move \n"), GetId());
-
 		CPoint ptInThis(point);
 		ptInThis.Offset(GetRect().left, GetRect().top);
 
@@ -149,38 +166,42 @@ namespace PrettyFramework {
 		}
 	}
 
-	void LayoutControl::OnButtonDown(CPoint point)
+	void LayoutControl::OnMouseDown(CPoint point)
 	{
-		// TRACE(_T("LayoutControl : %s button down \n"), GetId());
-
 		CPoint ptInThis(point);
 		ptInThis.Offset(GetRect().left, GetRect().top);
 
-		if (last_focused != nullptr) {
-			last_focused->OnButtonDown(ptInThis);
-		}
-
 		shared_ptr<BaseControl> pressed = nullptr;
 
-		for (auto iter = m_children.begin()
-			; iter != m_children.end()
-			; iter++) {
+		if (last_focused != nullptr) {
+			last_focused->OnMouseDown(ptInThis);
+			if (last_focused->GetRect().PtInRect(point)) {
+				pressed = last_focused;
+			}
+		}
+		
+		if (pressed == nullptr) {
 
-			auto& control = (*iter);
-			if (last_focused != control) {
-				if (control->GetRect().PtInRect(ptInThis)) {
-					control->OnButtonDown(ptInThis);
-					pressed = control;
-					break;
+			for (auto iter = m_children.begin()
+				; iter != m_children.end()
+				; iter++) {
+
+				auto& control = (*iter);
+				if (last_focused != control) {
+					if (control->GetRect().PtInRect(ptInThis)) {
+						control->OnMouseDown(ptInThis);
+						pressed = control;
+						break;
+					}
 				}
 			}
+			
+			last_focused = last_pressed = pressed;
 		}
 
 		if (m_children.size() == 0) {
 			Redraw();
 		}
-
-		last_focused = last_pressed = pressed;
 	}
 
 }

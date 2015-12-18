@@ -5,7 +5,7 @@
 namespace PrettyFramework {
 
 	/**
-	 * 布局控件
+	 * 布局控件，只计算子控件的布局，没有界面
 	 */
 	class LayoutControl : public BaseControl
 	{
@@ -16,21 +16,21 @@ namespace PrettyFramework {
 		virtual ~LayoutControl();
 
 		/**
+		 * 添加子控件，当然不能重复地添加自己
+		 */
+		void AddChild(shared_ptr<BaseControl> child);
+
+		/**
+		 * 移除子控件，当然不能重复地删除自己
+		 */
+		void RemoveChild(shared_ptr<BaseControl> child);
+
+		/**
 		 * 获取子控件列表
 		 */
 		vector<shared_ptr<BaseControl>>& GetChildren() {
 			return m_children;
 		}
-
-		/**
-		 * 添加子控件，当然不能重复添加自己
-		 */
-		void AddChild(shared_ptr<BaseControl> child);
-
-		/**
-		 * 移除子控件，当然不能重复删除自己
-		 */
-		void RemoveChild(shared_ptr<BaseControl> child);
 
 	protected:
 		/**
@@ -40,25 +40,31 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		 * 绘图
+		* 查找指定ID的控件，查找失败返回空指针
+		*/
+		virtual BaseControl* OnFindControlById(CString id);
+
+	protected:
+		/**
+		 * 通知控件需要进行绘图
 		 */
 		virtual void Paint(CDC& dc);
 
 	protected:
 		/**
-		 * 鼠标弹起
+		 * 鼠标弹起事件
 		 */
-		virtual void OnButtonUp(CPoint point);
+		virtual void OnMouseUp(CPoint point);
 
 		/**
-		 * 鼠标移动
+		 * 鼠标移动事件
 		 */
 		virtual void OnMouseMove(CPoint point);
 
 		/**
-		 * 鼠标按下
+		 * 鼠标按下事件
 		 */
-		virtual void OnButtonDown(CPoint point);
+		virtual void OnMouseDown(CPoint point);
 
 	protected:
 		/**

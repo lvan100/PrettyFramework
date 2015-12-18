@@ -9,9 +9,14 @@ namespace PrettyFramework {
 		: UserControl(parent)
 		, m_single_line(TRUE)
 	{
-		m_font = &GetUITheme()->label_text_font;
+		LOGFONT logFont = { 0 };
+		GetUITheme()->label_text_font.GetLogFont(&logFont);
+
+		logFont.lfHeight = -18;
+		m_font = CFont::FromHandle(CreateFontIndirect(&logFont));
+
 		m_bk_color = GetUITheme()->label_bk_color;
-		m_text_color = GetUITheme()->label_text_clr0;
+		m_text_color = GetUITheme()->label_text_clr;
 		m_border_color = GetUITheme()->label_border_clr;
 	}
 
@@ -25,18 +30,6 @@ namespace PrettyFramework {
 		if (!rcPaint.IsRectEmpty()) {
 
 			CFont* pOldFont = dc.SelectObject(m_font);
-
-			if (!IsBkgndNull()) {
-				dc.FillSolidRect(rcPaint, m_bk_color);
-			}
-
-			if (!IsBorderNull()) {
-				dc.FrameRect(rcPaint, &CBrush(m_border_color));
-			}
-
-			if (m_hovered) {
-				dc.FrameRect(rcPaint, &GetGlobalData()->brHilite);
-			}
 
 			dc.SetBkMode(TRANSPARENT);
 			dc.SetTextColor(m_text_color);

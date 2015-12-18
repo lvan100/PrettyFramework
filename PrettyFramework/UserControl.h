@@ -4,8 +4,13 @@
 
 namespace PrettyFramework {
 
+	// 
+	// 界面控件的状态有：普通、热点、按下、焦点、禁用总共五种状态。
+	// 相应的界面控件在每种状态下的背景颜色、边框颜色都会发生变化。
+	// 
+
 	/**
-	 * 界面控件
+	 * 界面控件，包含一个同样大小的布局控件
 	 */
 	class UserControl : public BaseControl
 	{
@@ -16,7 +21,7 @@ namespace PrettyFramework {
 		virtual ~UserControl();
 
 		/**
-		 * 设置布局控件
+		 * 设置布局控件，默认的不设置任何布局控件，减少尾节点数量
 		 */
 		void SetLayoutControl(shared_ptr<LayoutControl> layout) {
 			m_layout = layout;
@@ -24,7 +29,7 @@ namespace PrettyFramework {
 		}
 
 		/**
-		 * 获取布局控件
+		 * 获取布局控件，可以动态地向布局控件中增删控件
 		 */
 		shared_ptr<LayoutControl>& GetLayoutControl() {
 			return m_layout;
@@ -32,164 +37,139 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		 * 布局控件，默认为绝对布局控件
+		 * 布局控件，默认不设置任何布局控件
 		 */
 		shared_ptr<LayoutControl> m_layout;
 
 	protected:
 		/**
-		 * 重新计算界面控件的布局
+		 * 计算布局控件的子控件的布局
 		 */
 		virtual void RecalcLayout();
 
 	public:
 		/**
-		 * 获取背景颜色
+		 * 获取不同状态下的背景颜色
 		 */
-		COLORREF GetBkColor() {
-			return m_bk_color;
-		}
+		COLORREF GetBkColor(State state);
 
 		/**
-		 * 设置背景颜色
+		 * 设置不同状态下的背景颜色
 		 */
-		void SetBkColor(COLORREF clr) {
-			m_bk_color = clr;
-		}
+		void SetBkColor(State state, COLORREF clr);
 
 	protected:
 		/**
-		 * 背景颜色
+		 * 控件不同状态下的背景颜色
 		 */
-		COLORREF m_bk_color;
+		StateColor m_bk_color;
 
 	public:
 		/**
-		 * 获取边框颜色
+		 * 获取不同状态下的边框颜色
 		 */
-		COLORREF GetBorderColor() {
-			return m_border_color;
-		}
+		COLORREF GetBorderColor(State state);
 
 		/**
-		 * 设置边框颜色
+		 * 设置不同状态下的边框颜色
 		 */
-		void SetBorderColor(COLORREF clr) {
-			m_border_color = clr;
-		}
+		void SetBorderColor(State state, COLORREF clr);
 
 	protected:
 		/**
-		 * 边框颜色
+		 * 控件不同状态下的边框颜色
 		 */
-		COLORREF m_border_color;
-
-	public:
-		/**
-		 * 设置控件为空白背景
-		 */
-		void SetBkgndNull(BOOL isNull = TRUE) {
-			is_bkgnd_null = isNull;
-		}
-
-		/**
-		 * 是否设置为空白背景
-		 */
-		BOOL IsBkgndNull() {
-			return is_bkgnd_null;
-		}
+		StateColor m_border_color;
 
 	protected:
 		/**
-		 * 是否为空白背景
-		 */
-		BOOL is_bkgnd_null;
-
-	public:
-		/**
-		 * 设置控件为无边框
-		 */
-		void SetBorderNull(BOOL isNull = TRUE) {
-			is_border_null = isNull;
-		}
-
-		/**
-		 * 是否设置为无边框
-		 */
-		BOOL IsBorderNull() {
-			return is_border_null;
-		}
-
-	protected:
-		/**
-		 * 是否为无边框
-		 */
-		BOOL is_border_null;
-
-	protected:
-		/**
-		 * 绘图
+		 * 通知控件需要进行绘图
 		 */
 		virtual void Paint(CDC& dc);
 
 		/**
-		 * 绘制自身
+		 * 继承此控件的控件用来绘制自身
 		 */
 		virtual void OnPaint(CDC& dc) = 0;
 
 	public:
 		/**
-		 * 是否处于按下
+		 * 是否处于按下状态
 		 */
 		BOOL IsPressed() {
-			return m_pressed;
+			return ((m_state & State::Pressed) == State::Pressed);
 		}
 
 		/**
-		 * 是否处于焦点
+		 * 是否处于焦点状态
 		 */
 		BOOL IsFocused() {
-			return m_focused;
+			return ((m_state & State::Focused) == State::Focused);
 		}
 
 		/**
-		 * 是否处于热点
+		 * 是否处于热点状态
 		 */
 		BOOL IsHovered() {
-			return m_hovered;
+			return ((m_state & State::Hovered) == State::Hovered);
 		}
 
-	protected:
+	public:
 		/**
-		 * 是否处于按下
+		 * 是否处于禁用状态
 		 */
-		BOOL m_pressed;
+		BOOL IsDisable() {
+			return ((m_state & State::Disable) == State::Disable);
+		}
 
 		/**
-		 * 是否处于焦点
+		 * 设置控件是否处于禁用状态
 		 */
-		BOOL m_focused;
-
-		/**
-		 * 是否处于热点
-		 */
-		BOOL m_hovered;
+		void SetDisable(BOOL disable);
 
 	protected:
 		/**
-		 * 鼠标弹起
+		 * 设置是否处于按下状态
 		 */
-		virtual void OnButtonUp(CPoint point);
+		void SetPressed(BOOL pressed);
 
 		/**
-		 * 鼠标移动
+		 * 设置是否处于焦点状态
+		 */
+		void SetFocused(BOOL focused);
+
+		/**
+		 * 设置是否处于热点状态
+		 */
+		void SetHovered(BOOL hovered);
+
+	protected:
+		/**
+		 * 控件状态，@State
+		 */
+		int m_state;
+
+	protected:
+		/**
+		 * 鼠标弹起事件
+		 */
+		virtual void OnMouseUp(CPoint point);
+
+		/**
+		 * 鼠标移动事件
 		 */
 		virtual void OnMouseMove(CPoint point);
 
 		/**
-		 * 鼠标按下
+		 * 鼠标按下事件
 		 */
-		virtual void OnButtonDown(CPoint point);
+		virtual void OnMouseDown(CPoint point);
+
+	protected:
+		/**
+		 * 查找指定ID的控件，查找失败返回空指针
+		 */
+		virtual BaseControl* OnFindControlById(CString id);
 	};
 
 }

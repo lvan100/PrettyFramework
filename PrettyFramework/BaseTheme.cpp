@@ -20,13 +20,33 @@ namespace PrettyFramework {
 
 	BaseTheme::BaseTheme()
 	{
-		label_text_clr0 = RGB(0, 0, 0);
-		label_bk_color = RGB(240, 240, 240);
-		label_border_clr = RGB(255, 255, 255);
+		label_text_clr = RGB(0, 0, 0);
 
-		button_text_clr0 = RGB(0, 0, 0);
-		button_bk_color = RGB(240, 240, 240);
-		button_border_clr = RGB(255, 255, 255);
+		label_bk_color[0] = RGB(240, 240, 240);
+		label_bk_color[1] = RGB(240, 240, 240);
+		label_bk_color[2] = RGB(240, 240, 240);
+		label_bk_color[3] = RGB(240, 240, 240);
+		label_bk_color[4] = RGB(240, 240, 240);
+
+		label_border_clr[0] = RGB(255, 255, 255);
+		label_border_clr[1] = RGB(255, 255, 255);
+		label_border_clr[2] = RGB(255, 255, 255);
+		label_border_clr[3] = RGB(255, 255, 255);
+		label_border_clr[4] = RGB(255, 255, 255);
+
+		button_text_clr = RGB(0, 0, 0);
+
+		button_bk_color[0] = RGB(240, 240, 240);
+		button_bk_color[1] = RGB(240, 240, 240);
+		button_bk_color[2] = RGB(240, 240, 240);
+		button_bk_color[3] = RGB(240, 240, 240);
+		button_bk_color[4] = RGB(240, 240, 240);
+
+		button_border_clr[0] = RGB(255, 255, 255);
+		button_border_clr[1] = RGB(255, 255, 255);
+		button_border_clr[2] = RGB(255, 255, 255);
+		button_border_clr[3] = RGB(255, 255, 255);
+		button_border_clr[4] = RGB(255, 255, 255);
 
 		LOGFONT logFont = { 0 };
 		GetGlobalData()->fontRegular.GetLogFont(&logFont);

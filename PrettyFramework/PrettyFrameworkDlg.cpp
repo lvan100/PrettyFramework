@@ -53,7 +53,6 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_text->SetText(_T("资料管理"));
 	title_text->SetId(_T("title_text"));
 	title_layout->AddChild(title_text);
-	title_text->SetBorderNull(TRUE);
 	title_text->SetAutoWidth(TRUE);
 
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
@@ -126,14 +125,14 @@ void CPrettyFrameworkDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CDialogEx::OnLButtonDown(nFlags, point);
 
-	LayoutControl::OnButtonDown(point);
+	LayoutControl::OnMouseDown(point);
 }
 
 void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CDialogEx::OnLButtonUp(nFlags, point);
 
-	LayoutControl::OnButtonUp(point);
+	LayoutControl::OnMouseUp(point);
 }
 
 void CPrettyFrameworkDlg::OnMouseMove(UINT nFlags, CPoint point)
