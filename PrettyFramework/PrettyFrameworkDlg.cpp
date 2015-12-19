@@ -12,6 +12,7 @@
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
 	, LinearLayout(nullptr, FALSE)
+	, m_mouse_down(FALSE)
 {
 }
 
@@ -50,7 +51,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	shared_ptr<Image> title_image(new Image(title_layout.get()));
 	HICON hTImage = theImageRes.GetImage(_T("title_image"));
 	title_image->SetMargin(CRect(3, 3, 3, 3));
-	title_image->SetFixSize(CSize(40, 0));
+	title_image->SetFixSize(CSize(36, 0));
 	title_image->SetId(_T("title_image"));
 	title_layout->AddChild(title_image);
 	title_image->SetBitmap(hTImage);
@@ -66,12 +67,16 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
 	HICON hTClose = theImageRes.GetImage(_T("title_close"));
-	title_close->SetMargin(CRect(3, 3, 3, 3));
-	title_close->SetFixSize(CSize(40, 0));
+	title_close->SetMargin(CRect(10, 10, 10, 10));
+	title_close->SetFixSize(CSize(36, 0));
 	title_close->SetId(_T("title_close"));
 	title_layout->AddChild(title_close);
 	title_close->SetBitmap(hTClose);
 
+	auto& children = LayoutControl::GetChildren();
+	for (size_t i = 0; i < children.size(); i++) {
+		children.at(i)->Dump();
+	}
 
 // 	shared_ptr<Label> label(new Label(this));
 // 	label->SetRect(CRect(100, 100, 200, 200));
@@ -113,7 +118,7 @@ void CPrettyFrameworkDlg::OnPaint()
 	GetClientRect(rcClient);
 
 	CMemDC memDC(dc, this);
-	memDC.GetDC().FillSolidRect(rcClient, RGB(240, 240, 240));
+	memDC.GetDC().FillSolidRect(rcClient, RGB(214, 219, 233));
 
 	LayoutControl::Paint(memDC.GetDC());
 }
@@ -130,10 +135,17 @@ void CPrettyFrameworkDlg::OnSize(UINT nType, int cx, int cy)
 	CRect rcClient;
 	GetClientRect(rcClient);
 	LayoutControl::SetRect(rcClient);
+
+	auto& children = LayoutControl::GetChildren();
+	for (size_t i = 0; i < children.size(); i++) {
+		children.at(i)->Dump();
+	}
 }
 
 void CPrettyFrameworkDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	m_mouse_down = TRUE;
+
 	CDialogEx::OnLButtonDown(nFlags, point);
 
 	LayoutControl::OnMouseDown(point);
@@ -141,6 +153,20 @@ void CPrettyFrameworkDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
 {
+	m_mouse_down = FALSE;
+
+	CPoint ptCursor;
+	GetCursorPos(&ptCursor);
+
+	CRect rcWindow;
+	GetWindowRect(rcWindow);
+
+	if (!rcWindow.PtInRect(ptCursor)) {
+		if (GetCapture() == this) {
+			ReleaseCapture();
+		}
+	}
+
 	CDialogEx::OnLButtonUp(nFlags, point);
 
 	LayoutControl::OnMouseUp(point);
@@ -148,6 +174,22 @@ void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CPrettyFrameworkDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
+	CPoint ptCursor;
+	GetCursorPos(&ptCursor);
+
+	CRect rcWindow;
+	GetWindowRect(rcWindow);
+
+	if (rcWindow.PtInRect(ptCursor)) {
+		if (GetCapture() != this) {
+			SetCapture();
+		}
+	} else {
+		if (!m_mouse_down) {
+			ReleaseCapture();
+		}
+	}
+
 	CDialogEx::OnMouseMove(nFlags, point);
 
 	LayoutControl::OnMouseMove(point);

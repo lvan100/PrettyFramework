@@ -81,6 +81,12 @@ namespace PrettyFramework {
 		 * 最近获得焦点的子控件
 		 */
 		shared_ptr<BaseControl> last_focused;
+
+	public:
+		/**
+		 * 输出控件的详细信息
+		 */
+		virtual void Dump();
 	};
 
 }

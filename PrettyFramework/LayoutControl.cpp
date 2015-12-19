@@ -91,8 +91,8 @@ namespace PrettyFramework {
 
 		rgnClip.CreateRectRgnIndirect(rcClip);
 		
-		// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-		dc.FrameRect(GetViewRect(), &CBrush(RGB(0,0,0)));
+// 		// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+// 		dc.FrameRect(GetViewRect(), &CBrush(RGB(0,0,0)));
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
@@ -120,7 +120,7 @@ namespace PrettyFramework {
 	void LayoutControl::OnMouseUp(CPoint point)
 	{
 		CPoint ptInThis(point);
-		ptInThis.Offset(GetRect().left, GetRect().top);
+		ptInThis.Offset(-GetRect().left, -GetRect().top);
 
 		if (last_pressed != nullptr) {
 			last_pressed->OnMouseUp(ptInThis);
@@ -149,13 +149,20 @@ namespace PrettyFramework {
 	void LayoutControl::OnMouseMove(CPoint point)
 	{
 		CPoint ptInThis(point);
-		ptInThis.Offset(GetRect().left, GetRect().top);
+		ptInThis.Offset(-GetRect().left, -GetRect().top);
+
+		TRACE(_T("LayoutControl:%s Rect:%d,%d,%d,%d \n"), GetId()
+			, GetRect().left, GetRect().top, GetRect().right
+			, GetRect().bottom);
+
+		TRACE(_T("LayoutControl:%s Mouse:%d,%d \n"), GetId()
+			, ptInThis.x, ptInThis.y);
 
 		shared_ptr<BaseControl> hovered = nullptr;
 
 		if (last_hovered != nullptr) {
 			last_hovered->OnMouseMove(ptInThis);
-			if (last_hovered->GetRect().PtInRect(point)) {
+			if (last_hovered->GetRect().PtInRect(ptInThis)) {
 				hovered = last_hovered;
 			}
 		}
@@ -187,13 +194,13 @@ namespace PrettyFramework {
 	void LayoutControl::OnMouseDown(CPoint point)
 	{
 		CPoint ptInThis(point);
-		ptInThis.Offset(GetRect().left, GetRect().top);
+		ptInThis.Offset(-GetRect().left, -GetRect().top);
 
 		shared_ptr<BaseControl> pressed = nullptr;
 
 		if (last_focused != nullptr) {
 			last_focused->OnMouseDown(ptInThis);
-			if (last_focused->GetRect().PtInRect(point)) {
+			if (last_focused->GetRect().PtInRect(ptInThis)) {
 				pressed = last_focused;
 			}
 		}
@@ -219,6 +226,19 @@ namespace PrettyFramework {
 
 		if (m_children.size() == 0) {
 			Redraw();
+		}
+	}
+
+	void LayoutControl::Dump()
+	{
+		TRACE(_T("LayoutControl:%s Rect:%d,%d,%d,%d \n"), GetId()
+			, GetRect().left, GetRect().top, GetRect().right
+			, GetRect().bottom);
+
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+			(*iter)->Dump();
 		}
 	}
 

@@ -239,4 +239,15 @@ namespace PrettyFramework {
 		return nullptr;
 	}
 
+	void UserControl::Dump()
+	{
+		TRACE(_T("UserControl:%s Rect:%d,%d,%d,%d \n"), GetId()
+			, GetRect().left, GetRect().top, GetRect().right
+			, GetRect().bottom);
+
+		if (m_layout != nullptr) {
+			return m_layout->Dump();
+		}
+	}
+
 }

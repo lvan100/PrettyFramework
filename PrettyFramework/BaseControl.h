@@ -323,6 +323,12 @@ namespace PrettyFramework {
 		 * 设置一个子类根据ID查找控件的接口函数
 		 */
 		virtual BaseControl* OnFindControlById(CString id) = 0;
+
+	public:
+		/**
+		 * 输出控件的详细信息
+		 */
+		virtual void Dump() = 0;
 	};
 
 }

@@ -69,11 +69,11 @@ namespace PrettyFramework {
 
 			dc.DrawText(m_text, rcMargined, nFormat);
 
-			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-			dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
-
-			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-			dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
+// 			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+// 			dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
+// 
+// 			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+// 			dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
 
 			dc.SelectObject(pOldFont);
 		}

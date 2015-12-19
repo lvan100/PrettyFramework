@@ -170,6 +170,12 @@ namespace PrettyFramework {
 		 * 查找指定ID的控件，查找失败返回空指针
 		 */
 		virtual BaseControl* OnFindControlById(CString id);
+
+	public:
+		/**
+		 * 输出详细信息
+		 */
+		virtual void Dump();
 	};
 
 }

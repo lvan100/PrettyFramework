@@ -62,11 +62,11 @@ namespace PrettyFramework {
 				, m_bitmap, rcMargined.Width(), rcMargined.Height()
 				, 0, nullptr, DI_NORMAL);
 
-			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-			dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
-
-			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-			dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
+// 			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+// 			dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
+// 
+// 			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
+// 			dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
 
 		}
 	}
