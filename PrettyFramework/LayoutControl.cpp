@@ -126,24 +126,11 @@ namespace PrettyFramework {
 			last_pressed->OnMouseUp(ptInThis);
 		}
 
-		for (auto iter = m_children.begin()
-			; iter != m_children.end()
-			; iter++) {
-
-			auto& control = (*iter);
-			if (last_pressed != control) {
-				if (control->GetRect().PtInRect(ptInThis)) {
-					control->OnMouseUp(ptInThis);
-					break;
-				}
-			}
-		}
+		last_pressed = nullptr;
 
 		if (m_children.size() == 0) {
 			Redraw();
 		}
-
-		last_pressed = nullptr;
 	}
 
 	void LayoutControl::OnMouseMove(CPoint point)
@@ -220,9 +207,9 @@ namespace PrettyFramework {
 					}
 				}
 			}
-			
-			last_focused = last_pressed = pressed;
 		}
+
+		last_focused = last_pressed = pressed;
 
 		if (m_children.size() == 0) {
 			Redraw();

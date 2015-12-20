@@ -1,9 +1,12 @@
 #pragma once
 
 #include <array>
+#include <functional>
 using namespace std;
 
 namespace PrettyFramework {
+
+	class UserControl;
 
 	/**
 	 * 获取枚举的元素格式
@@ -52,5 +55,42 @@ namespace PrettyFramework {
 	 * 定义控件状态的颜色数组
 	 */
 	using StateColor = array<COLORREF, enum_size<State>::size>;
+
+	/**
+	 * 定义鼠标事件参数
+	 */
+	struct EventParam {
+
+		/**
+		 * 吃掉这个事件
+		 */
+		BOOL will_eat_it;
+
+		/**
+		 * 事件的来源控件
+		 */
+		UserControl* control;
+	};
+	
+	/**
+	 * 定义鼠标事件
+	 */
+	using MouseEvent = function<void(EventParam&)>;
+
+	/**
+	 * 定义鼠标点击事件参数
+	 */
+	struct ClickParam {
+
+		/**
+		 * 事件的来源控件
+		 */
+		UserControl* control;
+	};
+
+	/**
+	 * 定义鼠标点击事件
+	 */
+	using ClickEvent = function<void(ClickParam&)>;
 
 }

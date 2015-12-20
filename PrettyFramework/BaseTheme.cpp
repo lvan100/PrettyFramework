@@ -39,7 +39,7 @@ namespace PrettyFramework {
 		button_bk_color[0] = RGB(240, 240, 240);
 		button_bk_color[1] = RGB(253, 244, 191);
 		button_bk_color[2] = RGB(255, 242, 157);
-		button_bk_color[3] = RGB(253, 244, 191);
+		button_bk_color[3] = RGB(231, 186, 10);
 		button_bk_color[4] = RGB(240, 240, 240);
 
 		button_border_clr[0] = RGB(255, 255, 255);

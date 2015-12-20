@@ -164,6 +164,135 @@ namespace PrettyFramework {
 		 * 鼠标按下事件
 		 */
 		virtual void OnMouseDown(CPoint point);
+		
+	protected:
+		/**
+		 * 鼠标弹起事件（子控件响应之前）
+		 */
+		virtual void OnPreviewMouseUp(EventParam& param) {
+			if (m_preview_mouse_up_event) {
+				m_preview_mouse_up_event(param);
+			}
+		}
+
+		/**
+		 * 鼠标弹起事件（子控件响应之后）
+		 */
+		virtual void OnMouseUp(EventParam& param) {
+			if (m_mouse_up_event) {
+				m_mouse_up_event(param);
+			}
+		}
+
+		/**
+		 * 鼠标移动事件（子控件响应之前）
+		 */
+		virtual void OnPreviewMouseMove(EventParam& param) {
+			if (m_preview_mouse_move_event) {
+				m_preview_mouse_move_event(param);
+			}
+		}
+
+		/**
+		 * 鼠标移动事件（子控件响应之后）
+		 */
+		virtual void OnMouseMove(EventParam& param) {
+			if (m_mouse_move_event) {
+				m_mouse_move_event(param);
+			}
+		}
+
+		/**
+		 * 鼠标按下事件（子控件响应之前）
+		 */
+		virtual void OnPreviewMouseDown(EventParam& param) {
+			if (m_preview_mouse_down_event) {
+				m_preview_mouse_down_event(param);
+			}
+		}
+
+		/**
+		 * 鼠标按下事件（子控件响应之后）
+		 */
+		virtual void OnMouseDown(EventParam& param) {
+			if (m_mouse_down_event) {
+				m_mouse_down_event(param);
+			}
+		}
+
+	public:
+		/**
+		 * 设置鼠标弹起事件（子控件响应之前）的事件响应
+		 */
+		void SetPreviewMouseUpEvent(MouseEvent event) {
+			m_preview_mouse_up_event = event;
+		}
+
+		/**
+		 * 设置鼠标弹起事件（子控件响应之后）的事件响应
+		 */
+		void SetMouseUpEvent(MouseEvent event) {
+			m_mouse_up_event = event;
+		}
+
+		/**
+		 * 设置鼠标移动事件（子控件响应之前）的事件响应
+		 */
+		void SetPreviewMouseMoveEvent(MouseEvent event) {
+			m_preview_mouse_move_event = event;
+		}
+
+		/**
+		 * 设置鼠标移动事件（子控件响应之前）的事件响应
+		 */
+		void SetMouseMoveEvent(MouseEvent event) {
+			m_mouse_move_event = event;
+		}
+
+		/**
+		 * 设置鼠标按下事件（子控件响应之前）的事件响应
+		 */
+		void SetPreviewMouseDownEvent(MouseEvent event) {
+			m_preview_mouse_down_event = event;
+		}
+
+		/**
+		 * 设置鼠标按下事件（子控件响应之前）的事件响应
+		 */
+		void SetMouseDownEvent(MouseEvent event) {
+			m_mouse_down_event = event;
+		}
+
+	protected:
+		/**
+		 * 鼠标弹起事件（子控件响应之前）的事件响应
+		 */
+		MouseEvent m_preview_mouse_up_event;
+
+		/**
+		 * 设置鼠标弹起事件（子控件响应之后）的事件响应
+		 */
+		MouseEvent m_mouse_up_event;
+
+		/**
+		 * 设置鼠标移动事件（子控件响应之前）的事件响应
+		 */
+		MouseEvent m_preview_mouse_move_event;
+
+		/**
+		 * 设置鼠标移动事件（子控件响应之前）的事件响应
+		 */
+		MouseEvent m_mouse_move_event;
+
+		/**
+		 * 设置鼠标按下事件（子控件响应之前）的事件响应
+		 */
+		MouseEvent m_preview_mouse_down_event;
+
+		/**
+		 * 设置鼠标按下事件（子控件响应之前）的事件响应
+		 */
+		MouseEvent m_mouse_down_event;
 
 	protected:
 		/**

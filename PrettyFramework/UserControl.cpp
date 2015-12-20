@@ -150,7 +150,7 @@ namespace PrettyFramework {
 	void UserControl::SetDisable(BOOL disable)
 	{
 		if (disable) {
-			m_state |= State::Disable;
+			m_state = State::Disable;
 		} else {
 			m_state &= ~State::Disable;
 		}
@@ -185,18 +185,38 @@ namespace PrettyFramework {
 
 	void UserControl::OnMouseUp(CPoint point)
 	{
+		if (IsDisable()) {
+			return;
+		}
+
 		SetPressed(FALSE);
 		SetFocused(GetRect().PtInRect(point));
+
+		EventParam param;
+		param.control = this;
+		param.will_eat_it = FALSE;
+
+		OnPreviewMouseUp(param);
+
+		if (param.will_eat_it) {
+			return; /* ³ÔµôËü */
+		} 
 
 		if (m_layout != nullptr) {
 			m_layout->OnMouseUp(point);
 		} else {
 			Redraw();
 		}
+
+		OnMouseUp(param);
 	}
 
 	void UserControl::OnMouseMove(CPoint point)
 	{
+		if (IsDisable()) {
+			return;
+		}
+
 		BOOL hover_changed = FALSE;
 
 		BOOL is_hovered = GetRect().PtInRect(point);
@@ -206,6 +226,16 @@ namespace PrettyFramework {
 
 		SetHovered(is_hovered);
 
+		EventParam param;
+		param.control = this;
+		param.will_eat_it = FALSE;
+
+		OnPreviewMouseMove(param);
+
+		if (param.will_eat_it) {
+			return; /* ³ÔµôËü */
+		}
+
 		if (m_layout != nullptr) {
 			m_layout->OnMouseMove(point);
 		} else {
@@ -213,10 +243,26 @@ namespace PrettyFramework {
 				Redraw();				
 			}
 		}
+
+		OnMouseMove(param);
 	}
 
 	void UserControl::OnMouseDown(CPoint point)
 	{
+		if (IsDisable()) {
+			return;
+		}
+
+		EventParam param;
+		param.control = this;
+		param.will_eat_it = FALSE;
+
+		OnPreviewMouseDown(param);
+
+		if (param.will_eat_it) {
+			return; /* ³ÔµôËü */
+		}
+
 		BOOL ptInRect = GetRect().PtInRect(point);
 		SetFocused(ptInRect);
 		SetPressed(ptInRect);
@@ -226,6 +272,8 @@ namespace PrettyFramework {
 		} else {
 			Redraw();
 		}
+
+		OnMouseDown(param);
 	}
 
 	BaseControl* UserControl::OnFindControlById(CString id)

@@ -33,6 +33,19 @@ namespace PrettyFramework {
 		 */
 		HICON m_bitmap;
 
+	public:
+		/**
+		 * 设置按钮点击事件响应
+		 */
+		void SetClickEvent(ClickEvent click) {
+			m_click = click;
+		}
+
+	protected:
+		/**
+		 * 按钮点击事件响应
+		 */
+		ClickEvent m_click;
 
 	public:
 		/**
@@ -102,6 +115,37 @@ namespace PrettyFramework {
 		 * 绘制自身当前层
 		 */
 		virtual void OnPaint(CDC& dc);
+
+	protected:
+		/**
+		 * 鼠标弹起事件（子控件响应之前）
+		 */
+		virtual void OnPreviewMouseUp(EventParam& param);
+
+		/**
+		 * 鼠标弹起事件（子控件响应之后）
+		 */
+		virtual void OnMouseUp(EventParam& param);
+
+		/**
+		 * 鼠标移动事件（子控件响应之前）
+		 */
+		virtual void OnPreviewMouseMove(EventParam& param);
+
+		/**
+		 * 鼠标移动事件（子控件响应之后）
+		 */
+		virtual void OnMouseMove(EventParam& param);
+
+		/**
+		 * 鼠标按下事件（子控件响应之前）
+		 */
+		virtual void OnPreviewMouseDown(EventParam& param);
+
+		/**
+		 * 鼠标按下事件（子控件响应之后）
+		 */
+		virtual void OnMouseDown(EventParam& param);
 	};
 
 }

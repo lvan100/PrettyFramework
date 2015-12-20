@@ -73,6 +73,10 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_layout->AddChild(title_close);
 	title_close->SetBitmap(hTClose);
 
+	ClickEvent clickEvent = bind(&CPrettyFrameworkDlg::BtnCloseClicked
+		, this, std::placeholders::_1);
+	title_close->SetClickEvent(clickEvent);
+
 	auto& children = LayoutControl::GetChildren();
 	for (size_t i = 0; i < children.size(); i++) {
 		children.at(i)->Dump();
@@ -193,4 +197,9 @@ void CPrettyFrameworkDlg::OnMouseMove(UINT nFlags, CPoint point)
 	CDialogEx::OnMouseMove(nFlags, point);
 
 	LayoutControl::OnMouseMove(point);
+}
+
+void CPrettyFrameworkDlg::BtnCloseClicked(ClickParam& param)
+{
+	param.control->SetDisable(TRUE);
 }

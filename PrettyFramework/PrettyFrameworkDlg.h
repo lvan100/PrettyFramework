@@ -12,6 +12,8 @@ class CPrettyFrameworkDlg : public CDialogEx, private LinearLayout
 public:
 	CPrettyFrameworkDlg(CWnd* pParent = NULL);
 
+	void BtnCloseClicked(ClickParam& param);
+
 protected:
 	BOOL m_mouse_down;
 
