@@ -9,7 +9,7 @@ namespace PrettyFramework {
 	class UserControl;
 
 	/**
-	 * 获取枚举的元素格式
+	 * 获取枚举的元素数量
 	 */
 	template<typename T>
 	struct enum_size {

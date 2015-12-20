@@ -12,7 +12,7 @@ namespace PrettyFramework {
 	{
 	}
 
-	BaseControl* LayoutControl::OnFindControlById(CString id)
+	BaseControl* LayoutControl::FindControlById(CString id)
 	{
 		if (m_id == id) { return this; }
 		
@@ -91,8 +91,8 @@ namespace PrettyFramework {
 
 		rgnClip.CreateRectRgnIndirect(rcClip);
 		
-// 		// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-// 		dc.FrameRect(GetViewRect(), &CBrush(RGB(0,0,0)));
+		// TODO 如果添加背景或者边框，最好采用对象的方式
+		// dc.FrameRect(GetViewRect(), &CBrush(RGB(0,0,0)));
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()

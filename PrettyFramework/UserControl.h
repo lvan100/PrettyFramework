@@ -243,7 +243,7 @@ namespace PrettyFramework {
 		}
 
 		/**
-		 * 设置鼠标移动事件（子控件响应之前）的事件响应
+		 * 设置鼠标移动事件（子控件响应之后）的事件响应
 		 */
 		void SetMouseMoveEvent(MouseEvent event) {
 			m_mouse_move_event = event;
@@ -257,7 +257,7 @@ namespace PrettyFramework {
 		}
 
 		/**
-		 * 设置鼠标按下事件（子控件响应之前）的事件响应
+		 * 设置鼠标按下事件（子控件响应之后）的事件响应
 		 */
 		void SetMouseDownEvent(MouseEvent event) {
 			m_mouse_down_event = event;
@@ -280,7 +280,7 @@ namespace PrettyFramework {
 		MouseEvent m_preview_mouse_move_event;
 
 		/**
-		 * 设置鼠标移动事件（子控件响应之前）的事件响应
+		 * 设置鼠标移动事件（子控件响应之后）的事件响应
 		 */
 		MouseEvent m_mouse_move_event;
 
@@ -290,7 +290,7 @@ namespace PrettyFramework {
 		MouseEvent m_preview_mouse_down_event;
 
 		/**
-		 * 设置鼠标按下事件（子控件响应之前）的事件响应
+		 * 设置鼠标按下事件（子控件响应之后）的事件响应
 		 */
 		MouseEvent m_mouse_down_event;
 
@@ -298,7 +298,7 @@ namespace PrettyFramework {
 		/**
 		 * 查找指定ID的控件，查找失败返回空指针
 		 */
-		virtual BaseControl* OnFindControlById(CString id);
+		virtual BaseControl* FindControlById(CString id);
 
 	public:
 		/**

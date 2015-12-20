@@ -34,6 +34,22 @@ namespace PrettyFramework {
 		InvalidateRect((HWND)m_window, GetViewRect(), TRUE);
 	}
 
+	// 
+	// 歌孚和中議幣吭夕尖盾 @BaseControl::GetViewRect 議柴麻圭塀。
+	// 
+	// | (0,0) ！！！！！！！！！！！！！！！！！！！！！！！！ |
+	// |                                                        |
+	// |          | (80,40) | (0,0) ！！！！！！！ |            |
+	// |          |                                |            |
+	// |          |     | (80,40) ！！！！！ |     |            |
+	// |          |     |                    |     |            |
+	// |          |     |！！！！！！！！！！|     |            |
+	// |          |                                |            |
+	// |          |！！！！！！！！！！！！！！！！|            |
+	// |                                                        |
+	// |！！！！！！！！！！！！！！！！！！！！！！！！！！！！|
+	// 
+
 	CRect BaseControl::GetViewRect()
 	{
 		if (m_parent != nullptr) {

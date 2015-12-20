@@ -40,9 +40,9 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		* 查找指定ID的控件，查找失败返回空指针
-		*/
-		virtual BaseControl* OnFindControlById(CString id);
+		 * 查找指定ID的控件，查找失败返回空指针
+		 */
+		virtual BaseControl* FindControlById(CString id);
 
 	protected:
 		/**

@@ -53,11 +53,8 @@ namespace PrettyFramework {
 
 			}
 
-// 			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-// 			dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
-// 
-// 			// TODO 这时候向布局控件增加边框和背景应该也没有问题了
-// 			dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
+			// dc.FrameRect(rcMargined, &CBrush(RGB(0, 0, 0)));
+			// dc.FrameRect(GetViewRect(), &CBrush(RGB(0, 0, 0)));
 
 		}
 	}
@@ -67,8 +64,7 @@ namespace PrettyFramework {
 		UserControl::OnPreviewMouseUp(param);
 
 		if (m_click) {
-			ClickParam click = { this };
-			m_click(click);
+			 m_click(ClickParam{this});
 		}
 	}
 	

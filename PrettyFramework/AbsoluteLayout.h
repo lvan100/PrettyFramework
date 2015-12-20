@@ -5,7 +5,7 @@
 namespace PrettyFramework {
 
 	/**
-	 * 绝对布局，由控件自己设定显示区域
+	 * 绝对布局，完全由控件自己设定显示的坐标
 	 */
 	class AbsoluteLayout : public LayoutControl
 	{

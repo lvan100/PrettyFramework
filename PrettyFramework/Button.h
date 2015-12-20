@@ -35,20 +35,6 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置按钮点击事件响应
-		 */
-		void SetClickEvent(ClickEvent click) {
-			m_click = click;
-		}
-
-	protected:
-		/**
-		 * 按钮点击事件响应
-		 */
-		ClickEvent m_click;
-
-	public:
-		/**
 		 * 获取文本内容
 		 */
 		CString GetText() {
@@ -109,7 +95,21 @@ namespace PrettyFramework {
 		 * 字体
 		 */
 		CFont* m_font;
-		
+
+	public:
+		/**
+		 * 设置按钮点击事件响应
+		 */
+		void SetClickEvent(ClickEvent click) {
+			m_click = click;
+		}
+
+	protected:
+		/**
+		 * 按钮点击事件响应
+		 */
+		ClickEvent m_click;
+
 	protected:
 		/**
 		 * 绘制自身当前层

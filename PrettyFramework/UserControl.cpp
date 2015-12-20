@@ -276,12 +276,12 @@ namespace PrettyFramework {
 		OnMouseDown(param);
 	}
 
-	BaseControl* UserControl::OnFindControlById(CString id)
+	BaseControl* UserControl::FindControlById(CString id)
 	{
 		if (m_id == id) { return this; }
 
 		if (m_layout != nullptr) {
-			return m_layout->OnFindControlById(id);
+			return m_layout->FindControlById(id);
 		}
 
 		return nullptr;
