@@ -185,7 +185,9 @@
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="MorePointShape.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="TwoPointShape.h" />
     <ClInclude Include="VisualStyle.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonStyle.h" />

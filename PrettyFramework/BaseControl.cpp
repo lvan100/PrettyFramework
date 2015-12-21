@@ -24,6 +24,11 @@ namespace PrettyFramework {
 	{
 	}
 
+	BOOL BaseControl::HitTest(CPoint point)
+	{
+		return rect_in_parent.PtInRect(point);
+	}
+
 	// 
 	// 目前的重绘机制没有采用“脏区域”、计时器刷新的方式，而是
 	// 使用 WIN32 API 激活原生窗口的重绘机制，效果现在暂时未知。

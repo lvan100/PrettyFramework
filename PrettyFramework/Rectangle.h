@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Line.h"
+#include "TwoPointShape.h"
 
 namespace PrettyFramework {
 
 	/**
-	 * 矩形，偷偷地继承自线条类型。
+	 * 矩形，它的位置由起始点和终止点决定。
 	 */
-	class Rectangle : public Line
+	class Rectangle : public TwoPointShape
 	{
 	public:
 		Rectangle();

@@ -13,15 +13,6 @@
     <Filter Include="MainFrame">
       <UniqueIdentifier>{eab3d386-fc58-4307-8802-d1bdb81230d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty">
-      <UniqueIdentifier>{e91f2ab5-2ddb-4139-9432-b17f4d7dcd27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\SelfModule">
-      <UniqueIdentifier>{eb5312aa-bc19-423d-85e7-53045638c738}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\XmlMarkup">
-      <UniqueIdentifier>{5669bf96-4280-43c2-89b9-52d47d7efe4c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0.Framework">
       <UniqueIdentifier>{90617664-b662-4008-a9bc-3a6e35c45572}</UniqueIdentifier>
     </Filter>
@@ -45,6 +36,30 @@
     </Filter>
     <Filter Include="0.Framework\6.Resource">
       <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.ThirdParty">
+      <UniqueIdentifier>{e91f2ab5-2ddb-4139-9432-b17f4d7dcd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.ThirdParty\SelfModule">
+      <UniqueIdentifier>{eb5312aa-bc19-423d-85e7-53045638c738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.ThirdParty\XmlMarkup">
+      <UniqueIdentifier>{5669bf96-4280-43c2-89b9-52d47d7efe4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\4.Shape\0.Shape">
+      <UniqueIdentifier>{f81db2fe-f0ca-4bca-832f-b6c6ec4b9ef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\4.Shape\1.TwoPoint">
+      <UniqueIdentifier>{ab1bff9b-3b80-441a-a08e-bd5f9537b99b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\4.Shape\2.MorePoint">
+      <UniqueIdentifier>{c7d639b3-494b-41c0-af7f-212f35eb8eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\4.Shape\4.Rectangle">
+      <UniqueIdentifier>{b7474451-5295-4ab1-91a2-64e8bf56c004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\4.Shape\3.Line">
+      <UniqueIdentifier>{956dba10-6872-4db4-9baf-6d95634671d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,10 +94,10 @@
       <Filter>0.Framework\1.Layout</Filter>
     </ClInclude>
     <ClInclude Include="SelfModule.h">
-      <Filter>ThirdParty\SelfModule</Filter>
+      <Filter>1.ThirdParty\SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="TypeSelect.h">
-      <Filter>ThirdParty\SelfModule</Filter>
+      <Filter>1.ThirdParty\SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>0.Framework\2.Control</Filter>
@@ -94,7 +109,7 @@
       <Filter>0.Framework\2.Control</Filter>
     </ClInclude>
     <ClInclude Include="Markup.h">
-      <Filter>ThirdParty\XmlMarkup</Filter>
+      <Filter>1.ThirdParty\XmlMarkup</Filter>
     </ClInclude>
     <ClInclude Include="ImageRes.h">
       <Filter>0.Framework\6.Resource</Filter>
@@ -114,14 +129,20 @@
     <ClInclude Include="VisualStyle.h">
       <Filter>0.Framework\0.Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Line.h">
-      <Filter>0.Framework\4.Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape.h">
-      <Filter>0.Framework\4.Shape</Filter>
+      <Filter>0.Framework\4.Shape\0.Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="TwoPointShape.h">
+      <Filter>0.Framework\4.Shape\1.TwoPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="MorePointShape.h">
+      <Filter>0.Framework\4.Shape\2.MorePoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>0.Framework\4.Shape\3.Line</Filter>
     </ClInclude>
     <ClInclude Include="Rectangle.h">
-      <Filter>0.Framework\4.Shape</Filter>
+      <Filter>0.Framework\4.Shape\4.Rectangle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +171,7 @@
       <Filter>0.Framework\1.Layout</Filter>
     </ClCompile>
     <ClCompile Include="SelfModule.cpp">
-      <Filter>ThirdParty\SelfModule</Filter>
+      <Filter>1.ThirdParty\SelfModule</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>0.Framework\2.Control</Filter>
@@ -159,7 +180,7 @@
       <Filter>0.Framework\2.Control</Filter>
     </ClCompile>
     <ClCompile Include="Markup.cpp">
-      <Filter>ThirdParty\XmlMarkup</Filter>
+      <Filter>1.ThirdParty\XmlMarkup</Filter>
     </ClCompile>
     <ClCompile Include="ImageRes.cpp">
       <Filter>0.Framework\6.Resource</Filter>
@@ -177,10 +198,10 @@
       <Filter>0.Framework\3.Style</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
-      <Filter>0.Framework\4.Shape</Filter>
+      <Filter>0.Framework\4.Shape\3.Line</Filter>
     </ClCompile>
     <ClCompile Include="Rectangle.cpp">
-      <Filter>0.Framework\4.Shape</Filter>
+      <Filter>0.Framework\4.Shape\4.Rectangle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

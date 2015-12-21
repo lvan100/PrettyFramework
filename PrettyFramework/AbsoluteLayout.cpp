@@ -12,7 +12,4 @@ namespace PrettyFramework {
 	{
 	}
 
-	void AbsoluteLayout::RecalcLayout()
-	{}
-
 }

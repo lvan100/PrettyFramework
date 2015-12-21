@@ -90,6 +90,11 @@ namespace PrettyFramework {
 	// 方式包含类继承和事件注入两种。
 	// 
 
+	//  
+	// 所有的控件默认都是矩形，但是不排除会出现异形控件，所以控件是
+	// 否被鼠标击中完全由控件自己决定。@BaseControl::HitTest。
+	// 
+
 	/**
 	 * 基础控件接口，定义那些[界面控件]和[布局控件]都必须包含的属性。
 	 */
@@ -317,6 +322,11 @@ namespace PrettyFramework {
 		 */
 		CRect GetViewRect();
 
+	public:
+		/**
+		 * 控件是否被击中
+		 */
+		virtual BOOL HitTest(CPoint point);
 
 	protected:
 		/**

@@ -6,6 +6,8 @@ namespace PrettyFramework {
 	LayoutControl::LayoutControl(BaseControl* control)
 		: BaseControl(control)
 	{
+		m_bkgnd_rectangle.SetFillNull(TRUE);
+		m_bkgnd_rectangle.SetBorderNull(TRUE);		
 	}
 
 	LayoutControl::~LayoutControl()
@@ -91,8 +93,8 @@ namespace PrettyFramework {
 
 		rgnClip.CreateRectRgnIndirect(rcClip);
 		
-		// TODO 如果添加背景或者边框，最好采用对象的方式
-		// dc.FrameRect(GetViewRect(), &CBrush(RGB(0,0,0)));
+		// 绘制控件的背景
+		m_bkgnd_rectangle.Paint(dc);
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
@@ -149,7 +151,7 @@ namespace PrettyFramework {
 
 		if (last_hovered != nullptr) {
 			last_hovered->OnMouseMove(ptInThis);
-			if (last_hovered->GetRect().PtInRect(ptInThis)) {
+			if (last_hovered->HitTest(ptInThis)) {
 				hovered = last_hovered;
 			}
 		}
@@ -162,7 +164,7 @@ namespace PrettyFramework {
 
 				auto& control = (*iter);
 				if (last_hovered != control) {
-					if (control->GetRect().PtInRect(ptInThis)) {
+					if (control->HitTest(ptInThis)) {
 						control->OnMouseMove(ptInThis);
 						hovered = control;
 						break;
@@ -187,7 +189,7 @@ namespace PrettyFramework {
 
 		if (last_focused != nullptr) {
 			last_focused->OnMouseDown(ptInThis);
-			if (last_focused->GetRect().PtInRect(ptInThis)) {
+			if (last_focused->HitTest(ptInThis)) {
 				pressed = last_focused;
 			}
 		}
@@ -200,7 +202,7 @@ namespace PrettyFramework {
 
 				auto& control = (*iter);
 				if (last_focused != control) {
-					if (control->GetRect().PtInRect(ptInThis)) {
+					if (control->HitTest(ptInThis)) {
 						control->OnMouseDown(ptInThis);
 						pressed = control;
 						break;
@@ -214,6 +216,12 @@ namespace PrettyFramework {
 		if (m_children.size() == 0) {
 			Redraw();
 		}
+	}
+
+	void LayoutControl::RecalcLayout()
+	{
+		m_bkgnd_rectangle.SetBeginPoint(rect_in_parent.TopLeft());
+		m_bkgnd_rectangle.SetEndPoint(rect_in_parent.BottomRight());
 	}
 
 	void LayoutControl::Dump()

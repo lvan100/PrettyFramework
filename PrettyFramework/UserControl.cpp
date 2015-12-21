@@ -190,7 +190,7 @@ namespace PrettyFramework {
 		}
 
 		SetPressed(FALSE);
-		SetFocused(GetRect().PtInRect(point));
+		SetFocused(HitTest(point));
 
 		EventParam param;
 		param.control = this;
@@ -219,7 +219,7 @@ namespace PrettyFramework {
 
 		BOOL hover_changed = FALSE;
 
-		BOOL is_hovered = GetRect().PtInRect(point);
+		BOOL is_hovered = HitTest(point);
 		if (is_hovered != IsHovered()) {
 			hover_changed = TRUE;
 		}
@@ -263,9 +263,9 @@ namespace PrettyFramework {
 			return; /* ³ÔµôËü */
 		}
 
-		BOOL ptInRect = GetRect().PtInRect(point);
-		SetFocused(ptInRect);
-		SetPressed(ptInRect);
+		BOOL ptHitted = HitTest(point);
+		SetFocused(ptHitted);
+		SetPressed(ptHitted);
 
 		if (m_layout != nullptr) {
 			m_layout->OnMouseDown(point);

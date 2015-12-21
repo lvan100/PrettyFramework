@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Rectangle.h"
 #include "BaseControl.h"
 
 namespace PrettyFramework {
@@ -50,6 +51,20 @@ namespace PrettyFramework {
 		 */
 		virtual void Paint(CDC& dc);
 
+	public:
+		/**
+		 * 获取矩形背景对象
+		 */
+		Rectangle& GetBkRectangle() {
+			return m_bkgnd_rectangle;
+		}
+
+	protected:
+		/**
+		 * 控件的矩形背景
+		 */
+		Rectangle m_bkgnd_rectangle;
+
 	protected:
 		/**
 		 * 鼠标弹起事件
@@ -81,6 +96,12 @@ namespace PrettyFramework {
 		 * 最近获得焦点的子控件
 		 */
 		shared_ptr<BaseControl> last_focused;
+
+	protected:
+		/**
+		 * 重新计算界面控件的布局
+		 */
+		virtual void RecalcLayout();
 
 	public:
 		/**

@@ -12,12 +12,6 @@ namespace PrettyFramework {
 	public:
 		AbsoluteLayout(BaseControl* control = nullptr);
 		virtual ~AbsoluteLayout();
-
-	protected:
-		/**
-		 * 重新计算界面控件的布局
-		 */
-		virtual void RecalcLayout();
 	};
 
 }

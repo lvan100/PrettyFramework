@@ -36,7 +36,7 @@ namespace PrettyFramework {
 
 		if (!m_fill_null) {
 			CRect rect(m_pt_begin, m_pt_end);
-			rect.DeflateRect(m_border_width, m_border_width, m_border_width, m_border_width);
+			rect.DeflateRect(m_border_width, m_border_width);
 			dc.FillSolidRect(rect, m_fill_color);
 		}
 	}

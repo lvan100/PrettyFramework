@@ -15,6 +15,8 @@ namespace PrettyFramework {
 
 	void LinearLayout::RecalcLayout()
 	{
+		LayoutControl::RecalcLayout();
+
 		if (m_children.size() > 0) {
 			if (m_horizontal) {
 				RecalcLayoutH();
