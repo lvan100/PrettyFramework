@@ -6,6 +6,9 @@
 #include "Image.h"
 #include "Button.h"
 
+#include "Line.h"
+#include "Rectangle.h"
+
 #include "ImageRes.h"
 #include "StringRes.h"
 
@@ -111,6 +114,28 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 // 
 // 	label->SetLayoutControl(layout);
 
+
+	shared_ptr<Line> line(new Line());
+	m_shapes.push_back(line);
+
+	line->SetBorderWidth(1);
+	line->SetBorderStyle(PS_DASHDOT);
+	line->SetBeginPoint(CPoint(0, 0));
+	line->SetEndPoint(CPoint(200, 200));
+	line->SetBorderColor(RGB(255, 0, 0));
+
+	shared_ptr<PrettyFramework::Rectangle>
+		rectangle(new PrettyFramework::Rectangle());
+	m_shapes.push_back(rectangle);
+
+	rectangle->SetBorderWidth(3);
+	rectangle->SetBorderStyle(PS_DASHDOT);
+	rectangle->SetBeginPoint(CPoint(0, 200));
+	rectangle->SetEndPoint(CPoint(200, 400));
+	rectangle->SetBorderColor(RGB(255, 0, 0));
+	rectangle->SetFillColor(RGB(255, 255, 255));
+
+
 	return TRUE;
 }
 
@@ -125,6 +150,10 @@ void CPrettyFrameworkDlg::OnPaint()
 	memDC.GetDC().FillSolidRect(rcClient, RGB(214, 219, 233));
 
 	LayoutControl::Paint(memDC.GetDC());
+
+	for (size_t i = 0; i < m_shapes.size(); i++) {
+		m_shapes[i]->Paint(memDC.GetDC());
+	}
 }
 
 BOOL CPrettyFrameworkDlg::OnEraseBkgnd(CDC* pDC)

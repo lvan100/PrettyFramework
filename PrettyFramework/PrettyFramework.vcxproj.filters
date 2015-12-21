@@ -4,9 +4,6 @@
     <Filter Include="Application">
       <UniqueIdentifier>{2d38f625-0950-4c26-a83f-97ec303d1d69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{90617664-b662-4008-a9bc-3a6e35c45572}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Resource">
       <UniqueIdentifier>{193da31d-2e4c-409e-8e04-982566a2aff1}</UniqueIdentifier>
     </Filter>
@@ -16,21 +13,6 @@
     <Filter Include="MainFrame">
       <UniqueIdentifier>{eab3d386-fc58-4307-8802-d1bdb81230d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Layout">
-      <UniqueIdentifier>{624e5228-f5b9-46f8-8def-0f1deffe5403}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Control">
-      <UniqueIdentifier>{09bf9fa0-f3e6-49e4-8c85-12cb6af2469a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Interface">
-      <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Theme">
-      <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource">
-      <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{e91f2ab5-2ddb-4139-9432-b17f4d7dcd27}</UniqueIdentifier>
     </Filter>
@@ -39,6 +21,30 @@
     </Filter>
     <Filter Include="ThirdParty\XmlMarkup">
       <UniqueIdentifier>{5669bf96-4280-43c2-89b9-52d47d7efe4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework">
+      <UniqueIdentifier>{90617664-b662-4008-a9bc-3a6e35c45572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\0.Interface">
+      <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Layout">
+      <UniqueIdentifier>{624e5228-f5b9-46f8-8def-0f1deffe5403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\2.Control">
+      <UniqueIdentifier>{09bf9fa0-f3e6-49e4-8c85-12cb6af2469a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\3.Style">
+      <UniqueIdentifier>{b2bdb332-f2de-4452-bcd8-2933079dc1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\4.Shape">
+      <UniqueIdentifier>{31efa8a8-456c-4b42-b9d7-a17d171f8ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\5.Theme">
+      <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\6.Resource">
+      <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,26 +63,20 @@
     <ClInclude Include="PrettyFrameworkDlg.h">
       <Filter>MainFrame</Filter>
     </ClInclude>
-    <ClInclude Include="UserControl.h">
-      <Filter>Framework\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="LayoutControl.h">
-      <Filter>Framework\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Label.h">
-      <Filter>Framework\Control</Filter>
+      <Filter>0.Framework\2.Control</Filter>
     </ClInclude>
     <ClInclude Include="AbsoluteLayout.h">
-      <Filter>Framework\Layout</Filter>
+      <Filter>0.Framework\1.Layout</Filter>
     </ClInclude>
     <ClInclude Include="BaseControl.h">
-      <Filter>Framework\Interface</Filter>
+      <Filter>0.Framework\0.Interface</Filter>
     </ClInclude>
     <ClInclude Include="BaseTheme.h">
-      <Filter>Framework\Theme</Filter>
+      <Filter>0.Framework\5.Theme</Filter>
     </ClInclude>
     <ClInclude Include="LinearLayout.h">
-      <Filter>Framework\Layout</Filter>
+      <Filter>0.Framework\1.Layout</Filter>
     </ClInclude>
     <ClInclude Include="SelfModule.h">
       <Filter>ThirdParty\SelfModule</Filter>
@@ -85,22 +85,43 @@
       <Filter>ThirdParty\SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>Framework\Control</Filter>
+      <Filter>0.Framework\2.Control</Filter>
     </ClInclude>
     <ClInclude Include="Constant.h">
-      <Filter>Framework\Interface</Filter>
+      <Filter>0.Framework\0.Interface</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Framework\Control</Filter>
+      <Filter>0.Framework\2.Control</Filter>
     </ClInclude>
     <ClInclude Include="Markup.h">
       <Filter>ThirdParty\XmlMarkup</Filter>
     </ClInclude>
     <ClInclude Include="ImageRes.h">
-      <Filter>Framework\Resource</Filter>
+      <Filter>0.Framework\6.Resource</Filter>
     </ClInclude>
     <ClInclude Include="StringRes.h">
-      <Filter>Framework\Resource</Filter>
+      <Filter>0.Framework\6.Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutControl.h">
+      <Filter>0.Framework\1.Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="UserControl.h">
+      <Filter>0.Framework\2.Control</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonStyle.h">
+      <Filter>0.Framework\3.Style</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualStyle.h">
+      <Filter>0.Framework\0.Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>0.Framework\4.Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>0.Framework\4.Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>0.Framework\4.Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -113,44 +134,53 @@
     <ClCompile Include="PrettyFrameworkDlg.cpp">
       <Filter>MainFrame</Filter>
     </ClCompile>
-    <ClCompile Include="LayoutControl.cpp">
-      <Filter>Framework\Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="UserControl.cpp">
-      <Filter>Framework\Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Label.cpp">
-      <Filter>Framework\Control</Filter>
+      <Filter>0.Framework\2.Control</Filter>
     </ClCompile>
     <ClCompile Include="AbsoluteLayout.cpp">
-      <Filter>Framework\Layout</Filter>
+      <Filter>0.Framework\1.Layout</Filter>
     </ClCompile>
     <ClCompile Include="BaseControl.cpp">
-      <Filter>Framework\Interface</Filter>
+      <Filter>0.Framework\0.Interface</Filter>
     </ClCompile>
     <ClCompile Include="BaseTheme.cpp">
-      <Filter>Framework\Theme</Filter>
+      <Filter>0.Framework\5.Theme</Filter>
     </ClCompile>
     <ClCompile Include="LinearLayout.cpp">
-      <Filter>Framework\Layout</Filter>
+      <Filter>0.Framework\1.Layout</Filter>
     </ClCompile>
     <ClCompile Include="SelfModule.cpp">
       <Filter>ThirdParty\SelfModule</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
-      <Filter>Framework\Control</Filter>
+      <Filter>0.Framework\2.Control</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Framework\Control</Filter>
+      <Filter>0.Framework\2.Control</Filter>
     </ClCompile>
     <ClCompile Include="Markup.cpp">
       <Filter>ThirdParty\XmlMarkup</Filter>
     </ClCompile>
     <ClCompile Include="ImageRes.cpp">
-      <Filter>Framework\Resource</Filter>
+      <Filter>0.Framework\6.Resource</Filter>
     </ClCompile>
     <ClCompile Include="StringRes.cpp">
-      <Filter>Framework\Resource</Filter>
+      <Filter>0.Framework\6.Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="LayoutControl.cpp">
+      <Filter>0.Framework\1.Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="UserControl.cpp">
+      <Filter>0.Framework\2.Control</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonStyle.cpp">
+      <Filter>0.Framework\3.Style</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>0.Framework\4.Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>0.Framework\4.Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

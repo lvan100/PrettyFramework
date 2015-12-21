@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "Constant.h"
+#include "VisualStyle.h"
 
 namespace PrettyFramework {
 
@@ -36,7 +37,7 @@ namespace PrettyFramework {
 	// 我把控件分为[界面控件]和[布局控件]两种。界面控件就是展
 	// 示内容给用户看的控件，它可以响应鼠标和键盘消息，并在视
 	// 觉上做出响应；而布局控件仅仅只是通过规则将子控件排列在
-	// 父控件内的控件，它不具有任何视觉效果（我把它给简化了）。
+	// 父控件内的控件，它只具有背景和边框这两种简单的视觉效果。
 	//
 	
 	// 
@@ -45,7 +46,7 @@ namespace PrettyFramework {
 	// 件和布局控件，这样的设定其实就是“容器控件”概念的实现。
 	// 而且布局控件的父控件既可以是布局控件，也可以是界面控件。
 	// 虽然很可能是一件很无聊的事情，但是全部由布局控件构成的界
-	// 面模型在理论上也是相当成立的。
+	// 面模型在理论上也是成立的。
 	// 
 	
 	//
@@ -72,10 +73,6 @@ namespace PrettyFramework {
 	//
 
 	// 
-	// 在该界面模型中，布局控件自然不会具有背景、边框等界面属性。
-	// 
-
-	// 
 	// 布局控件在计算控件权重的时候，固定大小的控件会按照其所占父
 	// 控件的宽高比重计算，指定权重的控件将按照设置的权重进行计算
 	// ，而设定了自动高度或者自动宽度的控件将均匀分配剩余的权重。
@@ -94,9 +91,9 @@ namespace PrettyFramework {
 	// 
 
 	/**
-	 * 基础控件，定义那些[界面控件]和[布局控件]都必须包含的属性。
+	 * 基础控件接口，定义那些[界面控件]和[布局控件]都必须包含的属性。
 	 */
-	class BaseControl
+	class BaseControl : public VisualStyle
 	{
 		friend class UserControl;
 		friend class LayoutControl;
@@ -320,10 +317,6 @@ namespace PrettyFramework {
 		 */
 		CRect GetViewRect();
 
-		/**
-		 * 通知控件需要进行绘图
-		 */
-		virtual void Paint(CDC& dc) = 0;
 
 	protected:
 		/**

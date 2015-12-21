@@ -6,6 +6,9 @@ using namespace std;
 
 namespace PrettyFramework {
 
+	/**
+	 * 声明界面控件类型
+	 */
 	class UserControl;
 
 	/**
@@ -52,44 +55,44 @@ namespace PrettyFramework {
 	};
 
 	/**
-	 * 定义控件状态的颜色数组
+	 * 定义和控件状态相对应的颜色数组
 	 */
 	using StateColor = array<COLORREF, enum_size<State>::size>;
 
 	/**
-	 * 定义鼠标事件参数
+	 * 定义鼠标事件的参数
 	 */
 	struct EventParam {
 
 		/**
-		 * 吃掉这个事件
+		 * 是否吃掉这个事件
 		 */
 		BOOL will_eat_it;
 
 		/**
-		 * 事件的来源控件
+		 * 鼠标事件的来源控件
 		 */
 		UserControl* control;
 	};
 	
 	/**
-	 * 定义鼠标事件
+	 * 定义鼠标事件的响应函数原型
 	 */
 	using MouseEvent = function<void(EventParam&)>;
 
 	/**
-	 * 定义鼠标点击事件参数
+	 * 定义鼠标点击事件的参数
 	 */
 	struct ClickParam {
 
 		/**
-		 * 事件的来源控件
+		 * 点击事件的来源控件
 		 */
 		UserControl* control;
 	};
 
 	/**
-	 * 定义鼠标点击事件
+	 * 定义鼠标点击事件响应函数原型
 	 */
 	using ClickEvent = function<void(ClickParam&)>;
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Shape.h"
+
 #include "LinearLayout.h"
 
 using namespace PrettyFramework;
@@ -16,6 +18,8 @@ public:
 
 protected:
 	BOOL m_mouse_down;
+
+	vector<shared_ptr<Shape>> m_shapes;
 
 protected:
 	virtual BOOL OnInitDialog();
