@@ -13,15 +13,6 @@ namespace PrettyFramework {
 	{
 	}
 
-	void UserControl::RecalcLayout()
-	{
-		if (m_layout != nullptr) {
-			CRect rcClient(GetRect());
-			rcClient.MoveToXY(0, 0);
-			m_layout->SetRect(rcClient);
-		}
-	}
-
 	void UserControl::Paint(CDC& dc)
 	{
 		OnPaint(dc); /* »æÖÆ×ÔÉíÍ¼²ã */
@@ -56,94 +47,6 @@ namespace PrettyFramework {
 			rgnOldClip.CreateRectRgnIndirect(rcOldClip);
 
 			dc.SelectClipRgn(&rgnOldClip);
-		}
-	}
-
-	COLORREF UserControl::GetBkColor(State state)
-	{
-		switch (state)
-		{
-		case PrettyFramework::Normal:
-			return m_bk_color[0];
-		case PrettyFramework::Hovered:
-			return m_bk_color[1];
-		case PrettyFramework::Pressed:
-			return m_bk_color[2];
-		case PrettyFramework::Focused:
-			return m_bk_color[3];
-		case PrettyFramework::Disable:
-			return m_bk_color[4];
-		default:
-			return m_bk_color[0];
-		}
-	}
-
-	void UserControl::SetBkColor(State state, COLORREF clr)
-	{
-		switch (state)
-		{
-		case PrettyFramework::Normal:
-			m_bk_color[0] = clr;
-			break;
-		case PrettyFramework::Hovered:
-			m_bk_color[1] = clr;
-			break;
-		case PrettyFramework::Pressed:
-			m_bk_color[2] = clr;
-			break;
-		case PrettyFramework::Focused:
-			m_bk_color[3] = clr;
-			break;
-		case PrettyFramework::Disable:
-			m_bk_color[4] = clr;
-			break;
-		default:
-			m_bk_color[0] = clr;
-			break;
-		}
-	}
-
-	COLORREF UserControl::GetBorderColor(State state)
-	{
-		switch (state)
-		{
-		case PrettyFramework::Normal:
-			return m_border_color[0];
-		case PrettyFramework::Hovered:
-			return m_border_color[1];
-		case PrettyFramework::Pressed:
-			return m_border_color[2];
-		case PrettyFramework::Focused:
-			return m_border_color[3];
-		case PrettyFramework::Disable:
-			return m_border_color[4];
-		default:
-			return m_border_color[0];
-		}
-	}
-
-	void UserControl::SetBorderColor(State state, COLORREF clr)
-	{
-		switch (state)
-		{
-		case PrettyFramework::Normal:
-			m_border_color[0] = clr;
-			break;
-		case PrettyFramework::Hovered:
-			m_border_color[1] = clr;
-			break;
-		case PrettyFramework::Pressed:
-			m_border_color[2] = clr;
-			break;
-		case PrettyFramework::Focused:
-			m_border_color[3] = clr;
-			break;
-		case PrettyFramework::Disable:
-			m_border_color[4] = clr;
-			break;
-		default:
-			m_border_color[0] = clr;
-			break;
 		}
 	}
 
@@ -274,6 +177,15 @@ namespace PrettyFramework {
 		}
 
 		OnMouseDown(param);
+	}
+
+	void UserControl::RecalcLayout()
+	{
+		if (m_layout != nullptr) {
+			CRect rcClient(GetRect());
+			rcClient.MoveToXY(0, 0);
+			m_layout->SetRect(rcClient);
+		}
 	}
 
 	BaseControl* UserControl::FindControlById(CString id)

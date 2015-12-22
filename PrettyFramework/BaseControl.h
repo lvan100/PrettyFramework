@@ -46,7 +46,7 @@ namespace PrettyFramework {
 	// 件和布局控件，这样的设定其实就是“容器控件”概念的实现。
 	// 而且布局控件的父控件既可以是布局控件，也可以是界面控件。
 	// 虽然很可能是一件很无聊的事情，但是全部由布局控件构成的界
-	// 面模型在理论上也是成立的。
+	// 面模型在理论上也是成立的（可以配合绘图形状完成一幅画）。
 	// 
 	
 	//
@@ -87,12 +87,17 @@ namespace PrettyFramework {
 	// 
 	// 该界面模型的事件机制采用类似WPF的处理，分为隧道和冒泡两种类
 	// 型，用户可以在隧道事件中阻止冒泡事件的发生。而实现隧道事件的
-	// 方式包含类继承和事件注入两种。
+	// 方式包含类继承和事件注入两种，这样在使用上具有很高的灵活性。
 	// 
 
 	//  
 	// 所有的控件默认都是矩形，但是不排除会出现异形控件，所以控件是
-	// 否被鼠标击中完全由控件自己决定。@BaseControl::HitTest。
+	// 否被鼠标击中应该完全由控件自己决定，见@BaseControl::HitTest。
+	// 
+
+	// 
+	// 界面控件的绘图方式采用模板形式，即界面控件不直接绘制界面，而是
+	// 将其委托给一个绘图模板，这样很容易通过替换模板实现更酷的效果。
 	// 
 
 	/**
@@ -107,6 +112,11 @@ namespace PrettyFramework {
 		BaseControl(BaseControl* parent);
 		virtual ~BaseControl();
 
+		// 
+		// 0.属性
+		// 
+
+	public:
 		/**
 		 * 获取父控件指针
 		 */
@@ -311,7 +321,11 @@ namespace PrettyFramework {
 		 */
 		CRect m_margin;
 
-	protected:
+		// 
+		// 1.绘图
+		// 
+		
+	public:
 		/**
 		 * 重绘控件
 		 */
@@ -321,6 +335,10 @@ namespace PrettyFramework {
 		 * 获取控件的视图坐标
 		 */
 		CRect GetViewRect();
+
+		// 
+		// 2.事件
+		// 
 
 	public:
 		/**
@@ -344,6 +362,10 @@ namespace PrettyFramework {
 		 */
 		virtual void OnMouseDown(CPoint point) = 0;
 
+		// 
+		// 3.布局
+		// 
+
 	protected:
 		/**
 		 * 重新计算子控件的布局
@@ -355,6 +377,10 @@ namespace PrettyFramework {
 		 * 查找指定ID的控件，查找失败返回空指针
 		 */
 		virtual BaseControl* FindControlById(CString id) = 0;
+
+		// 
+		// 4.调试
+		// 
 
 	public:
 		/**

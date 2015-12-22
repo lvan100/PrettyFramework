@@ -11,6 +11,10 @@ namespace PrettyFramework {
 
 	void Rectangle::Paint(CDC& dc)
 	{
+		// 
+		// 目前的绘图方式有些问题，不过先不管它了。
+		// 
+
 		if (!m_border_null) {
 			int halfWidth0 = (m_border_width + 0) / 2;
 			int halfWidth1 = (m_border_width + 1) / 2;

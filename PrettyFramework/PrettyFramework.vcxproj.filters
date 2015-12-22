@@ -90,9 +90,6 @@
     <ClInclude Include="BaseTheme.h">
       <Filter>0.Framework\5.Theme</Filter>
     </ClInclude>
-    <ClInclude Include="LinearLayout.h">
-      <Filter>0.Framework\1.Layout</Filter>
-    </ClInclude>
     <ClInclude Include="SelfModule.h">
       <Filter>1.ThirdParty\SelfModule</Filter>
     </ClInclude>
@@ -129,9 +126,6 @@
     <ClInclude Include="VisualStyle.h">
       <Filter>0.Framework\0.Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>0.Framework\4.Shape\0.Shape</Filter>
-    </ClInclude>
     <ClInclude Include="TwoPointShape.h">
       <Filter>0.Framework\4.Shape\1.TwoPoint</Filter>
     </ClInclude>
@@ -143,6 +137,18 @@
     </ClInclude>
     <ClInclude Include="Rectangle.h">
       <Filter>0.Framework\4.Shape\4.Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="HorizontalLayout.h">
+      <Filter>0.Framework\1.Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticalLayout.h">
+      <Filter>0.Framework\1.Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseShape.h">
+      <Filter>0.Framework\4.Shape\0.Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="LabelStyle.h">
+      <Filter>0.Framework\3.Style</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -166,9 +172,6 @@
     </ClCompile>
     <ClCompile Include="BaseTheme.cpp">
       <Filter>0.Framework\5.Theme</Filter>
-    </ClCompile>
-    <ClCompile Include="LinearLayout.cpp">
-      <Filter>0.Framework\1.Layout</Filter>
     </ClCompile>
     <ClCompile Include="SelfModule.cpp">
       <Filter>1.ThirdParty\SelfModule</Filter>
@@ -202,6 +205,15 @@
     </ClCompile>
     <ClCompile Include="Rectangle.cpp">
       <Filter>0.Framework\4.Shape\4.Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="HorizontalLayout.cpp">
+      <Filter>0.Framework\1.Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticalLayout.cpp">
+      <Filter>0.Framework\1.Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="LabelStyle.cpp">
+      <Filter>0.Framework\3.Style</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

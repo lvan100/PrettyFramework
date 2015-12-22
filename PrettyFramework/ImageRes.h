@@ -19,6 +19,11 @@ namespace PrettyFramework {
 		 */
 		HICON GetImage(CString id);
 
+		/**
+		 * 根据图像ID获取列表式图像
+		 */
+		HICON GetImageList(CString id);
+
 	protected:
 		/**
 		 * 图像资源

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Shape.h"
+#include "BaseShape.h"
 
 namespace PrettyFramework {
 
 	/**
-	 * 由两点构成的形状，如线条、矩形。
+	 * 由两点决定的形状，如线条、矩形。
 	 */
 	class TwoPointShape : public Shape
 	{

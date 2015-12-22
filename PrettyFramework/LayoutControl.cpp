@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Rectangle.h"
 #include "LayoutControl.h"
 
 namespace PrettyFramework {
@@ -6,29 +7,13 @@ namespace PrettyFramework {
 	LayoutControl::LayoutControl(BaseControl* control)
 		: BaseControl(control)
 	{
-		m_bkgnd_rectangle.SetFillNull(TRUE);
-		m_bkgnd_rectangle.SetBorderNull(TRUE);		
+		m_bkgnd_shape.reset(new Rectangle());
+		m_bkgnd_shape->SetBorderNull(TRUE);
+		m_bkgnd_shape->SetFillNull(TRUE);
 	}
 
 	LayoutControl::~LayoutControl()
 	{
-	}
-
-	BaseControl* LayoutControl::FindControlById(CString id)
-	{
-		if (m_id == id) { return this; }
-		
-		for (auto iter = m_children.begin()
-			; iter != m_children.end()
-			; iter++) {
-
-			BaseControl* control = (*iter)->FindControlById(id);
-			if (control != nullptr) {
-				return control;
-			}
-		}
-
-		return nullptr;		
 	}
 
 	void LayoutControl::AddChild(shared_ptr<BaseControl> child)
@@ -79,6 +64,9 @@ namespace PrettyFramework {
 	
 	void LayoutControl::Paint(CDC& dc)
 	{
+		// 绘制布局控件的背景
+		m_bkgnd_shape->Paint(dc);
+
 		if (m_children.size() == 0) {
 			return; /* 内容为空 */
 		}
@@ -93,9 +81,6 @@ namespace PrettyFramework {
 
 		rgnClip.CreateRectRgnIndirect(rcClip);
 		
-		// 绘制控件的背景
-		m_bkgnd_rectangle.Paint(dc);
-
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
 			; iter++) {
@@ -139,13 +124,6 @@ namespace PrettyFramework {
 	{
 		CPoint ptInThis(point);
 		ptInThis.Offset(-GetRect().left, -GetRect().top);
-
-		TRACE(_T("LayoutControl:%s Rect:%d,%d,%d,%d \n"), GetId()
-			, GetRect().left, GetRect().top, GetRect().right
-			, GetRect().bottom);
-
-		TRACE(_T("LayoutControl:%s Mouse:%d,%d \n"), GetId()
-			, ptInThis.x, ptInThis.y);
 
 		shared_ptr<BaseControl> hovered = nullptr;
 
@@ -220,8 +198,27 @@ namespace PrettyFramework {
 
 	void LayoutControl::RecalcLayout()
 	{
-		m_bkgnd_rectangle.SetBeginPoint(rect_in_parent.TopLeft());
-		m_bkgnd_rectangle.SetEndPoint(rect_in_parent.BottomRight());
+		if (m_bkgnd_shape != nullptr) {
+			m_bkgnd_shape->SetBeginPoint(rect_in_parent.TopLeft());
+			m_bkgnd_shape->SetEndPoint(rect_in_parent.BottomRight());
+		}
+	}
+
+	BaseControl* LayoutControl::FindControlById(CString id)
+	{
+		if (m_id == id) { return this; }
+
+		for (auto iter = m_children.begin()
+			; iter != m_children.end()
+			; iter++) {
+
+			auto* control = (*iter)->FindControlById(id);
+			if (control != nullptr) {
+				return control;
+			}
+		}
+
+		return nullptr;
 	}
 
 	void LayoutControl::Dump()

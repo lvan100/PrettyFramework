@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UserControl.h"
+#include "ButtonStyle.h"
 
 namespace PrettyFramework {
 
@@ -13,6 +14,32 @@ namespace PrettyFramework {
 		Button(LayoutControl* parent);
 		virtual ~Button();
 
+		// 
+		// 0.属性
+		// 
+
+	public:
+		/**
+		 * 设置按钮样式
+		 */
+		void SetStyle(shared_ptr<ButtonStyle> style) {
+			m_style = style;
+		}
+
+		/**
+		 * 获取按钮样式
+		 */
+		shared_ptr<ButtonStyle>& GetStyle() {
+			return m_style;
+		}
+
+	protected:
+		/**
+		 * 按钮样式
+		 */
+		shared_ptr<ButtonStyle> m_style;
+
+	public:
 		/**
 		 * 设置图像
 		 */
@@ -56,48 +83,6 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置文本颜色
-		 */
-		void SetTextColor(COLORREF clr) {
-			m_text_color = clr;
-		}
-
-		/**
-		 * 获取文本颜色
-		 */
-		COLORREF GetTextColor() {
-			return m_text_color;
-		}
-
-	private:
-		/**
-		 * 文本颜色
-		 */
-		COLORREF m_text_color;
-
-	public:
-		/**
-		 * 获取字体
-		 */
-		CFont* GetFont() {
-			return m_font;
-		}
-
-		/**
-		 * 设置字体
-		 */
-		void SetFont(CFont* font) {
-			m_font = font;
-		}
-
-	private:
-		/**
-		 * 字体
-		 */
-		CFont* m_font;
-
-	public:
-		/**
 		 * 设置按钮点击事件响应
 		 */
 		void SetClickEvent(ClickEvent click) {
@@ -110,11 +95,19 @@ namespace PrettyFramework {
 		 */
 		ClickEvent m_click;
 
+		// 
+		// 1.绘图
+		// 
+
 	protected:
 		/**
 		 * 绘制自身当前层
 		 */
 		virtual void OnPaint(CDC& dc);
+	
+		// 
+		// 2.事件
+		// 
 
 	protected:
 		/**

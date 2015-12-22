@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LabelStyle.h"
 #include "UserControl.h"
 
 namespace PrettyFramework {
@@ -12,27 +13,10 @@ namespace PrettyFramework {
 	public:
 		Label(LayoutControl* parent);
 		virtual ~Label();
-
-	public:
-		/**
-		 * 设置只显示单行文本
-		 */
-		void SetSingleLine(BOOL singleLine) {
-			m_single_line = singleLine;
-		}
-
-		/**
-		 * 是否只显示单行文本
-		 */
-		BOOL IsSingleLine() {
-			return m_single_line;
-		}
-
-	protected:
-		/**
-		 * 只显示单行文本
-		 */
-		BOOL m_single_line;
+		
+		// 
+		// 0.属性
+		// 
 
 	public:
 		/**
@@ -57,45 +41,28 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置文本颜色
+		 * 设置标签样式
 		 */
-		void SetTextColor(COLORREF clr) {
-			m_text_color = clr;
+		void SetStyle(shared_ptr<LabelStyle> style) {
+			m_style = style;
 		}
 
 		/**
-		 * 获取文本颜色
+		 * 获取标签样式
 		 */
-		COLORREF GetTextColor() {
-			return m_text_color;
+		shared_ptr<LabelStyle>& GetStyle() {
+			return m_style;
 		}
 
-	private:
+	protected:
 		/**
-		 * 文本颜色
+		 * 标签样式
 		 */
-		COLORREF m_text_color;
+		shared_ptr<LabelStyle> m_style;
 
-	public:
-		/**
-		 * 获取字体
-		 */
-		CFont* GetFont() {
-			return m_font;
-		}
-
-		/**
-		 * 设置字体
-		 */
-		void SetFont(CFont* font) {
-			m_font = font;
-		}
-
-	private:
-		/**
-		 * 字体
-		 */
-		CFont* m_font;
+		// 
+		// 1.绘图
+		// 
 
 	protected:
 		/**

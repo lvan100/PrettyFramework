@@ -24,14 +24,14 @@ namespace PrettyFramework {
 	{
 	}
 
-	BOOL BaseControl::HitTest(CPoint point)
-	{
-		return rect_in_parent.PtInRect(point);
-	}
-
 	// 
 	// 目前的重绘机制没有采用“脏区域”、计时器刷新的方式，而是
 	// 使用 WIN32 API 激活原生窗口的重绘机制，效果现在暂时未知。
+	// 
+
+	// 
+	// 计时器刷新机制漫谈：启动界面线程，并将根控件绑定到此线程
+	// ，采用硬件加速技术绘制界面，保持每隔16ms刷新一次的频率。
 	// 
 	
 	void BaseControl::Redraw()
@@ -65,6 +65,11 @@ namespace PrettyFramework {
 		} else {
 			return rect_in_parent;
 		}
+	}
+
+	BOOL BaseControl::HitTest(CPoint point)
+	{
+		return rect_in_parent.PtInRect(point);
 	}
 
 }

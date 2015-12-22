@@ -33,5 +33,14 @@ namespace PrettyFramework {
 
 		return nullptr;
 	}
+	
+	HICON ImageResource::GetImageList(CString id)
+	{
+		// 
+		// 根据图像高度对图像进行切割
+		// 
+
+		return GetImage(id);
+	}
 
 }

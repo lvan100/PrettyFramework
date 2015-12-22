@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Shape.h"
+#include "BaseShape.h"
 
-#include "LinearLayout.h"
+#include "VerticalLayout.h"
 
 using namespace PrettyFramework;
 
 /**
  * ≤‚ ‘∂‘ª∞øÚ
  */
-class CPrettyFrameworkDlg : public CDialogEx, private LinearLayout
+class CPrettyFrameworkDlg : public CDialogEx, private VerticalLayout
 {
 public:
 	CPrettyFrameworkDlg(CWnd* pParent = NULL);

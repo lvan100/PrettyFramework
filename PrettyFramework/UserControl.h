@@ -5,8 +5,8 @@
 namespace PrettyFramework {
 
 	// 
-	// 界面控件的状态有：普通、热点、按下、焦点、禁用总共五种状态。
-	// 相应的界面控件在每种状态下的背景颜色、边框颜色都会发生变化。
+	// 界面控件的状态有五种：普通、热点、按
+	// 下、焦点、禁用。
 	// 
 
 	/**
@@ -20,6 +20,11 @@ namespace PrettyFramework {
 		UserControl(LayoutControl* parent);
 		virtual ~UserControl();
 
+		// 
+		// 0.属性
+		// 
+
+	public:
 		/**
 		 * 设置布局控件，默认的不设置任何布局控件，减少尾节点数量
 		 */
@@ -41,45 +46,10 @@ namespace PrettyFramework {
 		 */
 		shared_ptr<LayoutControl> m_layout;
 
-	protected:
-		/**
-		 * 计算布局控件的子控件的布局
-		 */
-		virtual void RecalcLayout();
 
-	public:
-		/**
-		 * 获取不同状态下的背景颜色
-		 */
-		COLORREF GetBkColor(State state);
-
-		/**
-		 * 设置不同状态下的背景颜色
-		 */
-		void SetBkColor(State state, COLORREF clr);
-
-	protected:
-		/**
-		 * 控件不同状态下的背景颜色
-		 */
-		StateColor m_bk_color;
-
-	public:
-		/**
-		 * 获取不同状态下的边框颜色
-		 */
-		COLORREF GetBorderColor(State state);
-
-		/**
-		 * 设置不同状态下的边框颜色
-		 */
-		void SetBorderColor(State state, COLORREF clr);
-
-	protected:
-		/**
-		 * 控件不同状态下的边框颜色
-		 */
-		StateColor m_border_color;
+		// 
+		// 1.绘图
+		// 
 
 	protected:
 		/**
@@ -91,6 +61,10 @@ namespace PrettyFramework {
 		 * 继承此控件的控件用来绘制自身
 		 */
 		virtual void OnPaint(CDC& dc) = 0;
+
+		// 
+		// 2.事件
+		// 
 
 	public:
 		/**
@@ -293,12 +267,26 @@ namespace PrettyFramework {
 		 * 设置鼠标按下事件（子控件响应之后）的事件响应
 		 */
 		MouseEvent m_mouse_down_event;
+		
+		// 
+		// 3.布局
+		// 
 
 	protected:
+		/**
+		 * 计算布局控件的子控件的布局
+		 */
+		virtual void RecalcLayout();
+
+	public:
 		/**
 		 * 查找指定ID的控件，查找失败返回空指针
 		 */
 		virtual BaseControl* FindControlById(CString id);
+		
+		// 
+		// 4.调试
+		// 
 
 	public:
 		/**

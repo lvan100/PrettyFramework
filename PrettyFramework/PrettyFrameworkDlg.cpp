@@ -12,9 +12,11 @@
 #include "ImageRes.h"
 #include "StringRes.h"
 
+#include "HorizontalLayout.h"
+
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
-	, LinearLayout(nullptr, FALSE)
+	, VerticalLayout(nullptr)
 	, m_mouse_down(FALSE)
 {
 }
@@ -45,7 +47,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	BaseControl::SetMargin(CRect(2, 2, 2, 2));
 
 	// 标题栏布局
-	shared_ptr<LinearLayout> title_layout(new LinearLayout(this, TRUE));
+	shared_ptr<HorizontalLayout> title_layout(new HorizontalLayout(this));
 	title_layout->SetMargin(CRect(2, 2, 2, 2));
 	title_layout->SetId(_T("title_layout"));
 	title_layout->SetFixSize(CSize(0, 40));

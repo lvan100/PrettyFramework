@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Rectangle.h"
 #include "BaseControl.h"
+#include "TwoPointShape.h"
 
 namespace PrettyFramework {
 
 	/**
-	 * 布局控件，只计算子控件的布局，没有界面
+	 * 布局控件，计算子控件在父控件内的布局
 	 */
 	class LayoutControl : public BaseControl
 	{
@@ -16,6 +16,11 @@ namespace PrettyFramework {
 		LayoutControl(BaseControl* control);
 		virtual ~LayoutControl();
 
+		// 
+		// 0.属性
+		// 
+
+	public:
 		/**
 		 * 添加子控件，当然不能重复地添加自己
 		 */
@@ -38,12 +43,10 @@ namespace PrettyFramework {
 		 * 子控件列表
 		 */
 		vector<shared_ptr<BaseControl>> m_children;
-
-	protected:
-		/**
-		 * 查找指定ID的控件，查找失败返回空指针
-		 */
-		virtual BaseControl* FindControlById(CString id);
+		
+		// 
+		// 1.绘图
+		// 
 
 	protected:
 		/**
@@ -53,17 +56,21 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 获取矩形背景对象
+		 * 获取布局控件的背景对象
 		 */
-		Rectangle& GetBkRectangle() {
-			return m_bkgnd_rectangle;
+		shared_ptr<TwoPointShape>& GetBkgndShape() {
+			return m_bkgnd_shape;
 		}
 
 	protected:
 		/**
-		 * 控件的矩形背景
+		 * 布局控件的背景对象
 		 */
-		Rectangle m_bkgnd_rectangle;
+		shared_ptr<TwoPointShape> m_bkgnd_shape;
+		
+		// 
+		// 2.事件
+		// 
 
 	protected:
 		/**
@@ -96,12 +103,26 @@ namespace PrettyFramework {
 		 * 最近获得焦点的子控件
 		 */
 		shared_ptr<BaseControl> last_focused;
+		
+		// 
+		// 3.布局
+		// 
 
 	protected:
 		/**
 		 * 重新计算界面控件的布局
 		 */
 		virtual void RecalcLayout();
+
+	public:
+		/**
+		 * 查找指定ID的控件，查找失败返回空指针
+		 */
+		virtual BaseControl* FindControlById(CString id);
+		
+		// 
+		// 4.调试
+		// 
 
 	public:
 		/**

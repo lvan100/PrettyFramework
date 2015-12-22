@@ -8,7 +8,7 @@ using namespace std;
 namespace PrettyFramework {
 
 	/**
-	 * 由多点构成的形状，如自由线条等。
+	 * 由多点决定的形状，如三角形、曲线。
 	 */
 	class MorePointShape : public Shape
 	{
@@ -21,10 +21,17 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 添加点
+		 * 在序列末尾添加点
 		 */
-		void AddPoint(CPoint point) {
+		void AddLastPoint(CPoint point) {
 			m_points.push_back(point);
+		}
+
+		/**
+		 * 删除序列末尾的点
+		 */
+		void DeleteLastPoint() {
+			m_points.erase(m_points.end());
 		}
 
 	protected:
