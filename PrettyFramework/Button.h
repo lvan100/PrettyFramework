@@ -20,13 +20,6 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置按钮样式
-		 */
-		void SetStyle(shared_ptr<ButtonStyle> style) {
-			m_style = style;
-		}
-
-		/**
 		 * 获取按钮样式
 		 */
 		shared_ptr<ButtonStyle>& GetStyle() {

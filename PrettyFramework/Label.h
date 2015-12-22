@@ -41,13 +41,6 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置标签样式
-		 */
-		void SetStyle(shared_ptr<LabelStyle> style) {
-			m_style = style;
-		}
-
-		/**
 		 * 获取标签样式
 		 */
 		shared_ptr<LabelStyle>& GetStyle() {

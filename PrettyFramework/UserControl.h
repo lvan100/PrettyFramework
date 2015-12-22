@@ -26,14 +26,6 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置布局控件，默认的不设置任何布局控件，减少尾节点数量
-		 */
-		void SetLayoutControl(shared_ptr<LayoutControl> layout) {
-			m_layout = layout;
-			RecalcLayout();
-		}
-
-		/**
 		 * 获取布局控件，可以动态地向布局控件中增删控件
 		 */
 		shared_ptr<LayoutControl>& GetLayoutControl() {

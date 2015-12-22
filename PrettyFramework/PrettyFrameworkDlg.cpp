@@ -46,6 +46,11 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	BaseControl::SetWindow(GetSafeHwnd());
 	BaseControl::SetMargin(CRect(2, 2, 2, 2));
 
+	auto& bkgnd = LayoutControl::GetBkgndShape();
+	bkgnd->SetFillColor(RGB(214, 219, 233));
+	bkgnd->SetBorderColor(RGB(72, 72, 72));
+	bkgnd->SetBorderWidth(1);
+
 	// 标题栏布局
 	shared_ptr<HorizontalLayout> title_layout(new HorizontalLayout(this));
 	title_layout->SetMargin(CRect(2, 2, 2, 2));
@@ -53,6 +58,11 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_layout->SetFixSize(CSize(0, 40));
 	LayoutControl::AddChild(title_layout);
 
+	auto& title_bkgnd = title_layout->GetBkgndShape();
+	title_bkgnd->SetBorderNull(TRUE);
+	title_bkgnd->SetFillNull(TRUE);
+
+	// 标题栏图标
 	shared_ptr<Image> title_image(new Image(title_layout.get()));
 	HICON hTImage = theImageRes.GetImage(_T("title_image"));
 	title_image->SetMargin(CRect(3, 3, 3, 3));
@@ -61,6 +71,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_layout->AddChild(title_image);
 	title_image->SetBitmap(hTImage);
 
+	// 标题栏文字
 	shared_ptr<Label> title_text(new Label(title_layout.get()));
 	title_text->SetGravity(Gravity::CenterH | Gravity::CenterV);
 	CString strTText = theStringRes.GetString(_T("title_text"));
@@ -70,6 +81,12 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	title_text->SetAutoWidth(TRUE);
 	title_text->SetText(strTText);
 
+	title_text->SetPreviewMouseDownEvent([&](EventParam& param) {
+		DWORD lParam = MAKELPARAM(param.point.x, param.point.y);
+		SendMessage(WM_NCLBUTTONDOWN, HTCAPTION, lParam);
+	});
+
+	// 标题栏关闭按钮
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
 	HICON hTClose = theImageRes.GetImage(_T("title_close"));
 	title_close->SetMargin(CRect(10, 10, 10, 10));
@@ -87,44 +104,14 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 		children.at(i)->Dump();
 	}
 
-// 	shared_ptr<Label> label(new Label(this));
-// 	label->SetRect(CRect(100, 100, 200, 200));
-// 	label->SetText(_T("这是一个标签控件"));
-// 	label->SetTextColor(RGB(255, 0, 0));
-// 	label->SetBkColor(RGB(0, 255, 0));
-// 
-// 	LayoutControl::AddChild(label);
-// 
-// 	auto& layout = shared_ptr<LinearLayout>(new LinearLayout(label.get(), TRUE));
-// 
-// 	shared_ptr<Label> sub_label_1(new Label(layout.get()));
-// 	//sub_label_1->SetRect(CRect(0, 50, 50, 100));
-// 	sub_label_1->SetText(_T("这是一个标签控件"));
-// 	sub_label_1->SetTextColor(RGB(0, 0, 255));
-// 	sub_label_1->SetBkColor(RGB(255, 0, 0));
-// 	sub_label_1->SetMinSize(CSize(70, 70));
-// 
-// 	layout->AddChild(sub_label_1);
-// 
-// 	shared_ptr<Label> sub_label_2(new Label(layout.get()));
-// 	//sub_label_2->SetRect(CRect(0, 50, 50, 100));
-// 	sub_label_2->SetText(_T("这是一个标签控件"));
-// 	sub_label_2->SetTextColor(RGB(255, 0, 255));
-// 	sub_label_2->SetBkColor(RGB(255, 255, 255));
-// 
-// 	layout->AddChild(sub_label_2);
-// 
-// 	label->SetLayoutControl(layout);
-
-
-	shared_ptr<Line> line(new Line());
-	m_shapes.push_back(line);
-
-	line->SetBorderWidth(1);
-	line->SetBorderStyle(PS_DASHDOT);
-	line->SetBeginPoint(CPoint(0, 0));
-	line->SetEndPoint(CPoint(200, 200));
-	line->SetBorderColor(RGB(255, 0, 0));
+	// shared_ptr<Line> line(new Line());
+	// m_shapes.push_back(line);
+	// 
+	// line->SetBorderWidth(1);
+	// line->SetBorderStyle(PS_DASHDOT);
+	// line->SetBeginPoint(CPoint(0, 0));
+	// line->SetEndPoint(CPoint(200, 200));
+	// line->SetBorderColor(RGB(255, 0, 0));
 
 	shared_ptr<PrettyFramework::Rectangle>
 		rectangle(new PrettyFramework::Rectangle());
@@ -149,7 +136,6 @@ void CPrettyFrameworkDlg::OnPaint()
 	GetClientRect(rcClient);
 
 	CMemDC memDC(dc, this);
-	memDC.GetDC().FillSolidRect(rcClient, RGB(214, 219, 233));
 
 	LayoutControl::Paint(memDC.GetDC());
 

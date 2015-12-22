@@ -92,17 +92,17 @@ namespace PrettyFramework {
 		/**
 		 * 最近鼠标按下的子控件
 		 */
-		shared_ptr<BaseControl> last_pressed;
+		BaseControl* last_pressed;
 
 		/**
 		 * 最近获得热点的子控件
 		 */
-		shared_ptr<BaseControl> last_hovered;
+		BaseControl* last_hovered;
 
 		/**
 		 * 最近获得焦点的子控件
 		 */
-		shared_ptr<BaseControl> last_focused;
+		BaseControl* last_focused;
 		
 		// 
 		// 3.布局

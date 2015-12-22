@@ -65,6 +65,11 @@ namespace PrettyFramework {
 	struct EventParam {
 
 		/**
+		 * 鼠标当前的坐标
+		 */
+		CPoint point;
+
+		/**
 		 * 是否吃掉这个事件
 		 */
 		BOOL will_eat_it;

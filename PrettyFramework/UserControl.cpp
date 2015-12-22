@@ -96,6 +96,7 @@ namespace PrettyFramework {
 		SetFocused(HitTest(point));
 
 		EventParam param;
+		param.point = point;
 		param.control = this;
 		param.will_eat_it = FALSE;
 
@@ -130,6 +131,7 @@ namespace PrettyFramework {
 		SetHovered(is_hovered);
 
 		EventParam param;
+		param.point = point;
 		param.control = this;
 		param.will_eat_it = FALSE;
 
@@ -157,6 +159,7 @@ namespace PrettyFramework {
 		}
 
 		EventParam param;
+		param.point = point;
 		param.control = this;
 		param.will_eat_it = FALSE;
 

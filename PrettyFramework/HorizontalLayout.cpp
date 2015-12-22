@@ -12,6 +12,8 @@ namespace PrettyFramework {
 
 	void HorizontalLayout::RecalcLayout()
 	{
+		LayoutControl::RecalcLayout();
+
 		CRect rcMargined(rect_in_parent);
 		rcMargined.DeflateRect(m_margin);
 

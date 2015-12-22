@@ -6,10 +6,13 @@ namespace PrettyFramework {
 
 	LayoutControl::LayoutControl(BaseControl* control)
 		: BaseControl(control)
+		, last_hovered(nullptr)
+		, last_pressed(nullptr)
+		, last_focused(nullptr)
 	{
 		m_bkgnd_shape.reset(new Rectangle());
-		m_bkgnd_shape->SetBorderNull(TRUE);
-		m_bkgnd_shape->SetFillNull(TRUE);
+// 		m_bkgnd_shape->SetBorderNull(TRUE);
+// 		m_bkgnd_shape->SetFillNull(TRUE);
 	}
 
 	LayoutControl::~LayoutControl()
@@ -41,15 +44,15 @@ namespace PrettyFramework {
 
 			if (child == (*iter)) {
 
-				if (last_pressed == child) {
+				if (last_pressed == child.get()) {
 					last_pressed = nullptr;
 				}
 
-				if (last_hovered == child) {
+				if (last_hovered == child.get()) {
 					last_hovered = nullptr;
 				}
 
-				if (last_focused == child) {
+				if (last_focused == child.get()) {
 					last_focused = nullptr;
 				}
 
@@ -125,7 +128,7 @@ namespace PrettyFramework {
 		CPoint ptInThis(point);
 		ptInThis.Offset(-GetRect().left, -GetRect().top);
 
-		shared_ptr<BaseControl> hovered = nullptr;
+		BaseControl* hovered = nullptr;
 
 		if (last_hovered != nullptr) {
 			last_hovered->OnMouseMove(ptInThis);
@@ -141,10 +144,10 @@ namespace PrettyFramework {
 				; iter++) {
 
 				auto& control = (*iter);
-				if (last_hovered != control) {
+				if (last_hovered != control.get()) {
 					if (control->HitTest(ptInThis)) {
 						control->OnMouseMove(ptInThis);
-						hovered = control;
+						hovered = control.get();
 						break;
 					}
 				}
@@ -163,7 +166,7 @@ namespace PrettyFramework {
 		CPoint ptInThis(point);
 		ptInThis.Offset(-GetRect().left, -GetRect().top);
 
-		shared_ptr<BaseControl> pressed = nullptr;
+		BaseControl* pressed = nullptr;
 
 		if (last_focused != nullptr) {
 			last_focused->OnMouseDown(ptInThis);
@@ -179,10 +182,10 @@ namespace PrettyFramework {
 				; iter++) {
 
 				auto& control = (*iter);
-				if (last_focused != control) {
+				if (last_focused != control.get()) {
 					if (control->HitTest(ptInThis)) {
 						control->OnMouseDown(ptInThis);
-						pressed = control;
+						pressed = control.get();
 						break;
 					}
 				}
