@@ -17,7 +17,6 @@ public:
 	void BtnCloseClicked(ClickParam& param);
 
 protected:
-	BOOL m_mouse_down;
 
 	vector<shared_ptr<Shape>> m_shapes;
 

@@ -17,7 +17,6 @@
 CPrettyFrameworkDlg::CPrettyFrameworkDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PRETTYFRAMEWORK_DIALOG, pParent)
 	, VerticalLayout(nullptr)
-	, m_mouse_down(FALSE)
 {
 }
 
@@ -43,6 +42,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	MoveWindow(rcWindow);
 	CenterWindow();
 
+	BaseControl::SetId(_T("root_layout"));
 	BaseControl::SetWindow(GetSafeHwnd());
 	BaseControl::SetMargin(CRect(2, 2, 2, 2));
 
@@ -165,55 +165,23 @@ void CPrettyFrameworkDlg::OnSize(UINT nType, int cx, int cy)
 
 void CPrettyFrameworkDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	m_mouse_down = TRUE;
-
 	CDialogEx::OnLButtonDown(nFlags, point);
 
 	LayoutControl::OnMouseDown(point);
 }
 
-void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
-{
-	m_mouse_down = FALSE;
-
-	CPoint ptCursor;
-	GetCursorPos(&ptCursor);
-
-	CRect rcWindow;
-	GetWindowRect(rcWindow);
-
-	if (!rcWindow.PtInRect(ptCursor)) {
-		if (GetCapture() == this) {
-			ReleaseCapture();
-		}
-	}
-
-	CDialogEx::OnLButtonUp(nFlags, point);
-
-	LayoutControl::OnMouseUp(point);
-}
-
 void CPrettyFrameworkDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
-	CPoint ptCursor;
-	GetCursorPos(&ptCursor);
-
-	CRect rcWindow;
-	GetWindowRect(rcWindow);
-
-	if (rcWindow.PtInRect(ptCursor)) {
-		if (GetCapture() != this) {
-			SetCapture();
-		}
-	} else {
-		if (!m_mouse_down) {
-			ReleaseCapture();
-		}
-	}
-
 	CDialogEx::OnMouseMove(nFlags, point);
 
 	LayoutControl::OnMouseMove(point);
+}
+
+void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	CDialogEx::OnLButtonUp(nFlags, point);
+
+	LayoutControl::OnMouseUp(point);
 }
 
 void CPrettyFrameworkDlg::BtnCloseClicked(ClickParam& param)

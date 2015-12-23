@@ -92,19 +92,21 @@ namespace PrettyFramework {
 			return;
 		}
 
+		BOOL bHitted = HitTest(point);
 		SetPressed(FALSE);
-		SetFocused(HitTest(point));
+		SetFocused(bHitted);
 
 		EventParam param;
 		param.point = point;
 		param.control = this;
 		param.will_eat_it = FALSE;
 
-		OnPreviewMouseUp(param);
-
-		if (param.will_eat_it) {
-			return; /* ³ÔµôËü */
-		} 
+		if (bHitted) {
+			OnPreviewMouseUp(param);
+			if (param.will_eat_it) {
+				return; /* ³ÔµôËü */
+			}
+		}
 
 		if (m_layout != nullptr) {
 			m_layout->OnMouseUp(point);
@@ -112,7 +114,9 @@ namespace PrettyFramework {
 			Redraw();
 		}
 
-		OnMouseUp(param);
+		if (bHitted) {
+			OnMouseUp(param);
+		}
 	}
 
 	void UserControl::OnMouseMove(CPoint point)
@@ -135,10 +139,11 @@ namespace PrettyFramework {
 		param.control = this;
 		param.will_eat_it = FALSE;
 
-		OnPreviewMouseMove(param);
-
-		if (param.will_eat_it) {
-			return; /* ³ÔµôËü */
+		if (is_hovered) {
+			OnPreviewMouseMove(param);
+			if (param.will_eat_it) {
+				return; /* ³ÔµôËü */
+			}
 		}
 
 		if (m_layout != nullptr) {
@@ -149,7 +154,9 @@ namespace PrettyFramework {
 			}
 		}
 
-		OnMouseMove(param);
+		if (is_hovered) {
+			OnMouseMove(param);
+		}
 	}
 
 	void UserControl::OnMouseDown(CPoint point)
@@ -158,20 +165,21 @@ namespace PrettyFramework {
 			return;
 		}
 
+		BOOL ptHitted = HitTest(point);
+		SetFocused(ptHitted);
+		SetPressed(ptHitted);
+
 		EventParam param;
 		param.point = point;
 		param.control = this;
 		param.will_eat_it = FALSE;
 
-		OnPreviewMouseDown(param);
-
-		if (param.will_eat_it) {
-			return; /* ³ÔµôËü */
+		if (ptHitted) {
+			OnPreviewMouseDown(param);
+			if (param.will_eat_it) {
+				return; /* ³ÔµôËü */
+			}
 		}
-
-		BOOL ptHitted = HitTest(point);
-		SetFocused(ptHitted);
-		SetPressed(ptHitted);
 
 		if (m_layout != nullptr) {
 			m_layout->OnMouseDown(point);
@@ -179,7 +187,9 @@ namespace PrettyFramework {
 			Redraw();
 		}
 
-		OnMouseDown(param);
+		if (ptHitted) {
+			OnMouseDown(param);
+		}
 	}
 
 	void UserControl::RecalcLayout()
