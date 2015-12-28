@@ -150,6 +150,9 @@
     <ClInclude Include="LabelStyle.h">
       <Filter>0.Framework\3.Style</Filter>
     </ClInclude>
+    <ClInclude Include="BaseStyle.h">
+      <Filter>0.Framework\3.Style</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

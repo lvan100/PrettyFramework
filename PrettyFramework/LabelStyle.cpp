@@ -10,13 +10,6 @@ namespace PrettyFramework {
 		: m_label(label)
 		, m_single_line(TRUE)
 	{
-		LOGFONT logFont = { 0 };
-		GetUITheme()->label_text_font.GetLogFont(&logFont);
-
-		logFont.lfHeight = -18;
-		m_font = CFont::FromHandle(CreateFontIndirect(&logFont));
-
-		m_text_color = GetUITheme()->label_text_clr;
 	}
 	
 	LabelStyle::~LabelStyle()
@@ -27,14 +20,15 @@ namespace PrettyFramework {
 	{
 		CRect rcView = m_label->GetViewRect();
 		if (!rcView.IsRectEmpty()) {
+			auto& theme = GetUITheme();
 
 			CRect rcMargined(rcView);
 			rcMargined.DeflateRect(m_label->GetMargin());
 
-			CFont* pOldFont = dc.SelectObject(m_font);
+			CFont* pOldFont = dc.SelectObject(&theme->label_text_font);
 
 			dc.SetBkMode(TRANSPARENT);
-			dc.SetTextColor(m_text_color);
+			dc.SetTextColor(theme->label_text_clr);
 
 			DWORD nFormat = 0;
 

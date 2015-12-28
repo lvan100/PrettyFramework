@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "BaseTheme.h"
 
-#include <memory>
-using namespace std;
+#include "Markup.h"
 
 namespace PrettyFramework {
 
@@ -11,57 +10,78 @@ namespace PrettyFramework {
 	 */
 	shared_ptr<BaseTheme> theUITheme;
 
-	BaseTheme* GetUITheme() {
+	/**
+	 * 提供一个界面主题对象的包装函数
+	 */
+	shared_ptr<BaseTheme>& GetUITheme() {
 		if (theUITheme == nullptr) {
-			theUITheme = make_shared<BaseTheme>();
+			theUITheme.reset(new BaseTheme());
 		}
-		return theUITheme.get();
+		return theUITheme;
 	}
 
 	BaseTheme::BaseTheme()
-	{
-		label_text_clr = RGB(0, 0, 0);
-
-		label_bk_color[0] = RGB(240, 240, 240);
-		label_bk_color[1] = RGB(240, 240, 240);
-		label_bk_color[2] = RGB(240, 240, 240);
-		label_bk_color[3] = RGB(240, 240, 240);
-		label_bk_color[4] = RGB(240, 240, 240);
-
-		label_border_clr[0] = RGB(255, 255, 255);
-		label_border_clr[1] = RGB(255, 255, 255);
-		label_border_clr[2] = RGB(255, 255, 255);
-		label_border_clr[3] = RGB(255, 255, 255);
-		label_border_clr[4] = RGB(255, 255, 255);
-
-		button_text_clr = RGB(0, 0, 0);
-
-		button_bk_color[0] = RGB(240, 240, 240);
-		button_bk_color[1] = RGB(253, 244, 191);
-		button_bk_color[2] = RGB(255, 242, 157);
-		button_bk_color[3] = RGB(231, 186, 10);
-		button_bk_color[4] = RGB(240, 240, 240);
-
-		button_border_clr[0] = RGB(255, 255, 255);
-		button_border_clr[1] = RGB(97, 97, 97);
-		button_border_clr[2] = RGB(255, 255, 255);
-		button_border_clr[3] = RGB(97, 97, 97);
-		button_border_clr[4] = RGB(255, 255, 255);
-
-		LOGFONT logFont = { 0 };
-		GetGlobalData()->fontRegular.GetLogFont(&logFont);
-
-		_tcscpy_s(logFont.lfFaceName, L"微软雅黑");
-
-		logFont.lfHeight = -15;
-		label_text_font.CreateFontIndirect(&logFont);
-
-		logFont.lfHeight = -15;
-		button_text_font.CreateFontIndirect(&logFont);
-	}
+	{}
 
 	BaseTheme::~BaseTheme()
+	{}
+
+	/**
+	 * 从字符串中解析颜色值
+	 */
+	static COLORREF GetColor(CString str) {
+		if (str.GetAt(0) == '#') {
+			long value = _tcstol(str.Mid(1), nullptr, 16);
+			return RGB((value & 0xFF0000) >> 16
+				, (value & 0x00FF00) >> 8
+				, (value & 0x0000FF));
+		} else {
+			return RGB(0, 0, 0);
+		}
+	}
+
+	void BaseTheme::Reload(CString file)
 	{
+		CMarkup xmlTheme;
+		if (xmlTheme.Load(file)) {
+			
+			// 解析标签控件的配色方案
+			while (xmlTheme.FindChildElem(_T("Label"))) {
+				xmlTheme.IntoElem();
+
+				while (xmlTheme.FindChildElem(_T("Text"))) {
+					xmlTheme.IntoElem();
+
+					while (xmlTheme.FindChildElem(_T("Color"))) {
+						CString strColor = xmlTheme.GetChildAttrib(_T("Value"));
+						label_text_clr = GetColor(strColor);
+					}
+					
+					while (xmlTheme.FindChildElem(_T("Font"))) {
+						LOGFONT logFont{ 0 };
+						GetGlobalData()->fontRegular.GetLogFont();
+
+
+
+
+
+					}
+
+					xmlTheme.OutOfElem();
+				}
+
+
+				xmlTheme.OutOfElem();
+			}
+
+			// 解析按钮控件的配色方案
+			while (xmlTheme.FindChildElem(_T("Button"))) {
+				xmlTheme.IntoElem();
+
+
+				xmlTheme.OutOfElem();
+			}			
+		}
 	}
 
 }

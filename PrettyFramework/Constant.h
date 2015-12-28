@@ -55,11 +55,6 @@ namespace PrettyFramework {
 	};
 
 	/**
-	 * 定义和控件状态相对应的颜色数组
-	 */
-	using StateColor = array<COLORREF, enum_size<State>::size>;
-
-	/**
 	 * 定义鼠标事件的参数
 	 */
 	struct EventParam {

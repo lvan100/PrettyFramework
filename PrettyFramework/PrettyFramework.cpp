@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "BaseTheme.h"
 #include "SelfModule.h"
 #include "PrettyFramework.h"
 #include "PrettyFrameworkDlg.h"
@@ -24,8 +25,13 @@ BOOL CPrettyFrameworkApp::InitInstance()
 	// VS2015 通过函数初始化 afxGlobalData 变量.
 	/* AFX_GLOBAL_DATA* p = */ GetGlobalData();
 
-	SelfModuleList::GetInstance()->Inits();
+	CString strPath = GetModuleDir();
+	strPath += _T("Resource\\Theme\\BaseTheme.xml");
 
+	GetUITheme()->Reload(strPath);
+
+	SelfModuleList::GetInstance()->Inits();
+	
 	CPrettyFrameworkDlg dlg;
 	m_pMainWnd = &dlg;
 	dlg.DoModal();
