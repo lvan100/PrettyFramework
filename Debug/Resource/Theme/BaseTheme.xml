@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Theme>
+	<Label>
+		<Text>
+			<Color Value="#000000" />
+			<Font Name="微软雅黑" Italic="FALSE" Bold="FALSE" />
+		</Text>
+		<Border>
+			<Color State="Normal" Value="#000000" />
+			<Color State="Hover" Value="#000000" />
+			<Color State="Press" Value="#000000" />
+			<Color State="Focus" Value="#000000" />
+		</Border>
+		<Background>
+			<Color Value="#FFFFFF" />
+		</Background>
+	</Label>
+	<Button>
+		<Text>
+			<Color Value="#000000" />
+			<Font Name="微软雅黑" Italic="FALSE" Bold="FALSE" />
+		</Text>
+		<Border>
+			<Color State="Normal" Value="#000000" />
+			<Color State="Hover" Value="#000000" />
+			<Color State="Press" Value="#000000" />
+			<Color State="Focus" Value="#000000" />
+		</Border>
+		<Background>
+			<Color State="Normal" Value="#000000" />
+			<Color State="Hover" Value="#000000" />
+			<Color State="Press" Value="#000000" />
+			<Color State="Focus" Value="#000000" />
+		</Background>
+	</Button>
+</Theme>

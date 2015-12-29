@@ -1,6 +1,6 @@
 #pragma once
 
-#include "VisualStyle.h"
+#include "Visual.h"
 
 namespace PrettyFramework {
 
@@ -9,7 +9,7 @@ namespace PrettyFramework {
 	/**
 	 * ±êÇ©ÑùÊ½
 	 */
-	class LabelStyle : public VisualStyle
+	class LabelStyle : public Visual
 	{
 	public:
 		LabelStyle(Label* label);

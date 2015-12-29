@@ -7,14 +7,14 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 任何具有视觉效果的对象都需要继承 @VisualStyle
+	// 任何具有视觉效果的对象都需要继承 @Visual
 	// 接口，如基础控件、绘图形状等，都会继承此接口。
 	// 
 
 	/**
-	 * 视觉样式接口
+	 * 视觉接口
 	 */
-	class VisualStyle
+	class Visual
 	{
 	public:
 		/**

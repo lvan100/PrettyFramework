@@ -1,13 +1,13 @@
 #pragma once
 
-#include "VisualStyle.h"
+#include "Visual.h"
 
 namespace PrettyFramework {
 
 	/**
 	 * 绘图形状,具有边界和填充等属性。
 	 */
-	class Shape : public VisualStyle
+	class Shape : public Visual
 	{
 	public:
 		Shape()

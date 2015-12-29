@@ -59,7 +59,7 @@ namespace PrettyFramework {
 					
 					while (xmlTheme.FindChildElem(_T("Font"))) {
 						LOGFONT logFont{ 0 };
-						GetGlobalData()->fontRegular.GetLogFont();
+						GetGlobalData()->fontRegular.GetLogFont(&logFont);
 
 
 

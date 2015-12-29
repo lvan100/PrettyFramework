@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Constant.h"
-#include "VisualStyle.h"
+#include "Visual.h"
 
 namespace PrettyFramework {
 
@@ -10,7 +10,7 @@ namespace PrettyFramework {
 	/**
 	 * °´Å¥ÑùÊ½
 	 */
-	class ButtonStyle : public VisualStyle
+	class ButtonStyle : public Visual
 	{
 	public:
 		ButtonStyle(Button* button);

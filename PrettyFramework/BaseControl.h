@@ -5,7 +5,7 @@
 using namespace std;
 
 #include "Constant.h"
-#include "VisualStyle.h"
+#include "Visual.h"
 
 namespace PrettyFramework {
 
@@ -103,7 +103,7 @@ namespace PrettyFramework {
 	/**
 	 * 基础控件接口，定义那些[界面控件]和[布局控件]都必须包含的属性。
 	 */
-	class BaseControl : public VisualStyle
+	class BaseControl : public Visual
 	{
 		friend class UserControl;
 		friend class LayoutControl;

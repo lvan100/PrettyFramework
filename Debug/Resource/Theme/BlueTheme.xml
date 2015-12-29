@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Theme>
+	<Parent>
+		<Path Type="Relative"><![CDATA[BaseTheme.xml]]></Path>
+	</Parent>
+	<Label>
+		<Text>
+			<Color>#000000</Color>
+		</Text>
+		<Border>
+			<Color State="Normal">#000000</Color>
+			<Color State="Hover">#000000</Color>
+			<Color State="Press">#000000</Color>
+			<Color State="Focus">#000000</Color>
+		</Border>
+		<Background>
+			<Color>#FFFFFF</Color>
+		</Background>
+	</Label>
+	<Button>
+		<Text>
+			<Color>#000000</Color>
+		</Text>
+		<Border>
+			<Color State="Normal">#000000</Color>
+			<Color State="Hover">#000000</Color>
+			<Color State="Press">#000000</Color>
+			<Color State="Focus">#000000</Color>
+		</Border>
+		<Background>
+			<Color State="Normal">#000000</Color>
+			<Color State="Hover">#000000</Color>
+			<Color State="Press">#000000</Color>
+			<Color State="Focus">#000000</Color>
+		</Background>
+	</Button>
+</Theme>
