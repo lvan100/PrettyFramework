@@ -110,6 +110,8 @@ namespace PrettyFramework {
 				 iter++)
 			{
 				if ((*iter).second) {
+					(*iter).second = false;
+
 					::RedrawWindow((HWND)(*iter).first, nullptr, nullptr
 						, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 				}

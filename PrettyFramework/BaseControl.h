@@ -34,7 +34,7 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 我把控件分为[界面控件]和[布局控件]两种。界面控件就是展
+	// 我把控件分为[用户控件]和[布局控件]两种。用户控件就是展
 	// 示内容给用户看的控件，它可以响应鼠标和键盘消息，并在视
 	// 觉上做出响应；而布局控件仅仅只是通过规则将子控件排列在
 	// 父控件内的控件，它只具有背景和边框这两种简单的视觉效果。
@@ -42,16 +42,16 @@ namespace PrettyFramework {
 	
 	// 
 	// 理论上，布局控件可以容纳任何类型的控件，也就是说它可以只
-	// 拥有界面控件，也可以只拥有布局控件，还可以同时拥有界面控
+	// 拥有用户控件，也可以只拥有布局控件，还可以同时拥有用户控
 	// 件和布局控件，这样的设定其实就是“容器控件”概念的实现。
-	// 而且布局控件的父控件既可以是布局控件，也可以是界面控件。
+	// 而且布局控件的父控件既可以是布局控件，也可以是用户控件。
 	// 虽然很可能是一件很无聊的事情，但是全部由布局控件构成的界
 	// 面模型在理论上也是成立的（可以配合绘图形状完成一幅画）。
 	// 
 	
 	//
-	// 一个界面控件只能拥有一个布局控件，而且其父控件也只能是布
-	// 局控件。这样的设定赋予了界面控件“无限容器”的特性。酷！
+	// 一个用户控件只能拥有一个布局控件，而且其父控件也只能是布
+	// 局控件。这样的设定赋予了用户控件“无限容器”的特性。酷！
 	// 
 	
 	//
@@ -96,12 +96,11 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 界面控件的绘图方式采用模板形式，即界面控件不直接绘制界面，而是
-	// 将其委托给一个绘图模板，这样很容易通过替换模板实现更酷的效果。
+	// TODO 这里补充说明 Theme 和 Style 的不同和实现机制。
 	// 
 
 	/**
-	 * 基础控件接口，定义那些[界面控件]和[布局控件]都必须包含的属性。
+	 * 基础控件接口，定义[用户控件]和[布局控件]都必须包含的属性。
 	 */
 	class BaseControl : public Visual
 	{
@@ -177,7 +176,7 @@ namespace PrettyFramework {
 		/**
 		 * 设置控件在父控件的坐标
 		 */
-		void SetRect(CRect rect) {
+		void SetRect(Gdiplus::RectF rect) {
 			rect_in_parent = rect;
 			RecalcLayout();
 		}
@@ -185,7 +184,7 @@ namespace PrettyFramework {
 		/**
 		 * 获取控件在父控件的坐标
 		 */
-		CRect GetRect() {
+		Gdiplus::RectF GetRect() {
 			return rect_in_parent;
 		}
 
@@ -193,20 +192,20 @@ namespace PrettyFramework {
 		/**
 		 * 控件在父控件的坐标
 		 */
-		CRect rect_in_parent;
+		Gdiplus::RectF rect_in_parent;
 
 	public:
 		/**
 		 * 设置控件的固定宽高
 		 */
-		void SetFixSize(CSize size) {
+		void SetFixSize(Gdiplus::SizeF size) {
 			m_fix_size = size;
 		}
 
 		/**
 		 * 获取控件的固定宽高
 		 */
-		CSize GetFixSize() {
+		Gdiplus::SizeF GetFixSize() {
 			return m_fix_size;
 		}
 
@@ -214,7 +213,7 @@ namespace PrettyFramework {
 		/**
 		 * 控件的固定宽高
 		 */
-		CSize m_fix_size;
+		Gdiplus::SizeF m_fix_size;
 
 	public:
 		/**
@@ -304,14 +303,14 @@ namespace PrettyFramework {
 		/**
 		 * 设置控件的内边距
 		 */
-		void SetMargin(CRect margin) {
+		void SetMargin(Gdiplus::RectF margin) {
 			m_margin = margin;
 		}
 
 		/**
 		 * 获取控件的内边距
 		 */
-		CRect GetMargin() {
+		Gdiplus::RectF GetMargin() {
 			return m_margin;
 		}
 
@@ -319,7 +318,7 @@ namespace PrettyFramework {
 		/**
 		 * 控件的内边距
 		 */
-		CRect m_margin;
+		Gdiplus::RectF m_margin;
 
 		// 
 		// 1.绘图
@@ -334,7 +333,7 @@ namespace PrettyFramework {
 		/**
 		 * 获取控件的视图坐标
 		 */
-		CRect GetViewRect();
+		Gdiplus::RectF GetViewRect();
 
 		// 
 		// 2.事件
@@ -344,23 +343,23 @@ namespace PrettyFramework {
 		/**
 		 * 控件是否被击中
 		 */
-		virtual BOOL HitTest(CPoint point);
+		virtual BOOL HitTest(Gdiplus::PointF point);
 
 	protected:
 		/**
 		 * 鼠标弹起事件
 		 */
-		virtual void OnMouseUp(CPoint point) = 0;
+		virtual void OnMouseUp(Gdiplus::PointF point) = 0;
 
 		/**
 		 * 鼠标移动事件
 		 */
-		virtual void OnMouseMove(CPoint point) = 0;
+		virtual void OnMouseMove(Gdiplus::PointF point) = 0;
 
 		/**
 		 * 鼠标按下事件
 		 */
-		virtual void OnMouseDown(CPoint point) = 0;
+		virtual void OnMouseDown(Gdiplus::PointF point) = 0;
 
 		// 
 		// 3.布局

@@ -52,7 +52,7 @@ namespace PrettyFramework {
 		/**
 		 * 通知控件需要进行绘图
 		 */
-		virtual void Paint(CDC& dc);
+		virtual void Paint(Gdiplus::Graphics& graph);
 
 	public:
 		/**
@@ -76,17 +76,17 @@ namespace PrettyFramework {
 		/**
 		 * 鼠标弹起事件
 		 */
-		virtual void OnMouseUp(CPoint point);
+		virtual void OnMouseUp(Gdiplus::PointF point);
 
 		/**
 		 * 鼠标移动事件
 		 */
-		virtual void OnMouseMove(CPoint point);
+		virtual void OnMouseMove(Gdiplus::PointF point);
 
 		/**
 		 * 鼠标按下事件
 		 */
-		virtual void OnMouseDown(CPoint point);
+		virtual void OnMouseDown(Gdiplus::PointF point);
 
 	protected:
 		/**

@@ -13,40 +13,42 @@ namespace PrettyFramework {
 	{
 	}
 
-	void UserControl::Paint(CDC& dc)
+	void UserControl::Paint(Gdiplus::Graphics& graph)
 	{
-		OnPaint(dc); /* 绘制自身图层 */
+		OnPaint(graph); /* 绘制自身图层 */
 
 		if (m_layout != nullptr) {
 			
-			CRgn rgnClip;
+			Gdiplus::Region rgnOldClip;
+			graph.GetClip(&rgnOldClip);
 
-			CRect rcOldClip;
-			dc.GetClipBox(rcOldClip);
+			Gdiplus::RectF rcOldClip;
+			graph.GetClipBounds(&rcOldClip);
 
-			CRect rcClip = GetViewRect();
-			rcClip.DeflateRect(m_margin);
+			Gdiplus::RectF rcClip = GetViewRect();
 
-			rgnClip.CreateRectRgnIndirect(rcClip);
+			rcClip.X += m_margin.X;
+			rcClip.Y += m_margin.Y;
+			rcClip.Width -= m_margin.Width;
+			rcClip.Height -= m_margin.Height;
+
+			Gdiplus::Region rgnClip;
+			rgnClip.Intersect(rcClip);
 
 			{ /* 绘制子控件 */
 
-				CRgn rgnControl;
+				Gdiplus::Region rgnControl;
 
-				CRect rect = m_layout->GetViewRect();
-				rgnControl.CreateRectRgnIndirect(rect);
+				Gdiplus::RectF rect = m_layout->GetViewRect();
+				rgnControl.Intersect(rect);
 
-				// 防止子控件的绘图区域超出父控件的显示范围.
-				rgnControl.CombineRgn(&rgnClip, &rgnControl, RGN_AND);
-				dc.SelectClipRgn(&rgnControl);
+				rgnControl.Intersect(&rgnClip);
+				graph.SetClip(&rgnControl);
 
-				m_layout->Paint(dc);
+				m_layout->Paint(graph);
 			}			
 
-			CRgn rgnOldClip;
-			rgnOldClip.CreateRectRgnIndirect(rcOldClip);
-
-			dc.SelectClipRgn(&rgnOldClip);
+			graph.SetClip(&rgnOldClip);
 		}
 	}
 
@@ -86,7 +88,7 @@ namespace PrettyFramework {
 		}
 	}
 
-	void UserControl::OnMouseUp(CPoint point)
+	void UserControl::OnMouseUp(Gdiplus::PointF point)
 	{
 		if (IsDisable()) {
 			return;
@@ -119,7 +121,7 @@ namespace PrettyFramework {
 		}
 	}
 
-	void UserControl::OnMouseMove(CPoint point)
+	void UserControl::OnMouseMove(Gdiplus::PointF point)
 	{
 		if (IsDisable()) {
 			return;
@@ -159,7 +161,7 @@ namespace PrettyFramework {
 		}
 	}
 
-	void UserControl::OnMouseDown(CPoint point)
+	void UserControl::OnMouseDown(Gdiplus::PointF point)
 	{
 		if (IsDisable()) {
 			return;
@@ -195,8 +197,8 @@ namespace PrettyFramework {
 	void UserControl::RecalcLayout()
 	{
 		if (m_layout != nullptr) {
-			CRect rcClient(GetRect());
-			rcClient.MoveToXY(0, 0);
+			Gdiplus::RectF rcClient(GetRect());
+			rcClient.X = rcClient.Y = 0;
 			m_layout->SetRect(rcClient);
 		}
 	}
@@ -214,9 +216,8 @@ namespace PrettyFramework {
 
 	void UserControl::Dump()
 	{
-		TRACE(_T("UserControl:%s Rect:%d,%d,%d,%d \n"), GetId()
-			, GetRect().left, GetRect().top, GetRect().right
-			, GetRect().bottom);
+		TRACE(_T("UserControl:%s Rect:%d,%d,%d,%d \n"), GetId(), GetRect().GetLeft()
+			, GetRect().GetTop(), GetRect().GetRight(), GetRect().GetBottom());
 
 		if (m_layout != nullptr) {
 			return m_layout->Dump();

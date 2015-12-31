@@ -36,4 +36,4 @@ CString GetModuleDir(HMODULE hModule = NULL);
 /**
  * 获取图标的大小（暂时就放在这里吧）
  */
-CSize GetIconSize(HICON hIcon);
+Gdiplus::SizeF GetIconSize(HICON hIcon);

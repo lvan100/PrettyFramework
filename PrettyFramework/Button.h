@@ -96,7 +96,7 @@ namespace PrettyFramework {
 		/**
 		 * 绘制自身当前层
 		 */
-		virtual void OnPaint(CDC& dc);
+		virtual void OnPaint(Gdiplus::Graphics& graph);
 	
 		// 
 		// 2.事件

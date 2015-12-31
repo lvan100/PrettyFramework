@@ -16,11 +16,11 @@ namespace PrettyFramework {
 	{
 	}
 
-	void Button::OnPaint(CDC& dc)
+	void Button::OnPaint(Gdiplus::Graphics& graph)
 	{
-		if (m_style != nullptr) {
-			m_style->Paint(dc);
-		}
+// 		if (m_style != nullptr) {
+// 			m_style->Paint(dc);
+// 		}
 	}
 	
 	void Button::OnPreviewMouseUp(EventParam& param)

@@ -7,8 +7,12 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 任何具有视觉效果的对象都需要继承 @Visual
-	// 接口，如基础控件、绘图形状等，都会继承此接口。
+	// 任何具有视觉效果的对象都需要继承 @Visual 接口
+	// ，如基础控件、绘图形状等，都会继承此接口。
+	// 
+
+	// 
+	// 考虑到跨平台性，绘图库使用 Gdiplus （跨平台）。
 	// 
 
 	/**
@@ -18,9 +22,9 @@ namespace PrettyFramework {
 	{
 	public:
 		/**
-		 * 定义视觉样式的绘图接口
+		 * 定义视觉绘图接口
 		 */
-		virtual void Paint(CDC& dc) = 0;
+		virtual void Paint(Gdiplus::Graphics& graph) = 0;
 	};
 
 }

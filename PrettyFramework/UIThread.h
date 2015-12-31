@@ -5,8 +5,15 @@ using namespace std;
 
 namespace PrettyFramework {
 
+	// 
+	// 界面刷新线程的工作原理: 界面刷新线程通过定时轮询（目前是16ms）
+	// 触发所有本地窗口的刷新事件。所有的本地窗口都必须注册到界面线程
+	// ，窗口销毁后也需要将其从界面线程删除。当用户触发控件重绘动作的
+	// 时候，实际上只是通知界面线程在下一个轮询中刷新该控件所在窗口。
+	// 
+
 	/**
-	 * 界面线程
+	 * 界面刷新线程
 	 */
 	class UIThread
 	{
@@ -15,23 +22,23 @@ namespace PrettyFramework {
 		~UIThread();
 
 		/**
-		 * 添加本地窗口
+		 * 添加本地窗口句柄
 		 */
 		void AddWindow(void* window);
 
 		/**
-		 * 移除本地窗口
+		 * 移除本地窗口句柄
 		 */
 		void RemoveWindow(void* window);
 
 		/**
-		 * 刷新窗口
+		 * 通知刷新本地窗口
 		 */
 		void UpdateWindow(void* window);
 
 	private:
 		/**
-		 * 刷新窗口列表
+		 * 本地刷新窗口列表
 		 */
 		map<void*, bool> windows;
 
@@ -42,7 +49,7 @@ namespace PrettyFramework {
 		void Start();
 
 		/**
-		 * 停止线程，若超时将强制杀死
+		 * 停止线程，如果超时将强制杀死
 		 */
 		void Stop(int timeout = INFINITE);
 

@@ -20,7 +20,7 @@ namespace PrettyFramework {
 		/**
 		 * 定义视觉样式的绘图接口
 		 */
-		virtual void Paint(CDC& dc);
+		virtual void Paint(Gdiplus::Graphics& graph);
 
 	protected:
 		/**

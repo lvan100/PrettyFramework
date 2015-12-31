@@ -14,11 +14,15 @@ namespace PrettyFramework {
 	{
 		LayoutControl::RecalcLayout();
 
-		CRect rcMargined(rect_in_parent);
-		rcMargined.DeflateRect(m_margin);
+		Gdiplus::RectF rcMargined(rect_in_parent);
 
-		int rectWidth = rcMargined.Width();
-		int rectHeight = rcMargined.Height();
+		rcMargined.X += m_margin.X;
+		rcMargined.Y += m_margin.Y;
+		rcMargined.Width -= m_margin.Width;
+		rcMargined.Height -= m_margin.Height;
+
+		float rectWidth = rcMargined.Width;
+		float rectHeight = rcMargined.Height;
 
 		size_t itemCount = m_children.size();
 
@@ -32,10 +36,10 @@ namespace PrettyFramework {
 		for (size_t i = 0; i < itemCount; i++) {
 
 			auto& control = m_children.at(i);
-			CSize cFixSize = control->GetFixSize();
+			Gdiplus::SizeF cFixSize = control->GetFixSize();
 
-			if (cFixSize.cx > 0) {
-				childWeight[i] = cFixSize.cx * 1.0f / rectWidth;
+			if (cFixSize.Width > 0) {
+				childWeight[i] = cFixSize.Width * 1.0f / rectWidth;
 			}
 			else {
 				if (control->IsAutoWidth()) {
@@ -50,7 +54,7 @@ namespace PrettyFramework {
 			allWeight += childWeight[i];
 		}
 
-		int lastWidth = m_margin.left;
+		int lastWidth = m_margin.GetLeft();
 
 		if (allWeight < 1.0f) {
 			float f = (1.0f - allWeight) / autoChild.size();
@@ -62,32 +66,32 @@ namespace PrettyFramework {
 		for (size_t i = 0; i < childWeight.size(); i++) {
 			auto& control = m_children.at(i);
 
-			CRect rcControl;
+			Gdiplus::RectF rcControl;
 
-			CSize cFixSize = control->GetFixSize();
+			Gdiplus::SizeF cFixSize = control->GetFixSize();
 
 			int width = int(childWeight[i] * rectWidth);
 			if (lastWidth + width > rectWidth) {
 				width = rectWidth - lastWidth;
 			}
 
-			if (cFixSize.cx > 0) {
-				width = cFixSize.cx;
+			if (cFixSize.Width > 0) {
+				width = cFixSize.Width;
 			}
 
 			// 目前是靠左、居中显示
 			int height = rectHeight;
-			if (cFixSize.cy > 0) {
-				height = cFixSize.cy;
-				rcControl.top = (rectHeight - cFixSize.cy) / 2 + m_margin.top;
+			if (cFixSize.Height > 0) {
+				height = cFixSize.Height;
+				rcControl.Y = (rectHeight - cFixSize.Height) / 2 + m_margin.GetTop();
 			}
 			else {
-				rcControl.top = m_margin.top;
+				rcControl.Y = m_margin.Y;
 			}
 
-			rcControl.left = lastWidth;
-			rcControl.right = lastWidth + width;
-			rcControl.bottom = rcControl.top + height;
+			rcControl.X = lastWidth;
+			rcControl.Width = width;
+			rcControl.Height = height;
 
 			control->SetRect(rcControl);
 			lastWidth += width;

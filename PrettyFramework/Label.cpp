@@ -14,11 +14,11 @@ namespace PrettyFramework {
 	{
 	}
 
-	void Label::OnPaint(CDC& dc)
+	void Label::OnPaint(Gdiplus::Graphics& graph)
 	{
-		if (m_style != nullptr) {
-			m_style->Paint(dc);
-		}
+// 		if (m_style != nullptr) {
+// 			m_style->Paint(dc);
+// 		}
 	}
 
 }

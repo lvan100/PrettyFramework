@@ -14,11 +14,15 @@ namespace PrettyFramework {
 	{
 		LayoutControl::RecalcLayout();
 
-		CRect rcMargined(rect_in_parent);
-		rcMargined.DeflateRect(m_margin);
+		Gdiplus::RectF rcMargined(rect_in_parent);
 
-		int rectWidth = rcMargined.Width();
-		int rectHeight = rcMargined.Height();
+		rcMargined.X += m_margin.X;
+		rcMargined.Y += m_margin.Y;
+		rcMargined.Width -= m_margin.Width;
+		rcMargined.Height -= m_margin.Height;
+
+		float rectWidth = rcMargined.Width;
+		float rectHeight = rcMargined.Height;
 
 		size_t itemCount = m_children.size();
 
@@ -27,7 +31,7 @@ namespace PrettyFramework {
 			allWeight += m_children.at(i)->GetWeight();
 		}
 
-		int lastHeight = m_margin.top;
+		int lastHeight = m_margin.GetTop();
 
 		float fHeight = rectHeight / allWeight;
 
@@ -35,19 +39,19 @@ namespace PrettyFramework {
 			auto& control = (*iter);
 
 			float wg = control->GetWeight();
-			CSize fz = control->GetFixSize();
+			Gdiplus::SizeF fz = control->GetFixSize();
 
 			int height = max(int(wg * fHeight), 0);
 
-			if (lastHeight + height > rectHeight + m_margin.top) {
-				height = m_margin.top + rectHeight - lastHeight;
+			if (lastHeight + height > rectHeight + m_margin.GetTop()) {
+				height = m_margin.GetTop() + rectHeight - lastHeight;
 			}
 
-			if (fz.cy > 0) {
-				height = fz.cy;
+			if (fz.Height > 0) {
+				height = fz.Height;
 			}
 
-			control->SetRect(CRect(m_margin.left, lastHeight, m_margin.left + rectWidth, lastHeight + height));
+			control->SetRect(Gdiplus::RectF(m_margin.GetLeft(), lastHeight, rectWidth, height));
 			lastHeight += height;
 		}
 	}

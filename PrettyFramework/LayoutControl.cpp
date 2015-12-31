@@ -65,52 +65,56 @@ namespace PrettyFramework {
 		RecalcLayout();
 	}
 	
-	void LayoutControl::Paint(CDC& dc)
+	void LayoutControl::Paint(Gdiplus::Graphics& graph)
 	{
 		// 绘制布局控件的背景
-		m_bkgnd_shape->Paint(dc);
+		m_bkgnd_shape->Paint(graph);
 
 		if (m_children.size() == 0) {
 			return; /* 内容为空 */
 		}
 
-		CRgn rgnClip;
+		Gdiplus::Region rgnOldClip;
+		graph.GetClip(&rgnOldClip);
 
-		CRect rcOldClip;
-		dc.GetClipBox(rcOldClip);
+		Gdiplus::RectF rcOldClip;
+		graph.GetClipBounds(&rcOldClip);
 
-		CRect rcClip = GetViewRect();
-		rcClip.DeflateRect(m_margin);
+		Gdiplus::RectF rcClip = GetViewRect();
 
-		rgnClip.CreateRectRgnIndirect(rcClip);
+		rcClip.X += m_margin.X;
+		rcClip.Y += m_margin.Y;
+		rcClip.Width -= m_margin.Width;
+		rcClip.Height -= m_margin.Height;
+
+		Gdiplus::Region rgnClip;
+		rgnClip.Intersect(rcClip);
 		
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
 			; iter++) {
 
-			CRgn rgnControl;
 			auto& control = (*iter);
 
-			CRect rect = control->GetViewRect();
-			rgnControl.CreateRectRgnIndirect(rect);
+			Gdiplus::Region rgnControl;
 
-			// 防止子控件的绘图区域超出父控件的显示范围.
-			rgnControl.CombineRgn(&rgnClip, &rgnControl, RGN_AND);
-			dc.SelectClipRgn(&rgnControl);
+			Gdiplus::RectF rect = control->GetViewRect();
+			rgnControl.Intersect(rect);
 
-			control->Paint(dc);
+			rgnControl.Intersect(&rgnClip);
+			graph.SetClip(&rgnControl);
+
+			control->Paint(graph);
 		}
 
-		CRgn rgnOldClip;
-		rgnOldClip.CreateRectRgnIndirect(rcOldClip);
-
-		dc.SelectClipRgn(&rgnOldClip);
+		graph.SetClip(&rgnOldClip);
 	}
 
-	void LayoutControl::OnMouseUp(CPoint point)
+	void LayoutControl::OnMouseUp(Gdiplus::PointF point)
 	{
-		CPoint ptInThis(point);
-		ptInThis.Offset(-GetRect().left, -GetRect().top);
+		Gdiplus::PointF ptInThis(point);
+		ptInThis.Y -= GetRect().GetTop();
+		ptInThis.X -= GetRect().GetLeft();
 
 		if (last_pressed != nullptr) {
 			last_pressed->OnMouseUp(ptInThis);
@@ -123,10 +127,11 @@ namespace PrettyFramework {
 		}
 	}
 
-	void LayoutControl::OnMouseMove(CPoint point)
+	void LayoutControl::OnMouseMove(Gdiplus::PointF point)
 	{
-		CPoint ptInThis(point);
-		ptInThis.Offset(-GetRect().left, -GetRect().top);
+		Gdiplus::PointF ptInThis(point);
+		ptInThis.Y -= GetRect().GetTop();
+		ptInThis.X -= GetRect().GetLeft();
 
 		BaseControl* hovered = nullptr;
 
@@ -161,10 +166,11 @@ namespace PrettyFramework {
 		}
 	}
 
-	void LayoutControl::OnMouseDown(CPoint point)
+	void LayoutControl::OnMouseDown(Gdiplus::PointF point)
 	{
-		CPoint ptInThis(point);
-		ptInThis.Offset(-GetRect().left, -GetRect().top);
+		Gdiplus::PointF ptInThis(point);
+		ptInThis.Y -= GetRect().GetTop();
+		ptInThis.X -= GetRect().GetLeft();
 
 		BaseControl* pressed = nullptr;
 
@@ -202,8 +208,12 @@ namespace PrettyFramework {
 	void LayoutControl::RecalcLayout()
 	{
 		if (m_bkgnd_shape != nullptr) {
-			m_bkgnd_shape->SetBeginPoint(rect_in_parent.TopLeft());
-			m_bkgnd_shape->SetEndPoint(rect_in_parent.BottomRight());
+
+			Gdiplus::PointF ptBegin(rect_in_parent.X, rect_in_parent.Y);
+			m_bkgnd_shape->SetBeginPoint(ptBegin);
+
+			Gdiplus::PointF ptEnd(rect_in_parent.GetRight(), rect_in_parent.GetBottom());
+			m_bkgnd_shape->SetEndPoint(ptEnd);
 		}
 	}
 
@@ -226,9 +236,8 @@ namespace PrettyFramework {
 
 	void LayoutControl::Dump()
 	{
-		TRACE(_T("LayoutControl:%s Rect:%d,%d,%d,%d \n"), GetId()
-			, GetRect().left, GetRect().top, GetRect().right
-			, GetRect().bottom);
+		TRACE(_T("LayoutControl:%s Rect:%d,%d,%d,%d \n"), GetId(), GetRect().GetLeft()
+			, GetRect().GetTop(), GetRect().GetRight(), GetRect().GetBottom());
 
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()

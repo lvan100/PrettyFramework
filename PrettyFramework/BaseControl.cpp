@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "UIThread.h"
 #include "BaseControl.h"
 
 namespace PrettyFramework {
@@ -11,8 +12,6 @@ namespace PrettyFramework {
 		, m_auto_width(TRUE)
 		, m_auto_height(TRUE)
 	{
-		rect_in_parent.SetRectEmpty();
-
 		if (parent != nullptr) {
 			m_window = parent->GetWindow();
 		}
@@ -23,20 +22,10 @@ namespace PrettyFramework {
 	BaseControl::~BaseControl()
 	{
 	}
-
-	// 
-	// 目前的重绘机制没有采用“脏区域”、计时器刷新的方式，而是
-	// 使用 WIN32 API 激活原生窗口的重绘机制，效果现在暂时未知。
-	// 
-
-	// 
-	// 计时器刷新机制漫谈：启动界面线程，并将根控件绑定到此线程
-	// ，采用硬件加速技术绘制界面，保持每隔16ms刷新一次的频率。
-	// 
 	
 	void BaseControl::Redraw()
 	{
-		InvalidateRect((HWND)m_window, GetViewRect(), TRUE);
+		GetUIThread().UpdateWindow(m_window);
 	}
 
 	// 
@@ -55,21 +44,21 @@ namespace PrettyFramework {
 	// |————————————————————————————|
 	// 
 
-	CRect BaseControl::GetViewRect()
+	Gdiplus::RectF BaseControl::GetViewRect()
 	{
 		if (m_parent != nullptr) {
-			CRect rcView(rect_in_parent);
-			CRect rcParent = m_parent->GetViewRect();
-			rcView.OffsetRect(rcParent.left, rcParent.top);
+			Gdiplus::RectF rcView(rect_in_parent);
+			Gdiplus::RectF rcParent = m_parent->GetViewRect();
+			rcView.Offset(rcParent.GetLeft(), rcParent.GetTop());
 			return rcView; /* 转换为控件在窗口视图的位置 */
 		} else {
 			return rect_in_parent;
 		}
 	}
 
-	BOOL BaseControl::HitTest(CPoint point)
+	BOOL BaseControl::HitTest(Gdiplus::PointF point)
 	{
-		return rect_in_parent.PtInRect(point);
+		return rect_in_parent.Contains(point);
 	}
 
 }

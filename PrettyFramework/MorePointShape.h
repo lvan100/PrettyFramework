@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Shape.h"
-
 #include <vector>
 using namespace std;
+
+#include "BaseShape.h"
 
 namespace PrettyFramework {
 
@@ -23,7 +23,7 @@ namespace PrettyFramework {
 		/**
 		 * 在序列末尾添加点
 		 */
-		void AddLastPoint(CPoint point) {
+		void AddLastPoint(Gdiplus::PointF point) {
 			m_points.push_back(point);
 		}
 
@@ -38,7 +38,7 @@ namespace PrettyFramework {
 		/**
 		 * 点序列
 		 */
-		vector<CPoint> m_points;
+		vector<Gdiplus::PointF> m_points;
 	};
 
 }

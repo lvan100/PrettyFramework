@@ -7,11 +7,6 @@ using namespace std;
 namespace PrettyFramework {
 
 	/**
-	 * 声明界面控件类型
-	 */
-	class UserControl;
-
-	/**
 	 * 获取枚举的元素数量
 	 */
 	template<typename T>
@@ -54,20 +49,22 @@ namespace PrettyFramework {
 		const static int size = 5;
 	};
 
+	class UserControl;
+
 	/**
 	 * 定义鼠标事件的参数
 	 */
 	struct EventParam {
 
 		/**
-		 * 鼠标当前的坐标
-		 */
-		CPoint point;
-
-		/**
 		 * 是否吃掉这个事件
 		 */
 		BOOL will_eat_it;
+
+		/**
+		 * 鼠标当前的坐标
+		 */
+		Gdiplus::PointF point;
 
 		/**
 		 * 鼠标事件的来源控件

@@ -20,14 +20,14 @@ namespace PrettyFramework {
 		/**
 		 * 设置形状起始点
 		 */
-		void SetBeginPoint(CPoint point) {
+		void SetBeginPoint(Gdiplus::PointF point) {
 			m_pt_begin = point;
 		}
 
 		/**
 		 * 获取形状起始点
 		 */
-		CPoint GetBeginPoint() {
+		Gdiplus::PointF GetBeginPoint() {
 			return m_pt_begin;
 		}
 
@@ -35,20 +35,20 @@ namespace PrettyFramework {
 		/**
 		 * 形状起始点
 		 */
-		CPoint m_pt_begin;
+		Gdiplus::PointF m_pt_begin;
 
 	public:
 		/**
 		 * 设置形状结束点
 		 */
-		void SetEndPoint(CPoint point) {
+		void SetEndPoint(Gdiplus::PointF point) {
 			m_pt_end = point;
 		}
 
 		/**
 		 * 获取形状结束点
 		 */
-		CPoint GetEndPoint() {
+		Gdiplus::PointF GetEndPoint() {
 			return m_pt_end;
 		}
 
@@ -56,7 +56,7 @@ namespace PrettyFramework {
 		/**
 		 * 形状结束点
 		 */
-		CPoint m_pt_end;
+		Gdiplus::PointF m_pt_end;
 	};
 
 }
