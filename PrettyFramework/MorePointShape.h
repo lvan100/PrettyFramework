@@ -27,13 +27,6 @@ namespace PrettyFramework {
 			m_points.push_back(point);
 		}
 
-		/**
-		 * 删除序列末尾的点
-		 */
-		void DeleteLastPoint() {
-			m_points.erase(m_points.end());
-		}
-
 	protected:
 		/**
 		 * 点序列

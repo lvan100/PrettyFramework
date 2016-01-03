@@ -62,14 +62,14 @@ namespace PrettyFramework {
 		BOOL will_eat_it;
 
 		/**
-		 * 鼠标当前的坐标
-		 */
-		Gdiplus::PointF point;
-
-		/**
 		 * 鼠标事件的来源控件
 		 */
 		UserControl* control;
+
+		/**
+		 * 鼠标当前的坐标
+		 */
+		Gdiplus::PointF point;
 	};
 	
 	/**

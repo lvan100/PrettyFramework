@@ -185,13 +185,13 @@
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
     <ClInclude Include="BaseStyle.h" />
+    <ClInclude Include="GdiplusHelper.h" />
     <ClInclude Include="HorizontalLayout.h" />
     <ClInclude Include="LabelStyle.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MorePointShape.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="TwoPointShape.h" />
-    <ClInclude Include="UIThread.h" />
     <ClInclude Include="VerticalLayout.h" />
     <ClInclude Include="Visual.h" />
     <ClInclude Include="Button.h" />
@@ -213,12 +213,14 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TypeSelect.h" />
     <ClInclude Include="UserControl.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbsoluteLayout.cpp" />
     <ClCompile Include="BaseControl.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonStyle.cpp" />
+    <ClCompile Include="GdiplusHelper.cpp" />
     <ClCompile Include="HorizontalLayout.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageRes.cpp" />
@@ -244,9 +246,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StringRes.cpp" />
-    <ClCompile Include="UIThread.cpp" />
     <ClCompile Include="UserControl.cpp" />
     <ClCompile Include="VerticalLayout.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PrettyFramework.rc" />

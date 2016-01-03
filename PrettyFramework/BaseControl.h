@@ -4,14 +4,19 @@
 #include <memory>
 using namespace std;
 
-#include "Constant.h"
 #include "Visual.h"
+#include "Constant.h"
 
 namespace PrettyFramework {
 
 	//
 	// 优美控件模型（部分实现参考Android、WPF界面模型概念）
 	//
+
+	// 
+	// 该框架的愿景: 使用现代C++技术，集Android、WPF、QT等优秀
+	// 界面框架之长，打造一个简单、易用、安全的现代C++界面框架。
+	// 
 
 	//
 	// “传统界面库如MFC、ATL等只有一种控件的概念，即界面控
@@ -96,11 +101,58 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// TODO 这里补充说明 Theme 和 Style 的不同和实现机制。
+	// 每种控件都有其固定的显示规则，但是通过对控件的图像、背景、热
+	// 点颜色等属性的定制化，可以使控件的表现形式多种多样，我们称这
+	// 种定制化为 Style（样式）。通过 Style（样式）我们可以在程序运
+	// 行开始的时候将控件显示成我们想要的外观，但是却不能在运行中改
+	// 变它。如果在程序运行过程中改变控件外观，就需要 Theme（主题）。
+	// 
+
+	// 
+	// Theme（主题）本质上是一组 Style（样式）的集合，不同的 Theme
+	// （主题）之间可以相互切换，但是这些可以相互切换的 Theme（主题）
+	// 必须包含相同的 Style（样式）的定义。
+	// 
+
+	// 
+	// Style（样式）之间可以有继承关系，并且子样式会覆盖父样式中的相
+	// 同设置。这种继承关系可以通过 XML 文件进行表述:
+	// 
+	// <Rectangle Name="NormalBackground">
+	//     <Item Name="BorderWidth" Value="3" />
+	//     <Item Name="CornerSize" Value="10" />
+	// </Rectangle>
+	// 
+	// <Style Name="BigButtonStyle">
+	//     <Item Name="FocusColor" Value="#FFFFFFFF" />
+	//     <Item Name="Background" Ref="NormalBackground" />
+	// </Style>
+	// 
+	// <Style Name="OtherButtonStyle" Parent="BigButtonStyle" />
+	// 
+
+	// 
+	// Theme（主题）之间也具有继承关系，子主题会覆盖父主题的相同设置
+	// 。这种继承关系可以通过 XML 文件进行表述:
+	// 
+	// <Theme Name="Win7Black">
+	//     <Style Name="BigButtonStyle"> ... </Style>
+	//     <Style Name="SmallButtonStyle"> ... </Style>
+	// </Theme>
+	// 
+	// <Theme Name="MyWin7Black" Parent="Win7Black">
+	//     <Style Name="BigButtonStyle"> ... </Style>
+	//     <Style Name="SmallButtonStyle"> ... </Style>
+	// </Theme>
+	// 
+
+	// 
+	// shared_ptr 和 weak_ptr 联合使用: shared_ptr 可以管理对象的生命
+	// 周期，而 weak_ptr 可以通过判断 shared_ptr 是否存在监视原始对象。
 	// 
 
 	/**
-	 * 基础控件接口，定义[用户控件]和[布局控件]都必须包含的属性。
+	 * 基础控件接口，定义 [用户控件] 和 [布局控件] 都必须包含的属性。
 	 */
 	class BaseControl : public Visual
 	{
@@ -124,6 +176,11 @@ namespace PrettyFramework {
 		}
 
 	protected:
+		// 
+		// 子控件包含在父控件生命周期内，
+		// 因此父控件指针可以被安全拥有。
+		// 
+
 		/**
 		 * 父控件指针
 		 */
@@ -171,6 +228,11 @@ namespace PrettyFramework {
 		 * 本地窗口指针
 		 */
 		void* m_window;
+
+		// 
+		// 使用浮点坐标系的原因: 考虑到将来的无限可能，
+		// 使用浮点坐标系应该是个不错的选择。(绘图要求)
+		// 
 
 	public:
 		/**

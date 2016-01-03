@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "UIThread.h"
 #include "BaseControl.h"
 
 namespace PrettyFramework {
@@ -23,9 +22,13 @@ namespace PrettyFramework {
 	{
 	}
 	
+	// 
+	// 经过慎重考虑和实践，不能使用单独线程刷新界面。
+	// 
+
 	void BaseControl::Redraw()
 	{
-		GetUIThread().UpdateWindow(m_window);
+		InvalidateRect((HWND)m_window, NULL, TRUE);
 	}
 
 	// 

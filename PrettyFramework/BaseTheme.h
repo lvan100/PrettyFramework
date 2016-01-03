@@ -24,34 +24,34 @@ namespace PrettyFramework {
 		CFont label_text_font;
 
 		// 标签控件的背景颜色
-		COLORREF label_bk_clr;
+		Gdiplus::Color label_bk_clr;
 
 		// 标签控件的文字颜色
-		COLORREF label_text_clr;
+		Gdiplus::Color label_text_clr;
 
 		// 标签控件的边框颜色
-		COLORREF label_border_normal_clr;
-		COLORREF label_border_hover_clr;
-		COLORREF label_border_press_clr;
-		COLORREF label_border_focus_clr;
+		Gdiplus::Color label_border_normal_clr;
+		Gdiplus::Color label_border_hover_clr;
+		Gdiplus::Color label_border_press_clr;
+		Gdiplus::Color label_border_focus_clr;
 
 		// 按钮控件的字体
 		CFont button_text_font;
 
 		// 按钮控件的文字颜色
-		COLORREF button_text_clr;
+		Gdiplus::Color button_text_clr;
 
 		// 按钮控件的背景颜色
-		COLORREF button_bk_normal_clr;
-		COLORREF button_bk_hover_clr;
-		COLORREF button_bk_press_clr;
-		COLORREF button_bk_focus_clr;
+		Gdiplus::Color button_bk_normal_clr;
+		Gdiplus::Color button_bk_hover_clr;
+		Gdiplus::Color button_bk_press_clr;
+		Gdiplus::Color button_bk_focus_clr;
 
 		// 按钮控件的边框颜色
-		COLORREF button_border_normal_clr;
-		COLORREF button_border_hover_clr;
-		COLORREF button_border_press_clr;
-		COLORREF button_border_focus_clr;
+		Gdiplus::Color button_border_normal_clr;
+		Gdiplus::Color button_border_hover_clr;
+		Gdiplus::Color button_border_press_clr;
+		Gdiplus::Color button_border_focus_clr;
 	};
 
 	/**

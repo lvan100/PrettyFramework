@@ -29,7 +29,7 @@ namespace PrettyFramework {
 	/**
 	 * 从字符串中解析颜色值
 	 */
-	static COLORREF GetColor(CString str) {
+	static Gdiplus::Color GetColor(CString str) {
 		if (str.GetAt(0) == '#') {
 			long value = _tcstol(str.Mid(1), nullptr, 16);
 			return RGB((value & 0xFF0000) >> 16

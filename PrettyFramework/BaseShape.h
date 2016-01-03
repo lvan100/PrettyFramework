@@ -23,14 +23,14 @@ namespace PrettyFramework {
 		/**
 		 * 设置边框的宽度
 		 */
-		void SetBorderWidth(int width) {
+		void SetBorderWidth(float width) {
 			m_border_width = width;
 		}
 
 		/**
 		 * 获取边框的宽度
 		 */
-		int GetBorderWidth() {
+		float GetBorderWidth() {
 			return m_border_width;
 		}
 
@@ -38,20 +38,20 @@ namespace PrettyFramework {
 		/**
 		 * 边框的宽度
 		 */
-		int m_border_width;
+		float m_border_width;
 
 	public:
 		/**
 		 * 设置边框的颜色
 		 */
-		void SetBorderColor(COLORREF clr) {
+		void SetBorderColor(Gdiplus::Color clr) {
 			m_border_color = clr;
 		}
 
 		/**
 		 * 获取边框的颜色
 		 */
-		COLORREF GetBorderColor() {
+		Gdiplus::Color GetBorderColor() {
 			return m_border_color;
 		}
 
@@ -59,18 +59,18 @@ namespace PrettyFramework {
 		/**
 		 * 边框的颜色
 		 */
-		COLORREF m_border_color;
+		Gdiplus::Color m_border_color;
 
 	public:
 		/**
-		 * 设置边框的样式，@CDC::PenStyle
+		 * 设置边框的样式，@Gdiplus::Pen
 		 */
 		void SetBorderStyle(int style) {
 			m_border_style = style;
 		}
 
 		/**
-		 * 获取边框的样式，@CDC::PenStyle
+		 * 获取边框的样式，@Gdiplus::Pen
 		 */
 		int GetBorderStyle() {
 			return m_border_style;
@@ -78,7 +78,7 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		 * 边框的样式，@CDC::PenStyle
+		 * 边框的样式，@Gdiplus::Pen
 		 */
 		int m_border_style;
 
@@ -107,14 +107,14 @@ namespace PrettyFramework {
 		/**
 		 * 设置填充的颜色
 		 */
-		void SetFillColor(COLORREF clr) {
+		void SetFillColor(Gdiplus::Color clr) {
 			m_fill_color = clr;
 		}
 
 		/**
 		 * 获取填充的颜色
 		 */
-		COLORREF GetFillColor() {
+		Gdiplus::Color GetFillColor() {
 			return m_fill_color;
 		}
 
@@ -122,7 +122,7 @@ namespace PrettyFramework {
 		/**
 		 * 填充的颜色
 		 */
-		COLORREF m_fill_color;
+		Gdiplus::Color m_fill_color;
 
 	public:
 		/**
