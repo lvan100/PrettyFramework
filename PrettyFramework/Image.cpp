@@ -16,14 +16,14 @@ namespace PrettyFramework {
 	
 	void Image::OnPaint(Gdiplus::Graphics& graph)
 	{
-// 		Gdiplus::RectF rcView = GetViewRect();
+// 		Rect rcView = GetViewRect();
 // 		if (!rcView.IsRectEmpty()) {
 // 
-// 			Gdiplus::RectF rcMargined(rcView);
+// 			Rect rcMargined(rcView);
 // 			rcMargined.DeflateRect(m_margin);
 // 
-// 			Gdiplus::RectF rcIcon;
-// 			Gdiplus::SizeF szIcon = GetIconSize(m_bitmap);
+// 			Rect rcIcon;
+// 			Size szIcon = GetIconSize(m_bitmap);
 // 
 // 			if ((m_gravity & Gravity::Left) == Gravity::Left) {
 // 				rcIcon.right = rcView.right - m_margin.right;

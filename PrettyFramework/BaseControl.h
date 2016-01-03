@@ -5,7 +5,7 @@
 using namespace std;
 
 #include "Visual.h"
-#include "Constant.h"
+#include "Typedef.h"
 
 namespace PrettyFramework {
 
@@ -14,8 +14,8 @@ namespace PrettyFramework {
 	//
 
 	// 
-	// 该框架的愿景: 使用现代C++技术，集Android、WPF、QT等优秀
-	// 界面框架之长，打造一个简单、易用、安全的现代C++界面框架。
+	// 作者的愿景: 使用现代C++技术，集Android、WPF、QT等优秀
+	// 界面框架之长，打造简单、易用、安全的现代C++界面框架。
 	// 
 
 	//
@@ -229,16 +229,11 @@ namespace PrettyFramework {
 		 */
 		void* m_window;
 
-		// 
-		// 使用浮点坐标系的原因: 考虑到将来的无限可能，
-		// 使用浮点坐标系应该是个不错的选择。(绘图要求)
-		// 
-
 	public:
 		/**
 		 * 设置控件在父控件的坐标
 		 */
-		void SetRect(Gdiplus::RectF rect) {
+		void SetRect(Rect rect) {
 			rect_in_parent = rect;
 			RecalcLayout();
 		}
@@ -246,7 +241,7 @@ namespace PrettyFramework {
 		/**
 		 * 获取控件在父控件的坐标
 		 */
-		Gdiplus::RectF GetRect() {
+		Rect GetRect() {
 			return rect_in_parent;
 		}
 
@@ -254,20 +249,20 @@ namespace PrettyFramework {
 		/**
 		 * 控件在父控件的坐标
 		 */
-		Gdiplus::RectF rect_in_parent;
+		Rect rect_in_parent;
 
 	public:
 		/**
 		 * 设置控件的固定宽高
 		 */
-		void SetFixSize(Gdiplus::SizeF size) {
+		void SetFixSize(Size size) {
 			m_fix_size = size;
 		}
 
 		/**
 		 * 获取控件的固定宽高
 		 */
-		Gdiplus::SizeF GetFixSize() {
+		Size GetFixSize() {
 			return m_fix_size;
 		}
 
@@ -275,7 +270,7 @@ namespace PrettyFramework {
 		/**
 		 * 控件的固定宽高
 		 */
-		Gdiplus::SizeF m_fix_size;
+		Size m_fix_size;
 
 	public:
 		/**
@@ -365,14 +360,14 @@ namespace PrettyFramework {
 		/**
 		 * 设置控件的内边距
 		 */
-		void SetMargin(Gdiplus::RectF margin) {
+		void SetMargin(Margin margin) {
 			m_margin = margin;
 		}
 
 		/**
 		 * 获取控件的内边距
 		 */
-		Gdiplus::RectF GetMargin() {
+		Margin GetMargin() {
 			return m_margin;
 		}
 
@@ -380,7 +375,7 @@ namespace PrettyFramework {
 		/**
 		 * 控件的内边距
 		 */
-		Gdiplus::RectF m_margin;
+		Margin m_margin;
 
 		// 
 		// 1.绘图
@@ -395,7 +390,7 @@ namespace PrettyFramework {
 		/**
 		 * 获取控件的视图坐标
 		 */
-		Gdiplus::RectF GetViewRect();
+		Rect GetViewRect();
 
 		// 
 		// 2.事件
@@ -405,23 +400,23 @@ namespace PrettyFramework {
 		/**
 		 * 控件是否被击中
 		 */
-		virtual BOOL HitTest(Gdiplus::PointF point);
+		virtual BOOL HitTest(Point point);
 
 	protected:
 		/**
 		 * 鼠标弹起事件
 		 */
-		virtual void OnMouseUp(Gdiplus::PointF point) = 0;
+		virtual void OnMouseUp(Point point) = 0;
 
 		/**
 		 * 鼠标移动事件
 		 */
-		virtual void OnMouseMove(Gdiplus::PointF point) = 0;
+		virtual void OnMouseMove(Point point) = 0;
 
 		/**
 		 * 鼠标按下事件
 		 */
-		virtual void OnMouseDown(Gdiplus::PointF point) = 0;
+		virtual void OnMouseDown(Point point) = 0;
 
 		// 
 		// 3.布局

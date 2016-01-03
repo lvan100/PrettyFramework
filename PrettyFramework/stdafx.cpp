@@ -30,10 +30,10 @@ CString GetModuleDir(HMODULE hModule/* = NULL*/)
 	return strModulePath;
 }
 
-Gdiplus::SizeF GetIconSize(HICON hIcon)
+CSize GetIconSize(HICON hIcon)
 {
 	if (hIcon == nullptr) {
-		return Gdiplus::SizeF(0, 0);
+		return CSize(0, 0);
 	}
 
 	ICONINFO iconInfo;
@@ -45,5 +45,5 @@ Gdiplus::SizeF GetIconSize(HICON hIcon)
 	DeleteObject(iconInfo.hbmColor);
 	DeleteObject(iconInfo.hbmMask);
 
-	return Gdiplus::SizeF(bitmap.bmWidth, bitmap.bmHeight);
+	return CSize(bitmap.bmWidth, bitmap.bmHeight);
 }

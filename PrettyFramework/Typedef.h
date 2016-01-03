@@ -4,6 +4,8 @@
 #include <functional>
 using namespace std;
 
+#include "Coordinate.h"
+
 namespace PrettyFramework {
 
 	/**
@@ -57,6 +59,11 @@ namespace PrettyFramework {
 	struct EventParam {
 
 		/**
+		 * 鼠标当前的坐标
+		 */
+		Point point;
+
+		/**
 		 * 是否吃掉这个事件
 		 */
 		BOOL will_eat_it;
@@ -65,11 +72,6 @@ namespace PrettyFramework {
 		 * 鼠标事件的来源控件
 		 */
 		UserControl* control;
-
-		/**
-		 * 鼠标当前的坐标
-		 */
-		Gdiplus::PointF point;
 	};
 	
 	/**
@@ -92,5 +94,53 @@ namespace PrettyFramework {
 	 * 定义鼠标点击事件响应函数原型
 	 */
 	using ClickEvent = function<void(ClickParam&)>;
+
+	/**
+	 * 缩小范围
+	 */
+	void DeflateRect(Gdiplus::RectF& rect, const Margin& margin) {
+		rect.Height -= margin.Top + margin.Bottom;
+		rect.Width -= margin.Left + margin.Right;
+		rect.X += margin.Left;
+		rect.Y += margin.Top;
+	}
+
+	/**
+	 * 缩小范围
+	 */
+	void DeflateRect(Gdiplus::RectF& rect, float margin) {
+		rect.Height -= margin * 2;
+		rect.Width -= margin * 2;
+		rect.X += margin;
+		rect.Y += margin;
+	}
+
+	/**
+	 * 转换为 Gdiplus 的坐标系
+	 */
+	Gdiplus::PointF toGdiplusPoint(Point point) {
+		return Gdiplus::PointF(point.X, point.Y);
+	}
+
+	/**
+	 * 转换为 GDI 的坐标系
+	 */
+	CPoint toGDIPoint(Point point) {
+		return CPoint(point.X, point.Y);
+	}
+
+	/**
+	 * 转换为 Gdiplus 的坐标系
+	 */
+	Gdiplus::RectF toGdiplusRect(Rect rect) {
+		return Gdiplus::RectF(rect.Left, rect.Top, rect.Width, rect.Height);
+	}
+
+	/**
+	 * 转换为 GDI 的坐标系
+	 */
+	CRect toGdiRect(Rect rect) {
+		return CRect(rect.GetLeft(), rect.GetTop(), rect.GetRight(), rect.GetBottom());
+	}
 
 }

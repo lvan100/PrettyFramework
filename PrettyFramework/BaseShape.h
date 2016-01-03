@@ -10,12 +10,12 @@ namespace PrettyFramework {
 	class Shape : public Visual
 	{
 	public:
-		Shape()
-			: m_border_width(0)
-			, m_fill_null(FALSE)
+		Shape() : m_border_width(0)
 			, m_border_null(FALSE)
-			, m_border_style(PS_SOLID)
-		{}
+			, m_fill_null(FALSE)
+		{
+			m_border_style = Gdiplus::DashStyle::DashStyleSolid;
+		}
 
 		virtual ~Shape() {}
 
@@ -63,24 +63,24 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 设置边框的样式，@Gdiplus::Pen
+		 * 设置边框的样式，@Gdiplus::DashStyle
 		 */
-		void SetBorderStyle(int style) {
+		void SetBorderStyle(Gdiplus::DashStyle style) {
 			m_border_style = style;
 		}
 
 		/**
-		 * 获取边框的样式，@Gdiplus::Pen
+		 * 获取边框的样式，@Gdiplus::DashStyle
 		 */
-		int GetBorderStyle() {
+		Gdiplus::DashStyle GetBorderStyle() {
 			return m_border_style;
 		}
 
 	protected:
 		/**
-		 * 边框的样式，@Gdiplus::Pen
+		 * 边框的样式，@Gdiplus::DashStyle
 		 */
-		int m_border_style;
+		Gdiplus::DashStyle m_border_style;
 
 	public:
 		/**

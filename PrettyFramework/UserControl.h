@@ -119,17 +119,17 @@ namespace PrettyFramework {
 		/**
 		 * 鼠标弹起事件
 		 */
-		virtual void OnMouseUp(Gdiplus::PointF point);
+		virtual void OnMouseUp(Point point);
 
 		/**
 		 * 鼠标移动事件
 		 */
-		virtual void OnMouseMove(Gdiplus::PointF point);
+		virtual void OnMouseMove(Point point);
 
 		/**
 		 * 鼠标按下事件
 		 */
-		virtual void OnMouseDown(Gdiplus::PointF point);
+		virtual void OnMouseDown(Point point);
 		
 	protected:
 		/**

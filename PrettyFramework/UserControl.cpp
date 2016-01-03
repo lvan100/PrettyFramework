@@ -22,10 +22,10 @@ namespace PrettyFramework {
 			Gdiplus::Region rgnOldClip;
 			graph.GetClip(&rgnOldClip);
 
-			Gdiplus::RectF rcOldClip;
+			Rect rcOldClip;
 			graph.GetClipBounds(&rcOldClip);
 
-			Gdiplus::RectF rcClip = GetViewRect();
+			Rect rcClip = GetViewRect();
 
 			rcClip.X += m_margin.X;
 			rcClip.Y += m_margin.Y;
@@ -39,7 +39,7 @@ namespace PrettyFramework {
 
 				Gdiplus::Region rgnControl;
 
-				Gdiplus::RectF rect = m_layout->GetViewRect();
+				Rect rect = m_layout->GetViewRect();
 				rgnControl.Intersect(rect);
 
 				rgnControl.Intersect(&rgnClip);
@@ -88,7 +88,7 @@ namespace PrettyFramework {
 		}
 	}
 
-	void UserControl::OnMouseUp(Gdiplus::PointF point)
+	void UserControl::OnMouseUp(Point point)
 	{
 		if (IsDisable()) {
 			return;
@@ -121,7 +121,7 @@ namespace PrettyFramework {
 		}
 	}
 
-	void UserControl::OnMouseMove(Gdiplus::PointF point)
+	void UserControl::OnMouseMove(Point point)
 	{
 		if (IsDisable()) {
 			return;
@@ -161,7 +161,7 @@ namespace PrettyFramework {
 		}
 	}
 
-	void UserControl::OnMouseDown(Gdiplus::PointF point)
+	void UserControl::OnMouseDown(Point point)
 	{
 		if (IsDisable()) {
 			return;
@@ -197,7 +197,7 @@ namespace PrettyFramework {
 	void UserControl::RecalcLayout()
 	{
 		if (m_layout != nullptr) {
-			Gdiplus::RectF rcClient(GetRect());
+			Rect rcClient(GetRect());
 			rcClient.X = rcClient.Y = 0;
 			m_layout->SetRect(rcClient);
 		}

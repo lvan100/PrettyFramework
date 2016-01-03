@@ -6,7 +6,6 @@ namespace PrettyFramework {
 	BaseControl::BaseControl(BaseControl* parent)
 		: m_weight(1.0f)
 		, m_parent(parent)
-		, m_fix_size(0, 0)
 		, m_window(nullptr)
 		, m_auto_width(TRUE)
 		, m_auto_height(TRUE)
@@ -28,7 +27,12 @@ namespace PrettyFramework {
 
 	void BaseControl::Redraw()
 	{
+#if 0
+		CRect rect = toGdiRect(GetViewRect());
+		InvalidateRect((HWND)m_window, rect, TRUE);
+#else
 		InvalidateRect((HWND)m_window, NULL, TRUE);
+#endif
 	}
 
 	// 
@@ -47,19 +51,21 @@ namespace PrettyFramework {
 	// |————————————————————————————|
 	// 
 
-	Gdiplus::RectF BaseControl::GetViewRect()
+	Rect BaseControl::GetViewRect()
 	{
 		if (m_parent != nullptr) {
-			Gdiplus::RectF rcView(rect_in_parent);
-			Gdiplus::RectF rcParent = m_parent->GetViewRect();
-			rcView.Offset(rcParent.GetLeft(), rcParent.GetTop());
-			return rcView; /* 转换为控件在窗口视图的位置 */
+			Rect rcParent = m_parent->GetViewRect();
+			Rect rcView = rect_in_parent;
+			rcView.Left += rcParent.Left;
+			rcView.Top += rcParent.Top;
+			/* 控件在窗口视图的位置 */
+			return rcView;
 		} else {
 			return rect_in_parent;
 		}
 	}
 
-	BOOL BaseControl::HitTest(Gdiplus::PointF point)
+	BOOL BaseControl::HitTest(Point point)
 	{
 		return rect_in_parent.Contains(point);
 	}

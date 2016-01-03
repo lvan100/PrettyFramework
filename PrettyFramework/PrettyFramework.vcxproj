@@ -185,6 +185,7 @@
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
     <ClInclude Include="BaseStyle.h" />
+    <ClInclude Include="Coordinate.h" />
     <ClInclude Include="GdiplusHelper.h" />
     <ClInclude Include="HorizontalLayout.h" />
     <ClInclude Include="LabelStyle.h" />
@@ -196,7 +197,7 @@
     <ClInclude Include="Visual.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonStyle.h" />
-    <ClInclude Include="Constant.h" />
+    <ClInclude Include="Typedef.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageRes.h" />
     <ClInclude Include="BaseTheme.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="BaseControl.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonStyle.cpp" />
+    <ClCompile Include="Coordinate.cpp" />
     <ClCompile Include="GdiplusHelper.cpp" />
     <ClCompile Include="HorizontalLayout.cpp" />
     <ClCompile Include="Image.cpp" />

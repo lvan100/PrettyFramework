@@ -77,10 +77,10 @@ namespace PrettyFramework {
 		Gdiplus::Region rgnOldClip;
 		graph.GetClip(&rgnOldClip);
 
-		Gdiplus::RectF rcOldClip;
+		Rect rcOldClip;
 		graph.GetClipBounds(&rcOldClip);
 
-		Gdiplus::RectF rcClip = GetViewRect();
+		Rect rcClip = GetViewRect();
 
 		rcClip.X += m_margin.X;
 		rcClip.Y += m_margin.Y;
@@ -98,7 +98,7 @@ namespace PrettyFramework {
 
 			Gdiplus::Region rgnControl;
 
-			Gdiplus::RectF rect = control->GetViewRect();
+			Rect rect = control->GetViewRect();
 			rgnControl.Intersect(rect);
 
 			rgnControl.Intersect(&rgnClip);
@@ -110,9 +110,9 @@ namespace PrettyFramework {
 		graph.SetClip(&rgnOldClip);
 	}
 
-	void LayoutControl::OnMouseUp(Gdiplus::PointF point)
+	void LayoutControl::OnMouseUp(Point point)
 	{
-		Gdiplus::PointF ptInThis(point);
+		Point ptInThis(point);
 		ptInThis.Y -= GetRect().GetTop();
 		ptInThis.X -= GetRect().GetLeft();
 
@@ -127,9 +127,9 @@ namespace PrettyFramework {
 		}
 	}
 
-	void LayoutControl::OnMouseMove(Gdiplus::PointF point)
+	void LayoutControl::OnMouseMove(Point point)
 	{
-		Gdiplus::PointF ptInThis(point);
+		Point ptInThis(point);
 		ptInThis.Y -= GetRect().GetTop();
 		ptInThis.X -= GetRect().GetLeft();
 
@@ -166,9 +166,9 @@ namespace PrettyFramework {
 		}
 	}
 
-	void LayoutControl::OnMouseDown(Gdiplus::PointF point)
+	void LayoutControl::OnMouseDown(Point point)
 	{
-		Gdiplus::PointF ptInThis(point);
+		Point ptInThis(point);
 		ptInThis.Y -= GetRect().GetTop();
 		ptInThis.X -= GetRect().GetLeft();
 
@@ -209,10 +209,10 @@ namespace PrettyFramework {
 	{
 		if (m_bkgnd_shape != nullptr) {
 
-			Gdiplus::PointF ptBegin(rect_in_parent.X, rect_in_parent.Y);
+			Point ptBegin(rect_in_parent.X, rect_in_parent.Y);
 			m_bkgnd_shape->SetBeginPoint(ptBegin);
 
-			Gdiplus::PointF ptEnd(rect_in_parent.GetRight(), rect_in_parent.GetBottom());
+			Point ptEnd(rect_in_parent.GetRight(), rect_in_parent.GetBottom());
 			m_bkgnd_shape->SetEndPoint(ptEnd);
 		}
 	}

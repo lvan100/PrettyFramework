@@ -15,11 +15,11 @@ namespace PrettyFramework {
 
 	void ButtonStyle::Paint(Gdiplus::Graphics& graph)
 	{
-// 		Gdiplus::RectF rcView = m_button->GetViewRect();
+// 		Rect rcView = m_button->GetViewRect();
 // 		if (!rcView.IsRectEmpty()) {
 // 			auto& theme = GetUITheme();
 // 
-// 			Gdiplus::RectF rcMargined(rcView);
+// 			Rect rcMargined(rcView);
 // 			rcMargined.DeflateRect(m_button->GetMargin());
 // 
 // 			dc.FrameRect(rcView, &CBrush(theme->button_border_normal_clr));

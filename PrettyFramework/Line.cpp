@@ -1,5 +1,7 @@
 #include "stdafx.h"
+
 #include "Line.h"
+#include "Typedef.h"
 
 namespace PrettyFramework {
 
@@ -11,12 +13,11 @@ namespace PrettyFramework {
 	
 	void Line::Paint(Gdiplus::Graphics& graph)
 	{
-		// 
-		// TODO 完善线条绘制，尽量简单够用就好，别太复杂。
-		// 
-
 		Gdiplus::Pen pen(m_border_color, m_border_width);
-		graph.DrawLine(&pen, m_pt_begin, m_pt_end);
+		pen.SetDashStyle(m_border_style);
+
+		graph.DrawLine(&pen, toGdiplusPoint(m_pt_begin)
+			, toGdiplusPoint(m_pt_end));
 	}
 
 }

@@ -14,7 +14,7 @@ namespace PrettyFramework {
 	{
 		LayoutControl::RecalcLayout();
 
-		Gdiplus::RectF rcMargined(rect_in_parent);
+		Rect rcMargined(rect_in_parent);
 
 		rcMargined.X += m_margin.X;
 		rcMargined.Y += m_margin.Y;
@@ -36,7 +36,7 @@ namespace PrettyFramework {
 		for (size_t i = 0; i < itemCount; i++) {
 
 			auto& control = m_children.at(i);
-			Gdiplus::SizeF cFixSize = control->GetFixSize();
+			Size cFixSize = control->GetFixSize();
 
 			if (cFixSize.Width > 0) {
 				childWeight[i] = cFixSize.Width * 1.0f / rectWidth;
@@ -66,9 +66,9 @@ namespace PrettyFramework {
 		for (size_t i = 0; i < childWeight.size(); i++) {
 			auto& control = m_children.at(i);
 
-			Gdiplus::RectF rcControl;
+			Rect rcControl;
 
-			Gdiplus::SizeF cFixSize = control->GetFixSize();
+			Size cFixSize = control->GetFixSize();
 
 			int width = int(childWeight[i] * rectWidth);
 			if (lastWidth + width > rectWidth) {

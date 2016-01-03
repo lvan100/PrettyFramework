@@ -16,62 +16,62 @@
     <Filter Include="0.Framework">
       <UniqueIdentifier>{90617664-b662-4008-a9bc-3a6e35c45572}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\0.Control">
-      <UniqueIdentifier>{22e97c87-146a-4c9b-b1ff-434e1a5e1931}</UniqueIdentifier>
+    <Filter Include="0.Framework\0.Typedef">
+      <UniqueIdentifier>{6727f1b4-906a-4475-b7d6-a5ad32153d9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\0.Control\0.Visual">
-      <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\1.Shape">
-      <UniqueIdentifier>{31efa8a8-456c-4b42-b9d7-a17d171f8ede}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\1.Shape\0.Shape">
-      <UniqueIdentifier>{f81db2fe-f0ca-4bca-832f-b6c6ec4b9ef0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\1.Shape\1.TwoPoint">
-      <UniqueIdentifier>{ab1bff9b-3b80-441a-a08e-bd5f9537b99b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\1.Shape\2.MorePoint">
-      <UniqueIdentifier>{c7d639b3-494b-41c0-af7f-212f35eb8eb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\1.Shape\4.Rectangle">
-      <UniqueIdentifier>{b7474451-5295-4ab1-91a2-64e8bf56c004}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\1.Shape\3.Line">
-      <UniqueIdentifier>{956dba10-6872-4db4-9baf-6d95634671d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\2.Layout">
-      <UniqueIdentifier>{624e5228-f5b9-46f8-8def-0f1deffe5403}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\0.Control\3.Control">
-      <UniqueIdentifier>{09bf9fa0-f3e6-49e4-8c85-12cb6af2469a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\1.Resource">
+    <Filter Include="0.Framework\2.Resource">
       <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\1.Resource\Image">
+    <Filter Include="0.Framework\2.Resource\Image">
       <UniqueIdentifier>{7e00eaa6-ffc2-4979-aa52-23bd013aa1e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\1.Resource\String">
+    <Filter Include="0.Framework\2.Resource\String">
       <UniqueIdentifier>{d0afe964-dfdc-4a15-b9c3-8f9c62c4d3fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\1.Resource\3.Style">
+    <Filter Include="0.Framework\2.Resource\3.Style">
       <UniqueIdentifier>{b2bdb332-f2de-4452-bcd8-2933079dc1ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\1.Resource\5.Theme">
+    <Filter Include="0.Framework\2.Resource\5.Theme">
       <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\1.Resource\0.Render">
+    <Filter Include="0.Framework\2.Resource\0.Render">
       <UniqueIdentifier>{c2e09d6f-a3ab-4d9b-b2cd-1d226dde49ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\2.ThirdParty">
+    <Filter Include="0.Framework\3.ThirdParty">
       <UniqueIdentifier>{e37f54b5-2006-4361-bf99-da94db08b8dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\2.ThirdParty\2.XmlMarkup">
+    <Filter Include="0.Framework\3.ThirdParty\2.XmlMarkup">
       <UniqueIdentifier>{5669bf96-4280-43c2-89b9-52d47d7efe4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\2.ThirdParty\1.SelfModule">
+    <Filter Include="0.Framework\3.ThirdParty\1.SelfModule">
       <UniqueIdentifier>{eb5312aa-bc19-423d-85e7-53045638c738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control">
+      <UniqueIdentifier>{22e97c87-146a-4c9b-b1ff-434e1a5e1931}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\2.Shape">
+      <UniqueIdentifier>{31efa8a8-456c-4b42-b9d7-a17d171f8ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\2.Shape\1.TwoPoint">
+      <UniqueIdentifier>{ab1bff9b-3b80-441a-a08e-bd5f9537b99b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\2.Shape\2.MorePoint">
+      <UniqueIdentifier>{c7d639b3-494b-41c0-af7f-212f35eb8eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\2.Shape\4.Rectangle">
+      <UniqueIdentifier>{b7474451-5295-4ab1-91a2-64e8bf56c004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\2.Shape\3.Line">
+      <UniqueIdentifier>{956dba10-6872-4db4-9baf-6d95634671d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\3.Layout">
+      <UniqueIdentifier>{624e5228-f5b9-46f8-8def-0f1deffe5403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\4.Control">
+      <UniqueIdentifier>{09bf9fa0-f3e6-49e4-8c85-12cb6af2469a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\1.Control\0.Visual">
+      <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,85 +91,88 @@
       <Filter>MainFrame</Filter>
     </ClInclude>
     <ClInclude Include="Label.h">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClInclude>
     <ClInclude Include="AbsoluteLayout.h">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClInclude>
     <ClInclude Include="BaseControl.h">
-      <Filter>0.Framework\0.Control\0.Visual</Filter>
+      <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClInclude>
     <ClInclude Include="BaseTheme.h">
-      <Filter>0.Framework\1.Resource\5.Theme</Filter>
+      <Filter>0.Framework\2.Resource\5.Theme</Filter>
     </ClInclude>
     <ClInclude Include="SelfModule.h">
-      <Filter>0.Framework\2.ThirdParty\1.SelfModule</Filter>
+      <Filter>0.Framework\3.ThirdParty\1.SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="TypeSelect.h">
-      <Filter>0.Framework\2.ThirdParty\1.SelfModule</Filter>
+      <Filter>0.Framework\3.ThirdParty\1.SelfModule</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
-    </ClInclude>
-    <ClInclude Include="Constant.h">
-      <Filter>0.Framework\0.Control\0.Visual</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClInclude>
     <ClInclude Include="Markup.h">
-      <Filter>0.Framework\2.ThirdParty\2.XmlMarkup</Filter>
+      <Filter>0.Framework\3.ThirdParty\2.XmlMarkup</Filter>
     </ClInclude>
     <ClInclude Include="LayoutControl.h">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClInclude>
     <ClInclude Include="UserControl.h">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClInclude>
     <ClInclude Include="ButtonStyle.h">
-      <Filter>0.Framework\1.Resource\3.Style</Filter>
+      <Filter>0.Framework\2.Resource\3.Style</Filter>
     </ClInclude>
     <ClInclude Include="TwoPointShape.h">
-      <Filter>0.Framework\0.Control\1.Shape\1.TwoPoint</Filter>
+      <Filter>0.Framework\1.Control\2.Shape\1.TwoPoint</Filter>
     </ClInclude>
     <ClInclude Include="MorePointShape.h">
-      <Filter>0.Framework\0.Control\1.Shape\2.MorePoint</Filter>
+      <Filter>0.Framework\1.Control\2.Shape\2.MorePoint</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
-      <Filter>0.Framework\0.Control\1.Shape\3.Line</Filter>
+      <Filter>0.Framework\1.Control\2.Shape\3.Line</Filter>
     </ClInclude>
     <ClInclude Include="Rectangle.h">
-      <Filter>0.Framework\0.Control\1.Shape\4.Rectangle</Filter>
+      <Filter>0.Framework\1.Control\2.Shape\4.Rectangle</Filter>
     </ClInclude>
     <ClInclude Include="HorizontalLayout.h">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClInclude>
     <ClInclude Include="VerticalLayout.h">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseShape.h">
-      <Filter>0.Framework\0.Control\1.Shape\0.Shape</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClInclude>
     <ClInclude Include="LabelStyle.h">
-      <Filter>0.Framework\1.Resource\3.Style</Filter>
+      <Filter>0.Framework\2.Resource\3.Style</Filter>
     </ClInclude>
     <ClInclude Include="BaseStyle.h">
-      <Filter>0.Framework\1.Resource\3.Style</Filter>
+      <Filter>0.Framework\2.Resource\3.Style</Filter>
     </ClInclude>
     <ClInclude Include="Visual.h">
-      <Filter>0.Framework\0.Control\0.Visual</Filter>
+      <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClInclude>
     <ClInclude Include="ImageRes.h">
-      <Filter>0.Framework\1.Resource\Image</Filter>
+      <Filter>0.Framework\2.Resource\Image</Filter>
     </ClInclude>
     <ClInclude Include="StringRes.h">
-      <Filter>0.Framework\1.Resource\String</Filter>
+      <Filter>0.Framework\2.Resource\String</Filter>
     </ClInclude>
     <ClInclude Include="GdiplusHelper.h">
-      <Filter>0.Framework\1.Resource\0.Render</Filter>
+      <Filter>0.Framework\2.Resource\0.Render</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <Filter>0.Framework\0.Typedef</Filter>
+    </ClInclude>
+    <ClInclude Include="Typedef.h">
+      <Filter>0.Framework\0.Typedef</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseShape.h">
+      <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -183,64 +186,67 @@
       <Filter>MainFrame</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClCompile>
     <ClCompile Include="AbsoluteLayout.cpp">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClCompile>
     <ClCompile Include="BaseControl.cpp">
-      <Filter>0.Framework\0.Control\0.Visual</Filter>
+      <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClCompile>
     <ClCompile Include="BaseTheme.cpp">
-      <Filter>0.Framework\1.Resource\5.Theme</Filter>
+      <Filter>0.Framework\2.Resource\5.Theme</Filter>
     </ClCompile>
     <ClCompile Include="SelfModule.cpp">
-      <Filter>0.Framework\2.ThirdParty\1.SelfModule</Filter>
+      <Filter>0.Framework\3.ThirdParty\1.SelfModule</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClCompile>
     <ClCompile Include="Markup.cpp">
-      <Filter>0.Framework\2.ThirdParty\2.XmlMarkup</Filter>
+      <Filter>0.Framework\3.ThirdParty\2.XmlMarkup</Filter>
     </ClCompile>
     <ClCompile Include="LayoutControl.cpp">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClCompile>
     <ClCompile Include="UserControl.cpp">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClCompile>
     <ClCompile Include="ButtonStyle.cpp">
-      <Filter>0.Framework\1.Resource\3.Style</Filter>
+      <Filter>0.Framework\2.Resource\3.Style</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
-      <Filter>0.Framework\0.Control\1.Shape\3.Line</Filter>
+      <Filter>0.Framework\1.Control\2.Shape\3.Line</Filter>
     </ClCompile>
     <ClCompile Include="Rectangle.cpp">
-      <Filter>0.Framework\0.Control\1.Shape\4.Rectangle</Filter>
+      <Filter>0.Framework\1.Control\2.Shape\4.Rectangle</Filter>
     </ClCompile>
     <ClCompile Include="HorizontalLayout.cpp">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClCompile>
     <ClCompile Include="VerticalLayout.cpp">
-      <Filter>0.Framework\0.Control\2.Layout</Filter>
+      <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClCompile>
     <ClCompile Include="LabelStyle.cpp">
-      <Filter>0.Framework\1.Resource\3.Style</Filter>
+      <Filter>0.Framework\2.Resource\3.Style</Filter>
     </ClCompile>
     <ClCompile Include="ImageRes.cpp">
-      <Filter>0.Framework\1.Resource\Image</Filter>
+      <Filter>0.Framework\2.Resource\Image</Filter>
     </ClCompile>
     <ClCompile Include="StringRes.cpp">
-      <Filter>0.Framework\1.Resource\String</Filter>
+      <Filter>0.Framework\2.Resource\String</Filter>
     </ClCompile>
     <ClCompile Include="GdiplusHelper.cpp">
-      <Filter>0.Framework\1.Resource\0.Render</Filter>
+      <Filter>0.Framework\2.Resource\0.Render</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>0.Framework\0.Control\3.Control</Filter>
+      <Filter>0.Framework\1.Control\4.Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate.cpp">
+      <Filter>0.Framework\0.Typedef</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

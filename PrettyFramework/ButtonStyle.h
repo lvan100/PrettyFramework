@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Constant.h"
 #include "Visual.h"
+#include "Typedef.h"
 
 namespace PrettyFramework {
 

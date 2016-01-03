@@ -1,4 +1,6 @@
 #include "stdafx.h"
+
+#include "Typedef.h"
 #include "Rectangle.h"
 
 namespace PrettyFramework {
@@ -11,19 +13,17 @@ namespace PrettyFramework {
 
 	void Rectangle::Paint(Gdiplus::Graphics& graph)
 	{
-		Gdiplus::SizeF size(m_pt_end.X - m_pt_begin.X
+		Gdiplus::RectF rect(m_pt_begin.X, m_pt_begin.Y
+			, m_pt_end.X - m_pt_begin.X
 			, m_pt_end.Y - m_pt_begin.Y);
-
-		Gdiplus::RectF rect(m_pt_begin, size);
-
-		// 
-		// TODO 完善矩形绘制，尽量简单够用就好，别太复杂。
-		// 
 
 		if (!m_border_null) {
 			Gdiplus::Pen pen(m_border_color, m_border_width);
+			pen.SetDashStyle(m_border_style);
 			graph.DrawRectangle(&pen, rect);
 		}
+
+		DeflateRect(rect, m_border_width);
 
 		if (!m_fill_null) {
 			Gdiplus::SolidBrush brush(m_fill_color);

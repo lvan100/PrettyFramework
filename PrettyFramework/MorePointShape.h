@@ -21,9 +21,9 @@ namespace PrettyFramework {
 
 	public:
 		/**
-		 * 在序列末尾添加点
+		 * 向序列添加点
 		 */
-		void AddLastPoint(Gdiplus::PointF point) {
+		void AddPoint(Point point) {
 			m_points.push_back(point);
 		}
 
@@ -31,7 +31,7 @@ namespace PrettyFramework {
 		/**
 		 * 点序列
 		 */
-		vector<Gdiplus::PointF> m_points;
+		vector<Point> m_points;
 	};
 
 }

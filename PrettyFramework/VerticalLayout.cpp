@@ -14,7 +14,7 @@ namespace PrettyFramework {
 	{
 		LayoutControl::RecalcLayout();
 
-		Gdiplus::RectF rcMargined(rect_in_parent);
+		Rect rcMargined(rect_in_parent);
 
 		rcMargined.X += m_margin.X;
 		rcMargined.Y += m_margin.Y;
@@ -39,7 +39,7 @@ namespace PrettyFramework {
 			auto& control = (*iter);
 
 			float wg = control->GetWeight();
-			Gdiplus::SizeF fz = control->GetFixSize();
+			Size fz = control->GetFixSize();
 
 			int height = max(int(wg * fHeight), 0);
 
@@ -51,7 +51,7 @@ namespace PrettyFramework {
 				height = fz.Height;
 			}
 
-			control->SetRect(Gdiplus::RectF(m_margin.GetLeft(), lastHeight, rectWidth, height));
+			control->SetRect(Rect(m_margin.GetLeft(), lastHeight, rectWidth, height));
 			lastHeight += height;
 		}
 	}

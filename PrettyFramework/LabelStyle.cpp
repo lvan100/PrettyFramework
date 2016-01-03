@@ -18,11 +18,11 @@ namespace PrettyFramework {
 
 	void LabelStyle::Paint(Gdiplus::Graphics& graph)
 	{
-// 		Gdiplus::RectF rcView = m_label->GetViewRect();
+// 		Rect rcView = m_label->GetViewRect();
 // 		if (!rcView.IsRectEmpty()) {
 // 			auto& theme = GetUITheme();
 // 
-// 			Gdiplus::RectF rcMargined(rcView);
+// 			Rect rcMargined(rcView);
 // 			rcMargined.DeflateRect(m_label->GetMargin());
 // 
 // 			CFont* pOldFont = dc.SelectObject(&theme->label_text_font);

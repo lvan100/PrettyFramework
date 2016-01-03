@@ -44,7 +44,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	BaseControl::SetId(_T("root_layout"));
 	BaseControl::SetWindow(GetSafeHwnd());
-	BaseControl::SetMargin(Gdiplus::RectF(2, 2, 2, 2));
+	BaseControl::SetMargin(Rect(2, 2, 2, 2));
 
 	auto& bkgnd = LayoutControl::GetBkgndShape();
 	bkgnd->SetFillColor(RGB(214, 219, 233));
@@ -53,9 +53,9 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	// 标题栏布局
 	shared_ptr<HorizontalLayout> title_layout(new HorizontalLayout(this));
-	title_layout->SetMargin(Gdiplus::RectF(2, 2, 2, 2));
+	title_layout->SetMargin(Rect(2, 2, 2, 2));
 	title_layout->SetId(_T("title_layout"));
-	title_layout->SetFixSize(Gdiplus::SizeF(0, 40));
+	title_layout->SetFixSize(Size(0, 40));
 	LayoutControl::AddChild(title_layout);
 
 	auto& title_bkgnd = title_layout->GetBkgndShape();
@@ -65,8 +65,8 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	// 标题栏图标
 	shared_ptr<Image> title_image(new Image(title_layout.get()));
 	HICON hTImage = theImageRes.GetImage(_T("title_image"));
-	title_image->SetMargin(Gdiplus::RectF(3, 3, 3, 3));
-	title_image->SetFixSize(Gdiplus::SizeF(36, 0));
+	title_image->SetMargin(Rect(3, 3, 3, 3));
+	title_image->SetFixSize(Size(36, 0));
 	title_image->SetId(_T("title_image"));
 	title_layout->AddChild(title_image);
 	title_image->SetBitmap(hTImage);
@@ -75,7 +75,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	shared_ptr<Label> title_text(new Label(title_layout.get()));
 	title_text->SetGravity(Gravity::CenterH | Gravity::CenterV);
 	CString strTText = theStringRes.GetString(_T("title_text"));
-	title_text->SetMargin(Gdiplus::RectF(2, 2, 2, 2));
+	title_text->SetMargin(Rect(2, 2, 2, 2));
 	title_text->SetId(_T("title_text"));
 	title_layout->AddChild(title_text);
 	title_text->SetAutoWidth(TRUE);
@@ -89,8 +89,8 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	// 标题栏关闭按钮
 	shared_ptr<Button> title_close(new Button(title_layout.get()));
 	HICON hTClose = theImageRes.GetImage(_T("title_close"));
-	title_close->SetMargin(Gdiplus::RectF(10, 10, 10, 10));
-	title_close->SetFixSize(Gdiplus::SizeF(36, 0));
+	title_close->SetMargin(Rect(10, 10, 10, 10));
+	title_close->SetFixSize(Size(36, 0));
 	title_close->SetId(_T("title_close"));
 	title_layout->AddChild(title_close);
 	title_close->SetBitmap(hTClose);
@@ -109,8 +109,8 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	// 
 	// line->SetBorderWidth(1);
 	// line->SetBorderStyle(PS_DASHDOT);
-	// line->SetBeginPoint(Gdiplus::PointF(0, 0));
-	// line->SetEndPoint(Gdiplus::PointF(200, 200));
+	// line->SetBeginPoint(Point(0, 0));
+	// line->SetEndPoint(Point(200, 200));
 	// line->SetBorderColor(RGB(255, 0, 0));
 
 	shared_ptr<PrettyFramework::Rectangle>
@@ -119,8 +119,8 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	rectangle->SetBorderWidth(3);
 	rectangle->SetBorderStyle(PS_DASHDOT);
-	rectangle->SetBeginPoint(Gdiplus::PointF(0, 200));
-	rectangle->SetEndPoint(Gdiplus::PointF(200, 400));
+	rectangle->SetBeginPoint(Point(0, 200));
+	rectangle->SetEndPoint(Point(200, 400));
 	rectangle->SetBorderColor(RGB(255, 0, 0));
 	rectangle->SetFillColor(RGB(255, 255, 255));
 
@@ -155,7 +155,7 @@ void CPrettyFrameworkDlg::OnSize(UINT nType, int cx, int cy)
 	CRect rcClient;
 	GetClientRect(rcClient);
 
-	Gdiplus::RectF rcClientF;
+	Rect rcClientF;
 	LayoutControl::SetRect(rcClientF);
 
 	auto& children = LayoutControl::GetChildren();
@@ -168,7 +168,7 @@ void CPrettyFrameworkDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CDialogEx::OnLButtonDown(nFlags, point);
 
-	Gdiplus::PointF pointF;
+	Point pointF;
 	LayoutControl::OnMouseDown(pointF);
 }
 
@@ -176,7 +176,7 @@ void CPrettyFrameworkDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CDialogEx::OnMouseMove(nFlags, point);
 
-	Gdiplus::PointF pointF;
+	Point pointF;
 	LayoutControl::OnMouseMove(pointF);
 }
 
@@ -184,7 +184,7 @@ void CPrettyFrameworkDlg::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CDialogEx::OnLButtonUp(nFlags, point);
 
-	Gdiplus::PointF pointF;
+	Point pointF;
 	LayoutControl::OnMouseUp(pointF);
 }
 

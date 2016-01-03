@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Coordinate.h"
+
 namespace PrettyFramework {
 
 	// 
@@ -8,7 +10,7 @@ namespace PrettyFramework {
 
 	// 
 	// 任何具有视觉效果的对象都需要继承 @Visual 接口
-	// ，如基础控件、绘图形状等，都会继承此接口。
+	// ，比如基础控件、绘图形状等，都会继承该接口。
 	// 
 
 	// 
