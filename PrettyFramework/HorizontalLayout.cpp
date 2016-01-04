@@ -15,11 +15,7 @@ namespace PrettyFramework {
 		LayoutControl::RecalcLayout();
 
 		Rect rcMargined(rect_in_parent);
-
-		rcMargined.X += m_margin.X;
-		rcMargined.Y += m_margin.Y;
-		rcMargined.Width -= m_margin.Width;
-		rcMargined.Height -= m_margin.Height;
+		rcMargined.DeflateRect(m_margin);
 
 		float rectWidth = rcMargined.Width;
 		float rectHeight = rcMargined.Height;
@@ -39,14 +35,12 @@ namespace PrettyFramework {
 			Size cFixSize = control->GetFixSize();
 
 			if (cFixSize.Width > 0) {
-				childWeight[i] = cFixSize.Width * 1.0f / rectWidth;
-			}
-			else {
+				childWeight[i] = cFixSize.Width / rectWidth;
+			} else {
 				if (control->IsAutoWidth()) {
 					childWeight[i] = 0.0f;
 					autoChild.push_back(i);
-				}
-				else {
+				} else {
 					childWeight[i] = m_children.at(i)->GetWeight();
 				}
 			}
@@ -54,7 +48,7 @@ namespace PrettyFramework {
 			allWeight += childWeight[i];
 		}
 
-		int lastWidth = m_margin.GetLeft();
+		float lastLeft = m_margin.Left;
 
 		if (allWeight < 1.0f) {
 			float f = (1.0f - allWeight) / autoChild.size();
@@ -65,36 +59,36 @@ namespace PrettyFramework {
 
 		for (size_t i = 0; i < childWeight.size(); i++) {
 			auto& control = m_children.at(i);
-
-			Rect rcControl;
-
 			Size cFixSize = control->GetFixSize();
 
-			int width = int(childWeight[i] * rectWidth);
-			if (lastWidth + width > rectWidth) {
-				width = rectWidth - lastWidth;
+			float width = childWeight[i] * rectWidth;
+			if (lastLeft + width > rectWidth) {
+				width = rectWidth - lastLeft;
 			}
 
 			if (cFixSize.Width > 0) {
 				width = cFixSize.Width;
 			}
 
+			Rect rcControl;
+
 			// 目前是靠左、居中显示
-			int height = rectHeight;
+			float height = rectHeight;
+
 			if (cFixSize.Height > 0) {
 				height = cFixSize.Height;
-				rcControl.Y = (rectHeight - cFixSize.Height) / 2 + m_margin.GetTop();
-			}
-			else {
-				rcControl.Y = m_margin.Y;
+				rcControl.Top = (rectHeight - cFixSize.Height) / 2.0f + m_margin.Top;
+			} else {
+				rcControl.Top = m_margin.Top;
 			}
 
-			rcControl.X = lastWidth;
 			rcControl.Width = width;
 			rcControl.Height = height;
+			rcControl.Left = lastLeft;
 
 			control->SetRect(rcControl);
-			lastWidth += width;
+
+			lastLeft += width;
 		}
 	}
 

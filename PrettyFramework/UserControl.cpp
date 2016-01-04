@@ -22,25 +22,18 @@ namespace PrettyFramework {
 			Gdiplus::Region rgnOldClip;
 			graph.GetClip(&rgnOldClip);
 
-			Rect rcOldClip;
-			graph.GetClipBounds(&rcOldClip);
-
 			Rect rcClip = GetViewRect();
+			rcClip.DeflateRect(m_margin);
 
-			rcClip.X += m_margin.X;
-			rcClip.Y += m_margin.Y;
-			rcClip.Width -= m_margin.Width;
-			rcClip.Height -= m_margin.Height;
-
-			Gdiplus::Region rgnClip;
-			rgnClip.Intersect(rcClip);
+			auto& F = toGdiplusRect(rcClip);
+			Gdiplus::Region rgnClip(F);
 
 			{ /* »æÖÆ×Ó¿Ø¼þ */
 
-				Gdiplus::Region rgnControl;
-
 				Rect rect = m_layout->GetViewRect();
-				rgnControl.Intersect(rect);
+				auto& F2 = toGdiplusRect(rect);
+
+				Gdiplus::Region rgnControl(F2);
 
 				rgnControl.Intersect(&rgnClip);
 				graph.SetClip(&rgnControl);
@@ -198,7 +191,7 @@ namespace PrettyFramework {
 	{
 		if (m_layout != nullptr) {
 			Rect rcClient(GetRect());
-			rcClient.X = rcClient.Y = 0;
+			rcClient.MoveTo(0.0f, 0.0f);
 			m_layout->SetRect(rcClient);
 		}
 	}

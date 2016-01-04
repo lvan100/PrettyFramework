@@ -98,7 +98,7 @@ namespace PrettyFramework {
 	/**
 	 * 缩小范围
 	 */
-	void DeflateRect(Gdiplus::RectF& rect, const Margin& margin) {
+	inline void DeflateRect(Gdiplus::RectF& rect, const Margin& margin) {
 		rect.Height -= margin.Top + margin.Bottom;
 		rect.Width -= margin.Left + margin.Right;
 		rect.X += margin.Left;
@@ -108,7 +108,7 @@ namespace PrettyFramework {
 	/**
 	 * 缩小范围
 	 */
-	void DeflateRect(Gdiplus::RectF& rect, float margin) {
+	inline void DeflateRect(Gdiplus::RectF& rect, float margin) {
 		rect.Height -= margin * 2;
 		rect.Width -= margin * 2;
 		rect.X += margin;
@@ -118,29 +118,43 @@ namespace PrettyFramework {
 	/**
 	 * 转换为 Gdiplus 的坐标系
 	 */
-	Gdiplus::PointF toGdiplusPoint(Point point) {
+	inline Gdiplus::PointF toGdiplusPoint(Point point) {
 		return Gdiplus::PointF(point.X, point.Y);
 	}
 
 	/**
 	 * 转换为 GDI 的坐标系
 	 */
-	CPoint toGDIPoint(Point point) {
-		return CPoint(point.X, point.Y);
+	inline CPoint toGDIPoint(Point point) {
+		return CPoint(int(point.X), int(point.Y));
 	}
 
 	/**
 	 * 转换为 Gdiplus 的坐标系
 	 */
-	Gdiplus::RectF toGdiplusRect(Rect rect) {
+	inline Gdiplus::RectF toGdiplusRect(Rect rect) {
 		return Gdiplus::RectF(rect.Left, rect.Top, rect.Width, rect.Height);
 	}
 
 	/**
 	 * 转换为 GDI 的坐标系
 	 */
-	CRect toGdiRect(Rect rect) {
-		return CRect(rect.GetLeft(), rect.GetTop(), rect.GetRight(), rect.GetBottom());
+	inline CRect toGdiRect(Rect rect) {
+		return CRect(int(rect.GetLeft()), int(rect.GetTop()), int(rect.GetRight()), int(rect.GetBottom()));
+	}
+
+	/**
+	 * 转换为 Pretty 坐标系
+	 */
+	inline Point fromGdiPoint(CPoint point) {
+		return Point(float(point.x), float(point.y));
+	}
+
+	/**
+	 * 转换为 Pretty 坐标系
+	 */
+	inline Rect fromGdiRect(CRect rect) {
+		return Rect(float(rect.left), float(rect.top), float(rect.Width()), float(rect.Height()));
 	}
 
 }

@@ -6,13 +6,10 @@ namespace PrettyFramework {
 
 	LayoutControl::LayoutControl(BaseControl* control)
 		: BaseControl(control)
-		, last_hovered(nullptr)
-		, last_pressed(nullptr)
-		, last_focused(nullptr)
 	{
 		m_bkgnd_shape.reset(new Rectangle());
-// 		m_bkgnd_shape->SetBorderNull(TRUE);
-// 		m_bkgnd_shape->SetFillNull(TRUE);
+		m_bkgnd_shape->SetBorderNull(TRUE);
+		m_bkgnd_shape->SetFillNull(TRUE);
 	}
 
 	LayoutControl::~LayoutControl()
@@ -44,16 +41,16 @@ namespace PrettyFramework {
 
 			if (child == (*iter)) {
 
-				if (last_pressed == child.get()) {
-					last_pressed = nullptr;
+				if (last_pressed.lock() == child) {
+					last_pressed.reset();
 				}
 
-				if (last_hovered == child.get()) {
-					last_hovered = nullptr;
+				if (last_hovered.lock() == child) {
+					last_hovered.reset();
 				}
 
-				if (last_focused == child.get()) {
-					last_focused = nullptr;
+				if (last_focused.lock() == child) {
+					last_focused.reset();
 				}
 
 				m_children.erase(iter);
@@ -77,18 +74,11 @@ namespace PrettyFramework {
 		Gdiplus::Region rgnOldClip;
 		graph.GetClip(&rgnOldClip);
 
-		Rect rcOldClip;
-		graph.GetClipBounds(&rcOldClip);
-
 		Rect rcClip = GetViewRect();
+		rcClip.DeflateRect(m_margin);
 
-		rcClip.X += m_margin.X;
-		rcClip.Y += m_margin.Y;
-		rcClip.Width -= m_margin.Width;
-		rcClip.Height -= m_margin.Height;
-
-		Gdiplus::Region rgnClip;
-		rgnClip.Intersect(rcClip);
+		auto& F = toGdiplusRect(rcClip);
+		Gdiplus::Region rgnClip(F);
 		
 		for (auto iter = m_children.begin()
 			; iter != m_children.end()
@@ -96,10 +86,10 @@ namespace PrettyFramework {
 
 			auto& control = (*iter);
 
-			Gdiplus::Region rgnControl;
-
 			Rect rect = control->GetViewRect();
-			rgnControl.Intersect(rect);
+			auto& F2 = toGdiplusRect(rect);
+
+			Gdiplus::Region rgnControl(F2);
 
 			rgnControl.Intersect(&rgnClip);
 			graph.SetClip(&rgnControl);
@@ -116,11 +106,11 @@ namespace PrettyFramework {
 		ptInThis.Y -= GetRect().GetTop();
 		ptInThis.X -= GetRect().GetLeft();
 
-		if (last_pressed != nullptr) {
-			last_pressed->OnMouseUp(ptInThis);
+		if (!last_pressed.expired()) {
+			last_pressed.lock()->OnMouseUp(ptInThis);
 		}
 
-		last_pressed = nullptr;
+		last_pressed.reset();
 
 		if (m_children.size() == 0) {
 			Redraw();
@@ -133,26 +123,27 @@ namespace PrettyFramework {
 		ptInThis.Y -= GetRect().GetTop();
 		ptInThis.X -= GetRect().GetLeft();
 
-		BaseControl* hovered = nullptr;
+		weak_ptr<BaseControl> hovered;
+		auto& ptr = last_hovered.lock();
 
-		if (last_hovered != nullptr) {
-			last_hovered->OnMouseMove(ptInThis);
-			if (last_hovered->HitTest(ptInThis)) {
+		if (!last_hovered.expired()) {
+			ptr->OnMouseMove(ptInThis);
+			if (ptr->HitTest(ptInThis)) {
 				hovered = last_hovered;
 			}
 		}
 		
-		if (hovered == nullptr) {
+		if (hovered.expired()) {
 
 			for (auto iter = m_children.begin()
 				; iter != m_children.end()
 				; iter++) {
 
 				auto& control = (*iter);
-				if (last_hovered != control.get()) {
+				if (ptr != control) {
 					if (control->HitTest(ptInThis)) {
 						control->OnMouseMove(ptInThis);
-						hovered = control.get();
+						hovered = control;
 						break;
 					}
 				}
@@ -172,26 +163,27 @@ namespace PrettyFramework {
 		ptInThis.Y -= GetRect().GetTop();
 		ptInThis.X -= GetRect().GetLeft();
 
-		BaseControl* pressed = nullptr;
+		weak_ptr<BaseControl> pressed;
+		auto& ptr = last_focused.lock();
 
-		if (last_focused != nullptr) {
-			last_focused->OnMouseDown(ptInThis);
-			if (last_focused->HitTest(ptInThis)) {
+		if (!last_focused.expired()) {
+			ptr->OnMouseDown(ptInThis);
+			if (ptr->HitTest(ptInThis)) {
 				pressed = last_focused;
 			}
 		}
 		
-		if (pressed == nullptr) {
+		if (pressed.expired()) {
 
 			for (auto iter = m_children.begin()
 				; iter != m_children.end()
 				; iter++) {
 
 				auto& control = (*iter);
-				if (last_focused != control.get()) {
+				if (ptr != control) {
 					if (control->HitTest(ptInThis)) {
 						control->OnMouseDown(ptInThis);
-						pressed = control.get();
+						pressed = control;
 						break;
 					}
 				}
@@ -208,12 +200,8 @@ namespace PrettyFramework {
 	void LayoutControl::RecalcLayout()
 	{
 		if (m_bkgnd_shape != nullptr) {
-
-			Point ptBegin(rect_in_parent.X, rect_in_parent.Y);
-			m_bkgnd_shape->SetBeginPoint(ptBegin);
-
-			Point ptEnd(rect_in_parent.GetRight(), rect_in_parent.GetBottom());
-			m_bkgnd_shape->SetEndPoint(ptEnd);
+			m_bkgnd_shape->SetBeginPoint(rect_in_parent.GetLeftTop());
+			m_bkgnd_shape->SetEndPoint(rect_in_parent.GetRightBottom());
 		}
 	}
 

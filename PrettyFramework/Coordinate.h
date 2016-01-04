@@ -3,7 +3,7 @@
 namespace PrettyFramework {
 
 	// 
-	// 浮点坐标系，不使用整形坐标系。
+	// 浮点坐标系，不允许使用整形。
 	// 
 
 	/**
@@ -74,91 +74,6 @@ namespace PrettyFramework {
 	};
 
 	/**
-	 * 描述矩形（范围、区域）的概念。
-	 */
-	class Rect
-	{
-	public:
-		static Rect From(float left, float top, float right, float bottom) {
-			return Rect(left, top, right - left, bottom - top);
-		}
-
-		static Rect From(Point leftTop, Point rightBottom) {
-			return From(leftTop.X, leftTop.Y, rightBottom.X, rightBottom.Y);
-		}
-
-		Rect(float left, float top, float width, float height)
-			: Height(height)
-			, Width(width)
-			, Left(left)
-			, Top(top)
-		{}
-
-		Rect() : Rect(0.0f, 0.0f, 0.0f, 0.0f)
-		{}
-
-		Rect(Point point, Size size) {
-			Height = size.Height;
-			Width = size.Width;
-			Left = point.X;
-			Top = point.Y;
-		}
-
-		Rect(const Rect& rect) {
-			Height = rect.Height;
-			Width = rect.Width;
-			Left = rect.Left;
-			Top = rect.Top;
-		}
-
-		BOOL Contains(float x, float y) {
-			return x >= GetLeft() && x <= GetRight()
-				&& y >= GetTop() && y <= GetBottom();
-		}
-
-		BOOL Contains(Point point) {
-			return Contains(point.X, point.Y);
-		}
-
-		float GetBottom() {
-			return Top + Height;
-		}
-
-		float GetRight() {
-			return Left + Width;
-		}
-
-		float GetLeft() {
-			return Left;
-		}
-
-		float GetTop() {
-			return Top;
-		}
-
-	public:
-		/**
-		 * 起点 Y 坐标
-		 */
-		float Top;
-
-		/**
-		 * 起点 X 坐标
-		 */
-		float Left;
-
-		/**
-		 * 矩形的长度（宽度）
-		 */
-		float Width;
-
-		/**
-		 * 矩形的宽度（高度）
-		 */
-		float Height;
-	};
-
-	/**
 	 * 描述边距的概念。
 	 */
 	class Margin
@@ -209,5 +124,125 @@ namespace PrettyFramework {
 		 */
 		float Bottom;
 	};
+
+	/**
+	 * 描述矩形（范围、区域）的概念。
+	 */
+	class Rect
+	{
+	public:
+		static Rect From(float left, float top, float right, float bottom) {
+			return Rect(left, top, right - left, bottom - top);
+		}
+
+		static Rect From(Point leftTop, Point rightBottom) {
+			return From(leftTop.X, leftTop.Y, rightBottom.X, rightBottom.Y);
+		}
+
+		Rect(float left, float top, float width, float height)
+			: Height(height)
+			, Width(width)
+			, Left(left)
+			, Top(top)
+		{}
+
+		Rect() : Rect(0.0f, 0.0f, 0.0f, 0.0f)
+		{}
+
+		Rect(Point point, Size size) {
+			Height = size.Height;
+			Width = size.Width;
+			Left = point.X;
+			Top = point.Y;
+		}
+
+		Rect(const Rect& rect) {
+			Height = rect.Height;
+			Width = rect.Width;
+			Left = rect.Left;
+			Top = rect.Top;
+		}
+
+		BOOL Contains(float x, float y) {
+			return x >= GetLeft() && x <= GetRight()
+				&& y >= GetTop() && y <= GetBottom();
+		}
+
+		BOOL Contains(Point point) {
+			return Contains(point.X, point.Y);
+		}
+
+		void DeflateRect(Margin margin) {
+			Height -= margin.Top + margin.Bottom;
+			Width -= margin.Left + margin.Right;
+			Left += margin.Left;
+			Top += margin.Top;
+		}
+
+		void DeflateRect(float margin) {
+			Height -= margin * 2;
+			Width -= margin * 2;
+			Left += margin;
+			Top += margin;
+		}
+
+		void DeflateRect(Size size) {
+			Height -= size.Height * 2;
+			Width -= size.Width * 2;
+			Left += size.Width;
+			Top += size.Height;
+		}
+
+		void MoveTo(float left, float top) {
+			Left = left;
+			Top = top;
+		}
+
+		Point GetRightBottom() {
+			return Point(GetRight(), GetBottom());
+		}
+
+		Point GetLeftTop() {
+			return Point(Left, Top);
+		}
+
+		float GetBottom() {
+			return Top + Height;
+		}
+
+		float GetRight() {
+			return Left + Width;
+		}
+
+		float GetLeft() {
+			return Left;
+		}
+
+		float GetTop() {
+			return Top;
+		}
+
+	public:
+		/**
+		 * 起点 Y 坐标
+		 */
+		float Top;
+
+		/**
+		 * 起点 X 坐标
+		 */
+		float Left;
+
+		/**
+		 * 矩形的长度（宽度）
+		 */
+		float Width;
+
+		/**
+		 * 矩形的宽度（高度）
+		 */
+		float Height;
+	};
+
 
 }
