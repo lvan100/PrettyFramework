@@ -1,7 +1,6 @@
 #pragma once
 
 #include "UserControl.h"
-#include "ButtonStyle.h"
 
 namespace PrettyFramework {
 
@@ -17,20 +16,6 @@ namespace PrettyFramework {
 		// 
 		// 0.属性
 		// 
-
-	public:
-		/**
-		 * 获取按钮样式
-		 */
-		shared_ptr<ButtonStyle>& GetStyle() {
-			return m_style;
-		}
-
-	protected:
-		/**
-		 * 按钮样式
-		 */
-		shared_ptr<ButtonStyle> m_style;
 
 	public:
 		/**

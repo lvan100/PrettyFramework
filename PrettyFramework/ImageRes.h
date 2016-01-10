@@ -1,39 +1,27 @@
 #pragma once
 
-#include <map>
+#include <memory>
 using namespace std;
 
 namespace PrettyFramework {
 
-	/**
-	 * 图像资源
-	 */
-	class ImageResource
-	{
-	public:
-		ImageResource();
-		~ImageResource();
-
-		/**
-		 * 根据图像ID获取图像
-		 */
-		HICON GetImage(CString id);
-
-		/**
-		 * 根据图像ID获取列表式图像
-		 */
-		HICON GetImageList(CString id);
-
-	protected:
-		/**
-		 * 图像资源
-		 */
-		map<CString, HICON> m_images;
-	};
+	// 
+	// 只接受 PNG 格式的图像
+	// 
 
 	/**
-	 * 全局的图像资源管理器
+	 * 释放所有图像资源
 	 */
-	extern ImageResource theImageRes;
+	void ClearImages();
+
+	/**
+	 * 根据图像ID获取图像
+	 */
+	weak_ptr<Gdiplus::Image>& GetImage(CString id);
+
+	/**
+	 * 根据图像ID获取列表式图像
+	 */
+	weak_ptr<Gdiplus::Image>& GetImageList(CString id);
 
 }

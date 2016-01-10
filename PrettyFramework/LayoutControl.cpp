@@ -40,6 +40,7 @@ namespace PrettyFramework {
 			; iter++) {
 
 			if (child == (*iter)) {
+				m_children.erase(iter);
 
 				if (last_pressed.lock() == child) {
 					last_pressed.reset();
@@ -53,8 +54,6 @@ namespace PrettyFramework {
 					last_focused.reset();
 				}
 
-				m_children.erase(iter);
-				
 				break;
 			}
 		}
@@ -102,9 +101,7 @@ namespace PrettyFramework {
 
 	void LayoutControl::OnMouseUp(Point point)
 	{
-		Point ptInThis(point);
-		ptInThis.Y -= GetRect().GetTop();
-		ptInThis.X -= GetRect().GetLeft();
+		Point ptInThis = GetPointInThis(point);
 
 		if (!last_pressed.expired()) {
 			last_pressed.lock()->OnMouseUp(ptInThis);
@@ -119,9 +116,7 @@ namespace PrettyFramework {
 
 	void LayoutControl::OnMouseMove(Point point)
 	{
-		Point ptInThis(point);
-		ptInThis.Y -= GetRect().GetTop();
-		ptInThis.X -= GetRect().GetLeft();
+		Point ptInThis = GetPointInThis(point);
 
 		weak_ptr<BaseControl> hovered;
 		auto& ptr = last_hovered.lock();
@@ -159,9 +154,7 @@ namespace PrettyFramework {
 
 	void LayoutControl::OnMouseDown(Point point)
 	{
-		Point ptInThis(point);
-		ptInThis.Y -= GetRect().GetTop();
-		ptInThis.X -= GetRect().GetLeft();
+		Point ptInThis = GetPointInThis(point);
 
 		weak_ptr<BaseControl> pressed;
 		auto& ptr = last_focused.lock();

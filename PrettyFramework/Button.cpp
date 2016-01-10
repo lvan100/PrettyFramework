@@ -9,7 +9,6 @@ namespace PrettyFramework {
 		: UserControl(parent)
 		, m_bitmap(nullptr)
 	{
-		m_style.reset(new ButtonStyle(this));
 	}
 
 	Button::~Button()

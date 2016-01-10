@@ -14,7 +14,7 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 考虑到跨平台性，绘图库使用 Gdiplus （跨平台）。
+	// 考虑到跨平台性，绘图库使用 Gdiplus（跨平台）。
 	// 
 
 	/**

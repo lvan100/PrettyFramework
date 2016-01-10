@@ -5,7 +5,7 @@
 namespace PrettyFramework {
 
 	/**
-	 * 由两点决定的形状，如线条、矩形。
+	 * 由两点决定的形状，线条、矩形等。
 	 */
 	class TwoPointShape : public Shape
 	{

@@ -5,7 +5,7 @@
 
 #include "stdafx.h"
 
-CString GetModuleDir(HMODULE hModule/* = NULL*/)
+static CString GetModuleDir(HMODULE hModule = NULL)
 {
 	static CString strModulePath;
 
@@ -30,7 +30,7 @@ CString GetModuleDir(HMODULE hModule/* = NULL*/)
 	return strModulePath;
 }
 
-CSize GetIconSize(HICON hIcon)
+static CSize GetIconSize(HICON hIcon)
 {
 	if (hIcon == nullptr) {
 		return CSize(0, 0);
@@ -46,4 +46,9 @@ CSize GetIconSize(HICON hIcon)
 	DeleteObject(iconInfo.hbmMask);
 
 	return CSize(bitmap.bmWidth, bitmap.bmHeight);
+}
+
+static CString GetResourceDir()
+{
+	return GetModuleDir() + _T("Resource\\");
 }

@@ -29,11 +29,6 @@
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
 
 /**
- * 获取模块的绝对路径（暂时就放在这里吧）
+ * 获取资源目录
  */
-CString GetModuleDir(HMODULE hModule = NULL);
-
-/**
- * 获取图标的大小（暂时就放在这里吧）
- */
-CSize GetIconSize(HICON hIcon);
+CString GetResourceDir();

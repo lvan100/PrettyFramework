@@ -1,12 +1,12 @@
 #include "stdafx.h"
 
+#include <memory>
+using namespace std;
+
 #include "SelfModule.h"
 #include "TypeSelect.h"
 
 #include "GdiplusHelper.h"
-
-#include <memory>
-using namespace std;
 
 /**
  * Gdiplus 库初始化和反初始化对象

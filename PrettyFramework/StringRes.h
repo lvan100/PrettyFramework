@@ -1,39 +1,28 @@
 #pragma once
 
-#include <map>
-using namespace std;
-
 namespace PrettyFramework {
+	
+	/**
+	 * 刷新所有字符串
+	 */
+	void RefreshStrings();
 
 	/**
-	 * 字符串资源
+	 * 字符串语言
 	 */
-	class StringResource
-	{
-	public:
-		StringResource();
-		virtual ~StringResource();
-
-		/**
-		 * 根据字符串ID获取字符串
-		 */
-		CString GetString(CString id);
-
-		/**
-		 * 初始化函数
-		 */
-		void MustInitFirst(CString file);
-
-	protected:
-		/**
-		 * 字符串资源
-		 */
-		map<CString, CString> m_strings;
+	enum Language {
+		ChineseSimplified,
+		ChineseTraditional,
 	};
 
 	/**
-	 * 全局的字符串资源管理器
+	 * 设置字符串语言
 	 */
-	extern StringResource theStringRes;
+	void SetLanguage(Language lan);
 
+	/**
+	 * 根据字符串ID获取字符串
+	 */
+	CString& GetString(CString id);
+	
 }

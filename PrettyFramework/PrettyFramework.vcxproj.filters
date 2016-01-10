@@ -22,12 +22,6 @@
     <Filter Include="0.Framework\2.Resource">
       <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\2.Resource\Image">
-      <UniqueIdentifier>{7e00eaa6-ffc2-4979-aa52-23bd013aa1e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0.Framework\2.Resource\String">
-      <UniqueIdentifier>{d0afe964-dfdc-4a15-b9c3-8f9c62c4d3fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0.Framework\2.Resource\3.Style">
       <UniqueIdentifier>{b2bdb332-f2de-4452-bcd8-2933079dc1ba}</UniqueIdentifier>
     </Filter>
@@ -72,6 +66,12 @@
     </Filter>
     <Filter Include="0.Framework\1.Control\0.Visual">
       <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\2.Resource\1.Image">
+      <UniqueIdentifier>{7e00eaa6-ffc2-4979-aa52-23bd013aa1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\2.Resource\2.String">
+      <UniqueIdentifier>{d0afe964-dfdc-4a15-b9c3-8f9c62c4d3fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,9 +123,6 @@
     <ClInclude Include="UserControl.h">
       <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonStyle.h">
-      <Filter>0.Framework\2.Resource\3.Style</Filter>
-    </ClInclude>
     <ClInclude Include="TwoPointShape.h">
       <Filter>0.Framework\1.Control\2.Shape\1.TwoPoint</Filter>
     </ClInclude>
@@ -144,20 +141,14 @@
     <ClInclude Include="VerticalLayout.h">
       <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClInclude>
-    <ClInclude Include="LabelStyle.h">
-      <Filter>0.Framework\2.Resource\3.Style</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseStyle.h">
-      <Filter>0.Framework\2.Resource\3.Style</Filter>
-    </ClInclude>
     <ClInclude Include="Visual.h">
       <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClInclude>
     <ClInclude Include="ImageRes.h">
-      <Filter>0.Framework\2.Resource\Image</Filter>
+      <Filter>0.Framework\2.Resource\1.Image</Filter>
     </ClInclude>
     <ClInclude Include="StringRes.h">
-      <Filter>0.Framework\2.Resource\String</Filter>
+      <Filter>0.Framework\2.Resource\2.String</Filter>
     </ClInclude>
     <ClInclude Include="GdiplusHelper.h">
       <Filter>0.Framework\2.Resource\0.Render</Filter>
@@ -173,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="BaseShape.h">
       <Filter>0.Framework\1.Control\0.Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="Style.h">
+      <Filter>0.Framework\2.Resource\3.Style</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +209,6 @@
     <ClCompile Include="UserControl.cpp">
       <Filter>0.Framework\1.Control\4.Control</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonStyle.cpp">
-      <Filter>0.Framework\2.Resource\3.Style</Filter>
-    </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>0.Framework\1.Control\2.Shape\3.Line</Filter>
     </ClCompile>
@@ -230,14 +221,11 @@
     <ClCompile Include="VerticalLayout.cpp">
       <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClCompile>
-    <ClCompile Include="LabelStyle.cpp">
-      <Filter>0.Framework\2.Resource\3.Style</Filter>
-    </ClCompile>
     <ClCompile Include="ImageRes.cpp">
-      <Filter>0.Framework\2.Resource\Image</Filter>
+      <Filter>0.Framework\2.Resource\1.Image</Filter>
     </ClCompile>
     <ClCompile Include="StringRes.cpp">
-      <Filter>0.Framework\2.Resource\String</Filter>
+      <Filter>0.Framework\2.Resource\2.String</Filter>
     </ClCompile>
     <ClCompile Include="GdiplusHelper.cpp">
       <Filter>0.Framework\2.Resource\0.Render</Filter>

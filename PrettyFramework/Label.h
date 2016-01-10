@@ -1,6 +1,5 @@
 #pragma once
 
-#include "LabelStyle.h"
 #include "UserControl.h"
 
 namespace PrettyFramework {
@@ -38,20 +37,6 @@ namespace PrettyFramework {
 		 * 文本内容
 		 */
 		CString m_text;
-
-	public:
-		/**
-		 * 获取标签样式
-		 */
-		shared_ptr<LabelStyle>& GetStyle() {
-			return m_style;
-		}
-
-	protected:
-		/**
-		 * 标签样式
-		 */
-		shared_ptr<LabelStyle> m_style;
 
 		// 
 		// 1.绘图

@@ -3,7 +3,7 @@
 namespace PrettyFramework {
 
 	// 
-	// 浮点坐标系，不允许使用整形。
+	// 浮点坐标系，不计划使用整形。
 	// 
 
 	/**
@@ -74,7 +74,7 @@ namespace PrettyFramework {
 	};
 
 	/**
-	 * 描述边距的概念。
+	 * 描述边距的概念。和下面的[区域]不相同。
 	 */
 	class Margin
 	{
@@ -126,7 +126,7 @@ namespace PrettyFramework {
 	};
 
 	/**
-	 * 描述矩形（范围、区域）的概念。
+	 * 描述矩形、范围、区域等概念。
 	 */
 	class Rect
 	{
@@ -180,15 +180,15 @@ namespace PrettyFramework {
 		}
 
 		void DeflateRect(float margin) {
-			Height -= margin * 2;
-			Width -= margin * 2;
+			Height -= margin + margin; // margin * 2
+			Width -= margin + margin; // margin * 2
 			Left += margin;
 			Top += margin;
 		}
 
 		void DeflateRect(Size size) {
-			Height -= size.Height * 2;
-			Width -= size.Width * 2;
+			Height -= size.Height + size.Height; // size.Height * 2
+			Width -= size.Width + size.Width; // size.Width * 2
 			Left += size.Width;
 			Top += size.Height;
 		}

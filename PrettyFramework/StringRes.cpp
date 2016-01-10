@@ -1,6 +1,8 @@
 #include "stdafx.h"
-
 #include "Markup.h"
+
+#include <map>
+using namespace std;
 
 #include "StringRes.h"
 
@@ -8,11 +10,37 @@
 #include "TypeSelect.h"
 
 namespace PrettyFramework {
+	
+	/**
+	 * 空字符串
+	 */
+	static CString emptyString;
 
 	/**
-	 * 全局的字符串资源管理器
+	 * 字符串资源
 	 */
-	StringResource theStringRes;
+	static map<CString, CString> m_strings;
+
+	/**
+	 * 加载字符串资源
+	 */
+	static void LoadStringRes(CString file) {
+
+		CMarkup xml;
+		if (xml.Load(file)) {
+
+			while (xml.FindChildElem(L"String")) {
+				CString id = xml.GetChildAttrib(L"id");
+				CString strContent = xml.GetChildData();
+
+				auto& pair = make_pair(id, strContent);
+				auto res = m_strings.insert(pair);
+				if (!res.second) {
+					res.first->second.SetString(strContent);
+				}
+			}
+		}
+	}
 
 	/**
 	 * 定义当前模块
@@ -21,39 +49,41 @@ namespace PrettyFramework {
 		, ""
 		, []$(Constructor)() {
 		}, []$(Initializer)() {
-			CString strPath = GetModuleDir() + _T("Resource\\String\\");
-			theStringRes.MustInitFirst(strPath + _T("String.xml"));
+			RefreshStrings();
 		}, []$(Uninitializer)() {
 		}, []$(Destructor)() {
 		});
 	
-	StringResource::StringResource()
-	{
-	}
-	
-	StringResource::~StringResource()
-	{
+	/**
+	 * 字符串语言
+	 */
+	static Language language = Language::ChineseSimplified;
+
+	/**
+	 * 字符串语言目录列表
+	 */
+	static CString langDir[] = { _T("zh_CN"), _T("zh_TW") };
+
+	void RefreshStrings() {
+
+		CString strDir = GetResourceDir() + _T("String\\");
+		strDir += langDir[language] + _T("\\");
+
+		CString strPath = strDir + _T("String.xml");
+		LoadStringRes(strPath);
 	}
 
-	void StringResource::MustInitFirst(CString file)
-	{
-		CMarkup xml;
-		if (xml.Load(file)) {
-			while (xml.FindChildElem(L"String")) {
-				CString id = xml.GetChildAttrib(L"id");
-				CString strContent = xml.GetChildData();
-				m_strings.insert(make_pair(id, strContent));
-			}
-		}
+	void SetLanguage(Language lan) {
+		language = lan;
+		RefreshStrings();
 	}
 
-	CString StringResource::GetString(CString id)
-	{
+	CString& GetString(CString id) {
 		auto& iter = m_strings.find(id);
 		if (iter != m_strings.end()) {
 			return (*iter).second;
 		}
-		return _T("");
+		return emptyString;
 	}
 
 }

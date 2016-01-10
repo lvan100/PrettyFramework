@@ -14,6 +14,10 @@ namespace PrettyFramework {
 	{
 		LayoutControl::RecalcLayout();
 
+		// 
+		// TODO 暂时不用去实现
+		// 
+
 // 		Rect rcMargined(rect_in_parent);
 // 
 // 		rcMargined.X += m_margin.X;

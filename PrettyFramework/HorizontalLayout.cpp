@@ -34,14 +34,14 @@ namespace PrettyFramework {
 			auto& control = m_children.at(i);
 			Size cFixSize = control->GetFixSize();
 
-			if (cFixSize.Width > 0) {
+			if (cFixSize.Width > 0.0f) {
 				childWeight[i] = cFixSize.Width / rectWidth;
 			} else {
 				if (control->IsAutoWidth()) {
 					childWeight[i] = 0.0f;
 					autoChild.push_back(i);
 				} else {
-					childWeight[i] = m_children.at(i)->GetWeight();
+					childWeight[i] = control->GetWeight();
 				}
 			}
 
@@ -61,30 +61,23 @@ namespace PrettyFramework {
 			auto& control = m_children.at(i);
 			Size cFixSize = control->GetFixSize();
 
-			float width = childWeight[i] * rectWidth;
-			if (lastLeft + width > rectWidth) {
-				width = rectWidth - lastLeft;
-			}
-
-			if (cFixSize.Width > 0) {
-				width = cFixSize.Width;
-			}
-
 			Rect rcControl;
+			rcControl.Left = lastLeft;
 
 			// 目前是靠左、居中显示
 			float height = rectHeight;
 
 			if (cFixSize.Height > 0) {
 				height = cFixSize.Height;
-				rcControl.Top = (rectHeight - cFixSize.Height) / 2.0f + m_margin.Top;
+				rcControl.Top = (rectHeight - cFixSize.Height) / 2 + m_margin.Top;
 			} else {
 				rcControl.Top = m_margin.Top;
 			}
 
+			float width = childWeight[i] * rectWidth;
+
 			rcControl.Width = width;
 			rcControl.Height = height;
-			rcControl.Left = lastLeft;
 
 			control->SetRect(rcControl);
 

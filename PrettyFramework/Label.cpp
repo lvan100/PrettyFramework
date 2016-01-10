@@ -7,7 +7,6 @@ namespace PrettyFramework {
 	Label::Label(LayoutControl* parent)
 		: UserControl(parent)
 	{
-		m_style.reset(new LabelStyle(this));
 	}
 
 	Label::~Label()

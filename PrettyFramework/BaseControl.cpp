@@ -69,5 +69,13 @@ namespace PrettyFramework {
 	{
 		return rect_in_parent.Contains(point);
 	}
+	
+	Point BaseControl::GetPointInThis(Point point)
+	{
+		Point ptInThis(point);
+		ptInThis.Y -= rect_in_parent.Top;
+		ptInThis.X -= rect_in_parent.Left;
+		return ptInThis;
+	}
 
 }

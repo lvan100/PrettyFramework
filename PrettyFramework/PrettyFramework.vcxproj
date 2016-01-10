@@ -184,11 +184,10 @@
   <ItemGroup>
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
-    <ClInclude Include="BaseStyle.h" />
+    <ClInclude Include="Style.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="GdiplusHelper.h" />
     <ClInclude Include="HorizontalLayout.h" />
-    <ClInclude Include="LabelStyle.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MorePointShape.h" />
     <ClInclude Include="Rectangle.h" />
@@ -196,7 +195,6 @@
     <ClInclude Include="VerticalLayout.h" />
     <ClInclude Include="Visual.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="ButtonStyle.h" />
     <ClInclude Include="Typedef.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageRes.h" />
@@ -220,13 +218,11 @@
     <ClCompile Include="AbsoluteLayout.cpp" />
     <ClCompile Include="BaseControl.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="ButtonStyle.cpp" />
     <ClCompile Include="Coordinate.cpp" />
     <ClCompile Include="GdiplusHelper.cpp" />
     <ClCompile Include="HorizontalLayout.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageRes.cpp" />
-    <ClCompile Include="LabelStyle.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="BaseTheme.cpp" />
     <ClCompile Include="Label.cpp" />

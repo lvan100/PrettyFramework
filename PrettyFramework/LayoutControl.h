@@ -40,19 +40,13 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		 * 子控件列表
+		 * 子控件列表，管理子控件的生命周期。
 		 */
 		vector<shared_ptr<BaseControl>> m_children;
 		
 		// 
 		// 1.绘图
 		// 
-
-	protected:
-		/**
-		 * 通知控件需要进行绘图
-		 */
-		virtual void Paint(Gdiplus::Graphics& graph);
 
 	public:
 		/**
@@ -67,7 +61,13 @@ namespace PrettyFramework {
 		 * 布局控件的背景对象
 		 */
 		shared_ptr<TwoPointShape> m_bkgnd_shape;
-		
+
+	protected:
+		/**
+		 * 定义视觉绘图接口
+		 */
+		virtual void Paint(Gdiplus::Graphics& graph);
+
 		// 
 		// 2.事件
 		// 
@@ -90,17 +90,17 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		 * 最近鼠标按下的子控件
+		 * 最近鼠标按下的子控件，监视子控件
 		 */
 		weak_ptr<BaseControl> last_pressed;
 
 		/**
-		 * 最近获得热点的子控件
+		 * 最近获得热点的子控件，监视子控件
 		 */
 		weak_ptr<BaseControl> last_hovered;
 
 		/**
-		 * 最近获得焦点的子控件
+		 * 最近获得焦点的子控件，监视子控件
 		 */
 		weak_ptr<BaseControl> last_focused;
 		

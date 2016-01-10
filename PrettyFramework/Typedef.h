@@ -109,8 +109,8 @@ namespace PrettyFramework {
 	 * Àı–°∑∂Œß
 	 */
 	inline void DeflateRect(Gdiplus::RectF& rect, float margin) {
-		rect.Height -= margin * 2;
-		rect.Width -= margin * 2;
+		rect.Height -= margin + margin; // margin * 2
+		rect.Width -= margin + margin; // margin * 2
 		rect.X += margin;
 		rect.Y += margin;
 	}

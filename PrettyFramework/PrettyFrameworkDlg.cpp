@@ -44,13 +44,15 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 
 	BaseControl::SetId(_T("root_layout"));
 	BaseControl::SetWindow(GetSafeHwnd());
-	BaseControl::SetMargin(Margin(2, 2, 2, 2));
+
+	Margin winMaigin(2.0f, 2.0f, 2.0f, 2.0f);
+	BaseControl::SetMargin(winMaigin);
 
 	auto& bkgnd = LayoutControl::GetBkgndShape();
 
-	bkgnd->SetBorderWidth(1);
 	bkgnd->SetFillNull(FALSE);
 	bkgnd->SetBorderNull(FALSE);
+	bkgnd->SetBorderWidth(1.0f);
 	bkgnd->SetBorderColor(Gdiplus::Color(72, 72, 72));
 	bkgnd->SetFillColor(Gdiplus::Color(214, 219, 233));
 
@@ -107,14 +109,23 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 // 		children.at(i)->Dump();
 // 	}
 
-	// shared_ptr<Line> line(new Line());
-	// m_shapes.push_back(line);
-	// 
-	// line->SetBorderWidth(1);
-	// line->SetBorderStyle(PS_DASHDOT);
-	// line->SetBeginPoint(Point(0, 0));
-	// line->SetEndPoint(Point(200, 200));
-	// line->SetBorderColor(RGB(255, 0, 0));
+	shared_ptr<Line> line0(new Line());
+	m_shapes.push_back(line0);
+
+	line0->SetBorderWidth(3.0f);
+	line0->SetBeginPoint(Point(200.0f, 0.0f));
+	line0->SetEndPoint(Point(200.0f, 200.0f));
+	// line0->SetBorderStyle(Gdiplus::DashStyleDash);
+	line0->SetBorderColor(Gdiplus::Color(255, 0, 0));
+
+	shared_ptr<Line> line1(new Line());
+	m_shapes.push_back(line1);
+
+	line1->SetBorderWidth(3.0f);
+	line1->SetBeginPoint(Point(0.0f, 0.0f));
+	line1->SetEndPoint(Point(200.0f, 200.0f));
+	// line1->SetBorderStyle(Gdiplus::DashStyleDash);
+	line1->SetBorderColor(Gdiplus::Color(255, 0, 0));
 
 	shared_ptr<PrettyFramework::Rectangle>
 		rectangle(new PrettyFramework::Rectangle());
@@ -123,7 +134,7 @@ BOOL CPrettyFrameworkDlg::OnInitDialog()
 	rectangle->SetBorderWidth(3.0f);
 	rectangle->SetBeginPoint(Point(0.0f, 200.0f));
 	rectangle->SetEndPoint(Point(200.0f, 400.0f));
-	rectangle->SetBorderStyle(Gdiplus::DashStyleDash);
+	// rectangle->SetBorderStyle(Gdiplus::DashStyleDash);
 	rectangle->SetBorderColor(Gdiplus::Color(255, 0, 0));
 	rectangle->SetFillColor(Gdiplus::Color(255, 255, 255));
 
@@ -141,9 +152,9 @@ void CPrettyFrameworkDlg::OnPaint()
 
 	LayoutControl::Paint(*graph);
 
-	for (size_t i = 0; i < m_shapes.size(); i++) {
-		m_shapes[i]->Paint(*graph);
-	}
+	// for (size_t i = 0; i < m_shapes.size(); i++) {
+	// 	m_shapes[i]->Paint(*graph);
+	// }
 }
 
 BOOL CPrettyFrameworkDlg::OnEraseBkgnd(CDC* pDC)

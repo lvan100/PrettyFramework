@@ -14,6 +14,10 @@ namespace PrettyFramework {
 	//
 
 	// 
+	// 随着框架的演进，我越发觉得需要给这个项目一个长期目标。
+	// 
+
+	// 
 	// 作者的愿景: 使用现代C++技术，集Android、WPF、QT等优秀
 	// 界面框架之长，打造简单、易用、安全的现代C++界面框架。
 	// 
@@ -64,14 +68,14 @@ namespace PrettyFramework {
 	// 
 	// <LayoutControl id="root">
 	//		<LayoutControl id="title">
-	//			<UserControl id="app_icon">
-	//				<LayoutControl />
+	//			<UserControl id="icon">
+	//				<!-- <LayoutControl /> -->
 	//			</UserControl>
 	//		</LayoutControl>
 	//		<UserControl id="content" />
 	//		<LayoutControl id="status">
 	//			<UserControl id="tip">
-	//				<LayoutControl />
+	//				<!-- <LayoutControl /> -->
 	//			</UserControl>
 	//		</LayoutControl>
 	// </LayoutControl>
@@ -90,9 +94,10 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 该界面模型的事件机制采用类似WPF的处理，分为隧道和冒泡两种类
-	// 型，用户可以在隧道事件中阻止冒泡事件的发生。而实现隧道事件的
-	// 方式包含类继承和事件注入两种，这样在使用上具有很高的灵活性。
+	// 该界面模型的事件机制采用类似WPF的处理，分为隧道（由根控件路
+	// 由至最终的子控件，方向向下）和冒泡（由最终的子控件路由至根控
+	// 件，方向向上）两种类型，可以在隧道事件中阻止冒泡事件的发生。
+	// 实现隧道事件的方式有类继承和事件注入两种，所以实现起来很灵活。
 	// 
 
 	//  
@@ -101,17 +106,13 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// 每种控件都有其固定的显示规则，但是通过对控件的图像、背景、热
-	// 点颜色等属性的定制化，可以使控件的表现形式多种多样，我们称这
-	// 种定制化为 Style（样式）。通过 Style（样式）我们可以在程序运
-	// 行开始的时候将控件显示成我们想要的外观，但是却不能在运行中改
-	// 变它。如果在程序运行过程中改变控件外观，就需要 Theme（主题）。
+	// 每种控件都有其固定的显示规则，但是通过对控件的字体、背景等属
+	// 性的定制，可以让控件的表现形式多种多样，这叫做 Style（样式）。
 	// 
 
 	// 
-	// Theme（主题）本质上是一组 Style（样式）的集合，不同的 Theme
-	// （主题）之间可以相互切换，但是这些可以相互切换的 Theme（主题）
-	// 必须包含相同的 Style（样式）的定义。
+	// Style（样式）的另外一种在使用XML界面文件时的含义: Style（样式）
+	// 是一些共同界面属性的集合，重用它们可以让界面文件变得更加简洁。
 	// 
 
 	// 
@@ -132,18 +133,8 @@ namespace PrettyFramework {
 	// 
 
 	// 
-	// Theme（主题）之间也具有继承关系，子主题会覆盖父主题的相同设置
-	// 。这种继承关系可以通过 XML 文件进行表述:
-	// 
-	// <Theme Name="Win7Black">
-	//     <Style Name="BigButtonStyle"> ... </Style>
-	//     <Style Name="SmallButtonStyle"> ... </Style>
-	// </Theme>
-	// 
-	// <Theme Name="MyWin7Black" Parent="Win7Black">
-	//     <Style Name="BigButtonStyle"> ... </Style>
-	//     <Style Name="SmallButtonStyle"> ... </Style>
-	// </Theme>
+	// Theme（主题）是定义界面显示规则的完整的解决方案，它包括图像、
+	// 字符串、颜色、样式等等，一切界面显示相关的资源都包含在主题内。
 	// 
 
 	// 
@@ -401,6 +392,12 @@ namespace PrettyFramework {
 		 * 控件是否被击中
 		 */
 		virtual BOOL HitTest(Point point);
+
+	public:
+		/**
+		 * 转换为当前控件坐标系
+		 */
+		Point GetPointInThis(Point point);
 
 	protected:
 		/**

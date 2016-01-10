@@ -1,46 +1,56 @@
 #include "stdafx.h"
 #include "ImageRes.h"
 
+#include <map>
+using namespace std;
+
 namespace PrettyFramework {
 
 	/**
-	 * 全局的图像资源管理器
+	 * 图像资源
 	 */
-	ImageResource theImageRes;
+	static map<CString, shared_ptr<Gdiplus::Image>> m_images;
 
-	ImageResource::ImageResource()
-	{
-	}
+	weak_ptr<Gdiplus::Image>& GetImage(CString id) {
 
-	ImageResource::~ImageResource()
-	{
-	}
-
-	HICON ImageResource::GetImage(CString id)
-	{
 		auto& iter = m_images.find(id);
 		if (iter != m_images.end()) {
-			return (*iter).second;
+			return weak_ptr<Gdiplus::Image>((*iter).second);
 		}
 		
-		CString strPath = GetModuleDir() + _T("Resource\\Image\\");
-		HICON icon = (HICON)LoadImage(nullptr, strPath + id + _T(".ico")
-			, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
-		auto& res = m_images.insert(make_pair(id, icon));
-		if (res.second) {
-			return icon;
+		CString strImageDir = GetResourceDir() + _T("Image\\");
+		CString strPath = strImageDir + id + _T(".png");
+
+		shared_ptr<Gdiplus::Image> image(new Gdiplus::Image(strPath));
+		auto& res = m_images.insert(make_pair(id, image));
+
+		return weak_ptr<Gdiplus::Image>(res.second ? image : nullptr);
+	}
+
+	/**
+	 * 列表式图像资源
+	 */
+	static map<CString, shared_ptr<Gdiplus::Image>> m_list_type_images;
+
+	weak_ptr<Gdiplus::Image>& GetImageList(CString id) {
+
+		auto& iter = m_list_type_images.find(id);
+		if (iter != m_list_type_images.end()) {
+			return weak_ptr<Gdiplus::Image>((*iter).second);
 		}
 
-		return nullptr;
+		CString strImageDir = GetResourceDir() + _T("Image\\");
+		CString strPath = strImageDir + id + _T(".png");
+
+		shared_ptr<Gdiplus::Image> image(new Gdiplus::Image(strPath));
+		auto& res = m_list_type_images.insert(make_pair(id, image));
+
+		return weak_ptr<Gdiplus::Image>(res.second ? image : nullptr);
 	}
 	
-	HICON ImageResource::GetImageList(CString id)
-	{
-		// 
-		// 根据图像高度对图像进行切割
-		// 
-
-		return GetImage(id);
+	void ClearImages() {
+		m_images.clear();
+		m_list_type_images.clear();
 	}
 
 }
