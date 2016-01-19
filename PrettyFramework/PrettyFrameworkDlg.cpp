@@ -9,7 +9,6 @@
 #include "Line.h"
 #include "Rectangle.h"
 
-#include "ImageRes.h"
 #include "StringRes.h"
 
 #include "HorizontalLayout.h"

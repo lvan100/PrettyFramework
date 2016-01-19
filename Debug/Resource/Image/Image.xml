@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ImageRes>
+	<Image id="title_close" file="title_close.ico" />
+	<Image id="title_image" file="title_image.ico" />
+	<Image id="title_minimize" file="title_minimize.ico" />
+</ImageRes>

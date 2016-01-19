@@ -25,8 +25,8 @@ BOOL CPrettyFrameworkApp::InitInstance()
 	// VS2015 通过函数初始化 afxGlobalData 变量.
 	/* AFX_GLOBAL_DATA* p = */ GetGlobalData();
 
-	CString strPath = GetModuleDir();
-	strPath += _T("Resource\\Theme\\BaseTheme.xml");
+	CString strPath = GetResourceDir();
+	strPath += _T("Theme\\BaseTheme.xml");
 
 	GetUITheme()->Reload(strPath);
 

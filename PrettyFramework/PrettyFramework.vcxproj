@@ -184,7 +184,7 @@
   <ItemGroup>
     <ClInclude Include="AbsoluteLayout.h" />
     <ClInclude Include="BaseControl.h" />
-    <ClInclude Include="Style.h" />
+    <ClInclude Include="SkinRes.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="GdiplusHelper.h" />
     <ClInclude Include="HorizontalLayout.h" />
@@ -197,7 +197,6 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Typedef.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="ImageRes.h" />
     <ClInclude Include="BaseTheme.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="LayoutControl.h" />
@@ -222,7 +221,6 @@
     <ClCompile Include="GdiplusHelper.cpp" />
     <ClCompile Include="HorizontalLayout.cpp" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="ImageRes.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="BaseTheme.cpp" />
     <ClCompile Include="Label.cpp" />
@@ -238,6 +236,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SkinRes.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

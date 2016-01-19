@@ -22,9 +22,6 @@
     <Filter Include="0.Framework\2.Resource">
       <UniqueIdentifier>{66b13142-a157-4a9e-8231-99f9c710ecda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\2.Resource\3.Style">
-      <UniqueIdentifier>{b2bdb332-f2de-4452-bcd8-2933079dc1ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0.Framework\2.Resource\5.Theme">
       <UniqueIdentifier>{23be0152-5866-428e-b81d-cbb8eaa5e494}</UniqueIdentifier>
     </Filter>
@@ -67,11 +64,11 @@
     <Filter Include="0.Framework\1.Control\0.Visual">
       <UniqueIdentifier>{c6e00fef-8a69-4940-959f-f9bc4cb1510f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Framework\2.Resource\1.Image">
-      <UniqueIdentifier>{7e00eaa6-ffc2-4979-aa52-23bd013aa1e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0.Framework\2.Resource\2.String">
       <UniqueIdentifier>{d0afe964-dfdc-4a15-b9c3-8f9c62c4d3fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Framework\2.Resource\1.SkinRes">
+      <UniqueIdentifier>{235bae80-d3e2-4351-8afb-b5712e7a7983}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +141,6 @@
     <ClInclude Include="Visual.h">
       <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClInclude>
-    <ClInclude Include="ImageRes.h">
-      <Filter>0.Framework\2.Resource\1.Image</Filter>
-    </ClInclude>
     <ClInclude Include="StringRes.h">
       <Filter>0.Framework\2.Resource\2.String</Filter>
     </ClInclude>
@@ -165,8 +159,8 @@
     <ClInclude Include="BaseShape.h">
       <Filter>0.Framework\1.Control\0.Visual</Filter>
     </ClInclude>
-    <ClInclude Include="Style.h">
-      <Filter>0.Framework\2.Resource\3.Style</Filter>
+    <ClInclude Include="SkinRes.h">
+      <Filter>0.Framework\2.Resource\1.SkinRes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -221,9 +215,6 @@
     <ClCompile Include="VerticalLayout.cpp">
       <Filter>0.Framework\1.Control\3.Layout</Filter>
     </ClCompile>
-    <ClCompile Include="ImageRes.cpp">
-      <Filter>0.Framework\2.Resource\1.Image</Filter>
-    </ClCompile>
     <ClCompile Include="StringRes.cpp">
       <Filter>0.Framework\2.Resource\2.String</Filter>
     </ClCompile>
@@ -235,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="Coordinate.cpp">
       <Filter>0.Framework\0.Typedef</Filter>
+    </ClCompile>
+    <ClCompile Include="SkinRes.cpp">
+      <Filter>0.Framework\2.Resource\1.SkinRes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
