@@ -24,9 +24,39 @@ namespace PrettyFramework {
 	{
 	public:
 		/**
-		 * 定义视觉绘图接口
+		 * 完成绘图过程
 		 */
-		virtual void Paint(Gdiplus::Graphics& graph) = 0;
+		void Paint(Gdiplus::Graphics& graph) {
+			if (!_paintFrozen) {
+				Paint0(graph);
+			}
+		}
+
+		/**
+		 * 冻结绘图过程
+		 */
+		void FreezePaint(BOOL freeze) {
+			_paintFrozen = freeze;
+		}
+
+		/**
+		 * 绘图是否冻结
+		 */
+		BOOL PaintFrozen() {
+			return _paintFrozen;
+		}
+
+	protected:
+		/**
+		 * 绘图是否冻结
+		 */
+		BOOL _paintFrozen = FALSE;
+
+	protected:
+		/**
+		 * 子类实现绘图接口
+		 */
+		virtual void Paint0(Gdiplus::Graphics& graph) = 0;
 	};
 
 }

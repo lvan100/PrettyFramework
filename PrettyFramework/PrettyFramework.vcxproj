@@ -212,6 +212,7 @@
     <ClInclude Include="TypeSelect.h" />
     <ClInclude Include="UserControl.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowRes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbsoluteLayout.cpp" />
@@ -247,6 +248,7 @@
     <ClCompile Include="UserControl.cpp" />
     <ClCompile Include="VerticalLayout.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WindowRes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PrettyFramework.rc" />

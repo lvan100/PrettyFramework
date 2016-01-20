@@ -11,7 +11,7 @@ namespace PrettyFramework {
 	Line::~Line()
 	{}
 	
-	void Line::Paint(Gdiplus::Graphics& graph)
+	void Line::Paint0(Gdiplus::Graphics& graph)
 	{
 		// 
 		// 线条在绘制的时候以中心线向两侧延伸1/2宽度。

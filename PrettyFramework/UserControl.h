@@ -47,7 +47,7 @@ namespace PrettyFramework {
 		/**
 		 * 通知控件需要进行绘图
 		 */
-		virtual void Paint(Gdiplus::Graphics& graph);
+		virtual void Paint0(Gdiplus::Graphics& graph);
 
 		/**
 		 * 继承此控件的控件用来绘制自身

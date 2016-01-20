@@ -13,7 +13,7 @@ namespace PrettyFramework {
 	{
 	}
 
-	void UserControl::Paint(Gdiplus::Graphics& graph)
+	void UserControl::Paint0(Gdiplus::Graphics& graph)
 	{
 		OnPaint(graph); /* »æÖÆ×ÔÉíÍ¼²ã */
 

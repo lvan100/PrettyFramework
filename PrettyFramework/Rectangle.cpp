@@ -11,7 +11,7 @@ namespace PrettyFramework {
 	Rectangle::~Rectangle()
 	{}
 
-	void Rectangle::Paint(Gdiplus::Graphics& graph)
+	void Rectangle::Paint0(Gdiplus::Graphics& graph)
 	{
 		// 
 		// 线条在绘制的时候以中心线向两侧延伸1/2宽度。

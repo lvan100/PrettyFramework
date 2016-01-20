@@ -64,9 +64,9 @@ namespace PrettyFramework {
 
 	protected:
 		/**
-		 * 定义视觉绘图接口
+		 * 子类实现绘图接口
 		 */
-		virtual void Paint(Gdiplus::Graphics& graph);
+		virtual void Paint0(Gdiplus::Graphics& graph);
 
 		// 
 		// 2.事件

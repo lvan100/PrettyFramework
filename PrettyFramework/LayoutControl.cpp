@@ -61,7 +61,7 @@ namespace PrettyFramework {
 		RecalcLayout();
 	}
 	
-	void LayoutControl::Paint(Gdiplus::Graphics& graph)
+	void LayoutControl::Paint0(Gdiplus::Graphics& graph)
 	{
 		// 绘制布局控件的背景
 		m_bkgnd_shape->Paint(graph);
